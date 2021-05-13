@@ -1,14 +1,18 @@
+.offcanvas-title{
+color:blanchedalmond;
+}
 
-
+.nav-item a button{
+    font-size: 20px;
+}
+#offcanvasWithBothOptions{
+    width: 230px;
+}
 footer{
     bottom:0px;
     width:100%;
     position: relative;
-}
-
-button{
-    margin: 5px;
-    text-align: center;
+    color:blanchedalmond;
 }
 html,
 body,
@@ -18,9 +22,5 @@ body,
       margin: 0;
       padding: 0;
     }
-
-  #menu{
-      margin-bottom: 20px;
-  }
 
 
