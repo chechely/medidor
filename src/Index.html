@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+    <head>
+
+      <!--TITULO DO SITE-->
+
+        <title>Medidor de Vazão</title>
+
+        <!--PARA O SITE FUNCIONAR PERFEITAMENTE EM GRANDE PARTE DOS NAVEGADORES-->
+
+        <meta charset="UTF-8" />
+
+        <!--ADICIONA IMAGEM AO ICONE DO SITE-->
+
+        <link rel="icon" type="imagem/png" href="img/Logo.png">
+
+        <!--CHAMA O ARQUIVO STYLE.CSS-->
+        <link  type="text/css"  href="/style.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <!--LINK PARA BOOTSTRAP-->
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+        
+        <!--LINK PARA CHART JS-->
+    <script>"https://www.jsdelivr.com/package/npm/chart.js?path=dist"</script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .offcanvas-title{
+    color:blanchedalmond;
+    }
+    
+    .nav-item a button{
+        font-size: 20px;
+    }
+    #offcanvasWithBothOptions{
+        width: 230px;
+    }
+    footer{
+        bottom:0px;
+        width:100%;
+        position:fixed;
+        color:blanchedalmond;
+    }
+    #cont{
+        width:100%;
+        height: 50px;
+        margin: auto;
+    }
+    nav{
+        margin-bottom: 20px;
+    }
+    h6{
+        color: black;
+    }
+    .chart-container{
+        margin:auto;
+        min-width:300px;
+        max-width: 700px;
+    }
+    #sair{
+        font-size: 20px;
+    }
+    </style>
+</head>
+<body>  
+
+    <!-- MENU OFFCANVAS-->
+
+    <nav class="navbar navbar-primary bg-primary" >
+   <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" >
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+      </svg>
+   </button> 
+   <div class="offcanvas offcanvas-start bg-primary" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasScrollingLabel">
+       <div class="offcanvas-header">
+           <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
+           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+       </div>
+       <div class="offcanvas-body">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a  class="nav-link active" aria-current="page" href="Historico"><button  class="btn btn-primary" type="button">Historico</button></a>
+            </li>
+            <li class="nav-item">
+                <a  class="nav-link active" aria-current="page" href="Localizacao"><button  class="btn btn-primary" type="button" >Localização</button></a>
+            </li>
+        </ul>
+       </div>
+   </div>
+</nav>
+
+<!--GRAFICO-->
+<div class="container-sm" id="cont1">
+<div class="chart-container">
+<div class="container"id="cont">
+    <div class="btn-group">
+        <button type="button" onclick="seg();" class="btn btn-primary">m³/s</button>
+      <button type="button" onclick="addData();"  class="btn btn-primary">L/h</button>
+    </div> 
+    <canvas id="vazao" >
+    </canvas>   
+</div>
+</div>
+</div>
+<script src="/Index.js"></script>
+        <!--RODAPE DA PAGINA-->
+
+        <footer  class="bg-primary text-center text-lg-start">
+          <div class="text-center p-3">
+              <a id="footer">Oficinas 4.0</a>
+            </div>
+  </footer>
+</body>
+</html>
+           

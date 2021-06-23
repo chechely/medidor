@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+    <head>
+
+      <!--TITULO DO SITE-->
+
+        <title>Medidor de Vazão</title>
+
+        <!--PARA O SITE FUNCIONAR PERFEITAMENTE EM GRANDE PARTE DOS NAVEGADORES-->
+
+        <meta charset="UTF-8" />
+
+        <!--ADICIONA IMAGEM AO ICONE DO SITE-->
+
+        <link rel="icon" type="imagem/png" href="img/Logo.png">
+
+        <!--CHAMA O ARQUIVO STYLE.CSS-->
+        <link  type="text/css"  href="/style.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--LINK PARA BOOTSTRAP-->
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+        </head>
+        <style>
+            
+            /* CENTRALIZA O TITULO */
+
+            #title{
+                text-align: center;
+            }
+
+            /* DEFINE A COR DO CORPO DA PAGINA */
+
+            body{
+                background-color: #1E90FF;
+            }
+
+            /* CENTRALIZA A IMAGEM E DEFINE A MARGEM DE BAIXO */
+
+            #img{
+                text-align: center;
+                margin-bottom: 60px;
+            }
+            .container{
+                border-width: 20px;
+                margin-top:20px;
+            }
+            .col-auto{
+                margin:auto;
+                border-width: 10px;
+            }
+        </style>
+        <body>
+
+                <!--ICON DE LOGIN-->
+<div class="container">
+                <div id="img">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                  </svg>
+                </div>
+
+                <!--FORMULARIO PARA CADASTRO-->
+
+                <form action="/Inicio" method="POST" class="row g-3">
+
+                    <!--RECEBE O NOME-->
+
+                    <div class="col-md-5">
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" name="nome" class="form-control" id="nome" placeholder="Digite seu nome" MAXLENGTH=50>
+                      </div>
+                    
+                      <!--RECEBE O SOBRENOME-->
+
+                      <div class="col-md-5">
+                        <label for="Sobrenome" class="form-label">Sobrenome:</label>
+                        <input type="text" name="sobrenome" class="form-control" id="sobrenome" placeholder="Digite seu sobrenome" MAXLENGTH=100>
+                      </div>
+
+                      <!--RECEBE A DATA DE NASCIMENTO-->
+
+                      <div class="col-md-2">
+                        <label for="DataNasci" class="form-label">Data de Nascimento:</label>
+                        <input type="date" name="DataNasci" class="form-control" id="sobrenome">
+                      </div>
+
+                      <!--RECEBE O EMAIL-->
+
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" MAXLENGTH=100>
+                      </div>
+
+                      <!--RECEBE O USER-->
+
+                      <div class="col-md-6">
+                        <label for="user" class="form-label">Usuario:</label>
+                        <input type="text" name="user" class="form-control" id="user" placeholder="Crie um nome de usuario" MAXLENGTH=15>
+                      </div>
+
+                      <!--RECEBE A SENHA-->
+
+                    <div class="col-md-6">
+                      <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
+                      <input type="password" name="senha" class="form-control" id="senha" placeholder="Digite sua senha" MAXLENGTH=10 MINLENGTH=8>   
+                </div>
+
+                <!--RECEBE O NUMERO DE TELEFONE-->
+
+                <div class="col-md-6">
+                    <label for="tel" class="col-sm-2 col-form-label">Telefone:</label>
+                    <input type="tel" name="tel" class="form-control" id="tel" placeholder="Ex. 5582999845166" MAXLENGTH=14>   
+              </div>
+
+              <!--RECEBE O GENERO-->
+
+              <div class="col-md-6">
+              <label class="form-check-label">Genero:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="genero" id="m">
+                    <label class="form-check-label" for="m">Mulher</label>
+                  </div>                  
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="genero" id="h">
+                    <label class="form-check-label" for="h">Homem</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="genero" id="nb">
+                    <label class="form-check-label" for="nb">Não binário</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="genero" id="ou">
+                    <label class="form-check-label" for="ou">Outro</label>
+                  </div>
+              </div>
+
+              <!--RECEBE UMA IMAGEM-->
+
+            <div class="col-md-6">
+                <label for="formFile" class="form-label">Foto:</label>
+                <input class="form-control" type="file" accept="image/*" id="formFile">
+              </div>
+
+              <!--RECEBE O RG   -->
+
+              <div class="col-md-4">
+                <label for="rg" class="form-label">RG:</label>
+                <input type="text" name="rg" class="form-control" id="rg" MAXLENGTH=16 placeholder="ex. 4055702030">
+              </div>
+
+              <!--RECEBE O CPF-->
+
+              <div class="col-md-4">
+                <label for="cpf" class="form-label">CPF:</label>
+                <input type="text" name="cpf" class="form-control" id="cpf" MAXLENGTH=11 placeholder="Ex. 13431816920">
+              </div>
+
+              <!--RECEBE O CARGO-->
+
+              <div class="col-md-4">
+                <label for="inputState" class="form-label">Cargo</label>
+                <select id="inputState" class="form-select">
+                  <option selected>Gerente</option>
+                  <option>Tecnico</option>
+                </select>
+              </div>
+
+              <!--RECEBE O CADASTRO-->
+              <div class="col-md-10">
+                      <button id="submit" style="margin:auto;" type="submit" class="btn btn-primary mb-3">Cadastre-se</button>
+                    </div>
+              </form>
+            </div>
+        </body>
+</html>

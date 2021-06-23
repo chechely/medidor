@@ -1,0 +1,28 @@
+.offcanvas-title{
+    color:blanchedalmond;
+    }
+    
+    .nav-item a button{
+        font-size: 20px;
+    }
+    #offcanvasWithBothOptions{
+        width: 230px;
+    }
+    footer{
+        bottom:0px;
+        width:100%;
+        position:fixed;
+        color:blanchedalmond;
+    }
+    #cont{
+        width:100%;
+        height: 50px;
+        margin: auto;
+    }
+    nav{
+        margin-bottom: 20px;
+    }
+    h6{
+        color: black;
+    }
+    
