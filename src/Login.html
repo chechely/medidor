@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+    <head>
+
+      <!--TITULO DO SITE-->
+
+        <title>Medidor de Vazão</title>
+
+        <!--PARA O SITE FUNCIONAR PERFEITAMENTE EM GRANDE PARTE DOS NAVEGADORES-->
+
+        <meta charset="UTF-8" />
+
+        <!--ADICIONA IMAGEM AO ICONE DO SITE-->
+
+        <link rel="icon" type="imagem/png" href="img/Logo.png">
+
+        <!--CHAMA O ARQUIVO STYLE.CSS-->
+        <link  type="text/css"  href="/style.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--LINK PARA BOOTSTRAP-->
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+        </head>
+        <style>
+
+            /* CENTRALIZA O TITULO */
+
+            #title{
+                text-align: center;
+            }
+
+            /* DEFINE O TAMANHO DO CONTAINER JUNTO COM A BORDA EM CIMA */
+
+            .container{
+                margin-top: 50px;
+                width: 300px;
+            }
+
+            /* DEFINE A COR DO CORPO DA PAGINA */
+
+            body{
+                background-color: #1E90FF;
+            }
+
+            /* CENTRALIZA A IMAGEM E DEFINE A MARGEM DE BAIXO */
+
+            #img{
+                text-align: center;
+                margin-bottom: 60px;
+            }
+        </style>
+        <body>
+            <div class="container">
+
+                <!--IMAGEM-->
+
+                <div id="img">
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                  </svg>
+                </div>
+
+                <!--FORMULARIO PARA LOGIN-->
+
+            <form action="/Inicio" method="POST" class="mb-3 row">
+
+                <!--RECEBE O USUARIO-->
+
+                <div class="mb-3  row">
+                    <label for="user" class="form-label">Usuario:</label>
+                    <input type="text" name="user" class="form-control" id="user" placeholder="Nome de usuario" MAXLENGTH=15>
+                  </div>
+
+                  <!--RECEBE A SENHA-->
+
+                <div class="mb-3  row">
+                  <label for="senha" class="col-sm-2 col-form-label">Senha:</label>
+                  <input type="password" name="senha" class="form-control" id="senha" placeholder="Digite sua senha" MAXLENGTH=10 MINLENGTH=8>   
+            </div>
+
+                  <!--ENVIA-->
+
+                <div class="mb-3 row">
+                  <button type="submit" class="btn btn-primary mb-3">Entrar</button>
+                  <button action="/Cadastro" class="btn btn-primary mb-3">Cadastre-se</button>
+                </div>
+              </form>
+            </div>
+        </body>
+</html>
