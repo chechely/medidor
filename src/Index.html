@@ -27,6 +27,8 @@
         <!--LINK PARA CHART JS-->
     <script>"https://www.jsdelivr.com/package/npm/chart.js?path=dist"</script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <style>
         .offcanvas-title{
     color:blanchedalmond;
@@ -107,11 +109,18 @@
 </div>
 </div>
 <script>
-const datams = [];
-const dadoslh = [];
-const datalh = [];
-const tituloms = "2021-07-08";
-const titulolh = "2021-07-07";
+      var banana = [];
+        $(document).ready(function() {
+            $.get('/d', function(res) {
+                banana = res;
+            })
+        });
+const dadosms = [10,9,8,7,6];
+const datams = ["2021-07-04","2021-07-05","2021-07-06","2021-07-07"];
+const dadoslh = [100,200,300,400,500];
+const datalh = ["2021-07-08","2021-07-09","2021-07-10","2021-07-11"];
+const tituloms = "Vazão: Metros cubicos por segundo";
+const titulolh = "Vazão: Litros por hora";
 
 Chart.defaults.font.size = 12;
 Chart.defaults.color='#000000';
@@ -146,10 +155,10 @@ options: {
     responsive: true,
     scales: {
         y: {
-            beginAtZero: true,
+            beginAtZero: false,
         },
         x:{
-            beginAtZero: true,
+            beginAtZero: false,
         },
     },
     plugins: {
@@ -163,7 +172,7 @@ options: {
       },
       animations: {
         tension: {
-          duration: 1000,
+          duration: 10000,
           easing: 'linear',
           from: 1,
           to: 0,
@@ -172,16 +181,15 @@ options: {
       },
 }
 });
-const dadosms = require("./src/app");
 function lh(){
-    grafico.data.labels = datalh;
-    grafico.data.datasets[0].data = dadoslh;
+    grafico.data.labels = banana[1];
+    grafico.data.datasets[0].data = banana[2];
     grafico.options.plugins.title.text = titulolh;
     grafico.update();
 }
 function ms() {
-    grafico.data.labels = datams;
-    grafico.data.datasets[0].data = dadosms;
+    grafico.data.labels = banana[0];
+    grafico.data.datasets[0].data = banana[2];
     grafico.options.plugins.title.text = tituloms;
     grafico.update();
 }
