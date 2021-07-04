@@ -31,8 +31,12 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+        <!--LINK PARA CHART JS-->
+        <script>"https://www.jsdelivr.com/package/npm/chart.js?path=dist"</script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
         <style>
-            .offcanvas-title{
+.offcanvas-title{
     color:blanchedalmond;
     }
     
@@ -45,7 +49,7 @@
     footer{
         bottom:0px;
         width:100%;
-        position: relative;
+        position:fixed;
         color:blanchedalmond;
     }
     #bt{
@@ -55,6 +59,20 @@
     }
     #sub{
         margin:auto;
+    }
+    .chart-container{
+        margin:auto;
+        min-width:300px;
+        max-width: 700px;
+    }
+    #cont{
+        width:100%;
+        max-height: 700px;
+        min-height:300px;
+        margin: auto;
+    }
+    nav{
+        margin-bottom: 20px;
     }
         </style>
     
@@ -87,30 +105,19 @@
         <a class="navbar-brand" href="#">Navbar</a>
      </nav>
 
-<div id="bt">
-    <form action="/" method="POST" class="row g-3">
-        <div class="col-md-4">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Data</option>
-                <option value="1">22/06/2021</option>
-                <option value="2">23/06/2021</option>
-                <option value="3">24/02/2021</option>
-              </select>
+     <div class="container-sm" id="cont1">
+        <div class="chart-container">
+        <div class="container"id="cont">
+            <div class="btn-group">
+                <button type="button" onclick="ms();" class="btn btn-primary">m³/s</button>
+              <button type="button" onclick="lh();"  class="btn btn-primary">L/h</button>
+            </div> 
+            <canvas id="grafico" >
+            </canvas>   
         </div>
-        <div class="col-md-4">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Hora</option>
-                <option value="1">10:05:10</option>
-                <option value="2">22:55:01</option>
-                <option value="3">15:00:00</option>
-              </select>
         </div>
-        <div class="col-md-4">
-          <button type="submit" id="sub" class="btn btn-primary md-6">Enviar</button>
         </div>
-    </form>
-    </div>
-    <div id="graf"></div>
+        <script src="/Index.js"></script>
         <!--RODAPE DA PAGINA-->
 
         <footer  class="bg-primary text-center text-lg-start">

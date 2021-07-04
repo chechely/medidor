@@ -57,6 +57,7 @@
     }
     .chart-container{
         margin:auto;
+        min-height:400px;
         min-width:300px;
         max-width: 700px;
     }
@@ -98,15 +99,93 @@
 <div class="chart-container">
 <div class="container"id="cont">
     <div class="btn-group">
-        <button type="button" onclick="seg();" class="btn btn-primary">m³/s</button>
-      <button type="button" onclick="addData();"  class="btn btn-primary">L/h</button>
+        <button type="button" onclick="ms();" class="btn btn-primary">m³/s</button>
+      <button type="button" onclick="lh();"  class="btn btn-primary">L/h</button>
     </div> 
-    <canvas id="vazao" >
-    </canvas>   
+    <canvas id="grafico"></canvas>   
 </div>
 </div>
 </div>
-<script src="/Index.js"></script>
+<script>
+const datams = [];
+const dadoslh = [];
+const datalh = [];
+const tituloms = "2021-07-08";
+const titulolh = "2021-07-07";
+
+Chart.defaults.font.size = 12;
+Chart.defaults.color='#000000';
+const ctx = document.getElementById('grafico').getContext('2d');
+const ylabels = [];
+const xlabels = [];
+const grafico = new Chart(ctx, {
+    type: 'line',
+    data: {
+    labels: xlabels,
+    datasets: [{
+        label: 'Vazão',
+        data: ylabels,
+        backgroundColor: [
+            'rgba(0,0,205)',
+            'rgba(30,144,255)',
+            'rgba(30,144,255)',
+            'rgba(30,144,255)',
+            'rgba(30,144,255)'
+        ],
+        borderColor: [
+            'rgba(0,0,205)',
+            'rgba(30,144,255)',
+            'rgba(30,144,255)',
+            'rgba(30,144,255)',
+            'rgba(30,144,255)'
+        ],
+        borderWidth: 3,
+    }],
+},
+options: {
+    responsive: true,
+    scales: {
+        y: {
+            beginAtZero: true,
+        },
+        x:{
+            beginAtZero: true,
+        },
+    },
+    plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'Vazão'
+        }
+      },
+      animations: {
+        tension: {
+          duration: 1000,
+          easing: 'linear',
+          from: 1,
+          to: 0,
+          loop: false
+        }
+      },
+}
+});
+const dadosms = require("./src/app");
+function lh(){
+    grafico.data.labels = datalh;
+    grafico.data.datasets[0].data = dadoslh;
+    grafico.options.plugins.title.text = titulolh;
+    grafico.update();
+}
+function ms() {
+    grafico.data.labels = datams;
+    grafico.data.datasets[0].data = dadosms;
+    grafico.options.plugins.title.text = tituloms;
+    grafico.update();
+}
+</script>
         <!--RODAPE DA PAGINA-->
 
         <footer  class="bg-primary text-center text-lg-start">
