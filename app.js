@@ -13,14 +13,18 @@ const app = express();
 const bodyParser = require("body-parser");
 
 // Chama a conexão com o banco que está sendo feita no banco.js
+
 const connection = require("./src/banco");
+
+// Cria os arrays que irão receber os dados
 
 var data1 = [];
 var vazao = [];
 var datas = [];
 
+// Pesquisas no banco
 
-connection.query("select datat,vazao,datas,id from medidor_t order by id desc limit 5; ", function(err,result){
+connection.query("select datat,vazao,datas,id from medidor_t order by id desc; ", function(err,result){
     var d1 = (result[0].datat)
     var d2 = (result[1].datat)
     var d3 = (result[2].datat)
@@ -42,6 +46,8 @@ connection.query("select datat,vazao,datas,id from medidor_t order by id desc li
     const dt5 = (result[4].datas)
     datas = [dt1,dt2,dt3,dt4,dt5]
 });
+
+// Função que irá direcionar por um jquery os dados em um unico array
 
 function data3(){
     var data2;
@@ -90,24 +96,3 @@ app.get("/Entrar", function(req,res){
 // Porta que estamos usando localmente
 
 app.listen(8080);
-
-// Faz as pesquisas no sql e transforma em um Json 
-connection.query("select vazao from medidor_t  order by vazao  limit 5;", function(err,result){
-    const v1 = JSON.stringify(result[0].vazao)
-    const v2 = JSON.stringify(result[1].vazao)
-    const v3 = JSON.stringify(result[2].vazao)
-    const v4 = JSON.stringify(result[3].vazao)
-    const v5 = JSON.stringify(result[4].vazao)
-    const vazao = [v1,v2,v3,v4,v5]
-    console.log(vazao);
-});
-
-connection.query("select datas from medidor_t order by datas desc  limit 5;", function(err,result){
-    const d1 = JSON.stringify(result[0].datas)
-    const d2 = JSON.stringify(result[1].datas)
-    const d3 = JSON.stringify(result[2].datas)
-    const d4 = JSON.stringify(result[3].datas)
-    const d5 = JSON.stringify(result[4].datas)
-    const datas = [d1,d2,d3,d4,d5]
-    console.log(datas);
-});

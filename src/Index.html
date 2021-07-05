@@ -30,41 +30,56 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <style>
+
+/* Altera a cor do titulo do menu */
+
         .offcanvas-title{
     color:blanchedalmond;
     }
     
+/* Almenta o tamanho do botão do menu */
+
     .nav-item a button{
         font-size: 20px;
     }
+
+/* Altera o tamanho do menu */
+
     #offcanvasWithBothOptions{
         width: 230px;
     }
+
+/* Coloca posição, tamanho e cor no rodapé */
+
     footer{
         bottom:0px;
         width:100%;
         position:fixed;
         color:blanchedalmond;
     }
+
+/* Altera tamanho e  posição do container onde está os botões que atualizam o grafico*/
+
     #cont{
         width:100%;
         height: 50px;
         margin: auto;
     }
+
+/* Coloca uma margem de 20px no menu*/
+
     nav{
         margin-bottom: 20px;
     }
-    h6{
-        color: black;
-    }
+
+/* Muda posição, altura minima, tamanho minimo e tamanho maximo do container onde está o grafico*/
+
     .chart-container{
         margin:auto;
-        min-height:400px;
+        min-height:500px;
         min-width:300px;
-        max-width: 700px;
-    }
-    #sair{
-        font-size: 20px;
+        max-width: 800px;
+        position: relative;
     }
     </style>
 </head>
@@ -109,58 +124,77 @@
 </div>
 </div>
 <script>
+
+// jquery que chama os dados do render lá do app.js para um outro array
+
       var banana = [];
         $(document).ready(function() {
             $.get('/d', function(res) {
                 banana = res;
             })
         });
-const dadosms = [10,9,8,7,6];
-const datams = ["2021-07-04","2021-07-05","2021-07-06","2021-07-07"];
-const dadoslh = [100,200,300,400,500];
-const datalh = ["2021-07-08","2021-07-09","2021-07-10","2021-07-11"];
+
+// Altera o titulo do grafico
+
 const tituloms = "Vazão: Metros cubicos por segundo";
 const titulolh = "Vazão: Litros por hora";
 
 Chart.defaults.font.size = 12;
 Chart.defaults.color='#000000';
+
+// Gera o grafico em 2d componentes canva no html
+
 const ctx = document.getElementById('grafico').getContext('2d');
-const ylabels = [];
-const xlabels = [];
+
 const grafico = new Chart(ctx, {
     type: 'line',
     data: {
-    labels: xlabels,
+    labels: banana[1],
     datasets: [{
         label: 'Vazão',
-        data: ylabels,
+        data: banana[2],
+
+// Cores dos grafico
+
         backgroundColor: [
-            'rgba(0,0,205)',
-            'rgba(30,144,255)',
-            'rgba(30,144,255)',
-            'rgba(30,144,255)',
-            'rgba(30,144,255)'
+            'rgba(0,0,205)'
         ],
+        fill: false,
+// Cor da borda do grafico
+
         borderColor: [
-            'rgba(0,0,205)',
-            'rgba(30,144,255)',
-            'rgba(30,144,255)',
-            'rgba(30,144,255)',
-            'rgba(30,144,255)'
+            'rgba(0,0,205)'
         ],
+
+// Tamanho da borda do grafico
+
         borderWidth: 3,
     }],
 },
+
+// Personalização do grafico
+
 options: {
+
+// Deixa o grafico responsivo
+
     responsive: true,
+
+// Faz com que o grafico não inicie do zero
+
     scales: {
         y: {
             beginAtZero: false,
+            display: true,
         },
         x:{
             beginAtZero: false,
+            display: true,
         },
     },
+
+// Deixa a legenda do grafico em cima e coloca um titulo
+
     plugins: {
         legend: {
           position: 'top',
@@ -168,32 +202,80 @@ options: {
         title: {
           display: true,
           text: 'Vazão'
-        }
+        },
+        subtitle: {
+                display: true
+            }
       },
+
+// Cria ondinhas por alguns segundos no grafico
+
       animations: {
         tension: {
-          duration: 10000,
+          duration: 1000,
           easing: 'linear',
           from: 1,
           to: 0,
           loop: false
-        }
+        },
+        radius: {
+        duration: 400,
+        easing: 'linear',
+        loop: (context) => context.active
+      }
       },
+      hoverRadius: 12,
+    hoverBackgroundColor: 'rgba(30,144,255)',
+    interaction: {
+      mode: 'nearest',
+      intersect: false,
+      axis: 'x'
+    },
 }
 });
+
+// funções que irão alterar os dados do grafico quando o botão for clicado
+
 function lh(){
+
+// altera os dados da label 
+
     grafico.data.labels = banana[1];
+
+// altera os dados do datasets
+
     grafico.data.datasets[0].data = banana[2];
+
+// Altera o titulo
+
     grafico.options.plugins.title.text = titulolh;
+    grafico.options.plugins.subtitle.text = "04/07/2021";
+
+// Atualiza o grafico
+
     grafico.update();
 }
 function ms() {
+
+// altera os dados da label 
+
     grafico.data.labels = banana[0];
+
+// altera os dados do datasets
+
     grafico.data.datasets[0].data = banana[2];
+
+// Altera o titulo
+
     grafico.options.plugins.title.text = tituloms;
+    grafico.options.plugins.subtitle.text = "05/07/2021";
+
+// Atualiza o grafico
+
     grafico.update();
 }
 </script>
+
         <!--RODAPE DA PAGINA-->
 
         <footer  class="bg-primary text-center text-lg-start">
@@ -202,5 +284,4 @@ function ms() {
             </div>
   </footer>
 </body>
-</html>
-           
+</html>     
