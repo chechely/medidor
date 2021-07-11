@@ -1,37 +1,32 @@
-.offcanvas-title{
-    color:blanchedalmond;
-    }
-    
-    .nav-item a button{
-        font-size: 20px;
-    }
-    #offcanvasWithBothOptions{
-        width: 230px;
-    }
-    footer{
-        bottom:0px;
-        width:100%;
-        position:fixed;
-        color:blanchedalmond;
-    }
-    #bt{
-        width: 75%;
-        margin:auto;
-        margin-top: 10px;
-    }
-    #sub{
-        margin:auto;
-    }
-    .chart-container{
-        margin:auto;
-        min-width:300px;
-        max-width: 700px;
-    }
-    #cont{
-        width:100%;
-        height: 50px;
-        margin: auto;
-    }
-    nav{
-        margin-bottom: 20px;
-    }
+
+            /* CENTRALIZA O TITULO */
+
+            #title{
+                text-align: center;
+            }
+
+            /* DEFINE O TAMANHO DO CONTAINER JUNTO COM A BORDA EM CIMA */
+
+            .container{
+                margin-top: 50px;
+                width: 300px;
+            }
+
+            /* DEFINE A COR DO CORPO DA PAGINA */
+
+            body{
+                background-color: #1E90FF;
+            }
+
+            /* CENTRALIZA A IMAGEM E DEFINE A MARGEM DE BAIXO */
+
+            #img{
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            #cad{
+                text-align: center;
+            }
+            #text{
+                text-align: center;
+            }

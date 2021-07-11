@@ -34,6 +34,7 @@
         <!--LINK PARA CHART JS-->
         <script>"https://www.jsdelivr.com/package/npm/chart.js?path=dist"</script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        </script>
 
         <style>
 .offcanvas-title{
@@ -55,22 +56,31 @@
     nav{
         margin-bottom: 20px;
     }
+
+    #teste{
+      margin:30px;
+    }
+    #cadm{
+      margin: auto;
+      max-width: 400px;
+    }
+    #medi{
+      max-width: 700px;
+    }
+    #bt{
+      margin:auto;
+      text-align: center;
+    }
     #pesq{
-        max-width: 400px;
-        margin: auto;
+        margin-right:10px;
+        margin-left:10px;
     }
-    .table{
-        margin: auto;
-        max-width: 600px;
-        margin-top: 20px;
-    }
-    #proc{
-        height: 50px;
-    }
-    #proc2{
-        text-align: center;
+    #cadt{
+      margin-left: 5px;
+      margin:auto;
     }
         </style>
+
 </head>
 <body>  
      <!-- MENU OFFCANVAS-->
@@ -97,12 +107,11 @@
                         Inicio</button></a>
                  </li>
                  <li class="nav-item">
-                    <a  class="nav-link active" aria-current="page" href="Medidor"><button  class="btn btn-primary" type="button" >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer2" viewBox="0 0 16 16">
-                            <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z"/>
-                            <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z"/>
+                    <a  class="nav-link active" aria-current="page" href="Historico"><button  class="btn btn-primary" type="button" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
                           </svg>
-                        Medidores</button></a>
+                        Historico</button></a>
                 </li>
                  <li class="nav-item">
                      <a  class="nav-link active" aria-current="page" href="Localizacao"><button  class="btn btn-primary" type="button" >
@@ -110,18 +119,25 @@
                             <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
                             <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                           </svg>
-                        Localização</button></a>
+                         Localização</button></a>
                  </li>
-                 <li class="nav-item">
-                    <a  class="nav-link active" aria-current="page" href="Seus-dados"><button  class="btn btn-primary" type="button" >
+                <li class="nav-item">
+                    <a  class="nav-link active" aria-current="page" href="Seus-dados"><button class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
                             <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                           </svg>
                         Seus dados</button></a>
                 </li>
+                <li class="nav-item">
+                    <a  class="nav-link active" aria-current="page" href="medidores-cadastrados"><button id="cad" class="btn btn-primary" type="button" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer2" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z"/>
+                            <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z"/>
+                          </svg> Medidores Cadastrados</button></a>
+                </li>
              </ul>
             </div>
-            <a  class="nav-link active" aria-current="page" href="Entrar"><button  class="btn btn-primary" type="button" >
+            <a  class="nav-link active" aria-current="page" href="Entrar"><button class="btn btn-primary" type="button" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
                     <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
@@ -129,43 +145,76 @@
                 Sair</button></a>
         </div>
      </nav>
-<div class="container-fluid">
-             <div id="pesq" class="row g-1">
-                <div class="col-md">
-                  <div class="form-floating">
-                    <input id="longitude" type="text" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
-                    <label id="longi" for="floatingInputGrid">Nome</label>
+  <div id="cadt" class="container">
+  <div id="cadm" class="container">
+     <form action="/" method="POST" class="mb-3 row">
+
+        <!--RECEBE O USUARIO-->
+
+                <div class="mb-3  row"  data-bs-toggle="tooltip" data-bs-placement="right" title="O medidor deve ter um nome unico">
+                    <label for="user" class="form-label">Nome:</label>
+                    <input type="text" name="user" class="form-control" id="user" placeholder="Nome de usuario" MAXLENGTH=15>
                   </div>
+
+          <!--RECEBE A SENHA-->
+
+                <div class="mb-3  row">
+                    <label for="user" class="form-label">Cidade:</label>
+                    <input type="text" name="user" class="form-control" id="user" placeholder="Nome de usuario" MAXLENGTH=15>
+                  </div>
+
+                <div class="mb-3  row">
+                  <label for="user" class="form-label">Estado:</label>
+                  <select class="form-select" aria-label="Default select example">
+                  <option selected>Selecione</option>
+                  <option value="1">Acre (AC)</option>
+                  <option value="2">Alagoas (AL)</option>
+                  <option value="3">Amapá (AP)</option>
+                  <option value="4">Amazonas (AM)</option>
+                  <option value="5">Bahia (BA)</option>
+                  <option value="6">Ceará (CE)</option>
+                  <option value="7">Distrito Federal (DF)</option>
+                  <option value="8">Espírito Santo (ES)</option>
+                  <option value="9">Goiás (GO)</option>
+                  <option value="10">Maranhão (MA)</option>
+                  <option value="11">Mato Grosso (MT)</option>
+                  <option value="12">Mato Grosso do Sul (MS)</option>
+                  <option value="13">Minas Gerais (MG)</option>
+                  <option value="14">Pará (PA)</option>
+                  <option value="15">Paraíba (PB)</option>
+                  <option value="16">Paraná (PR)</option>
+                  <option value="17">Pernambuco (PE)</option>
+                  <option value="18">Piauí (PI)</option>
+                  <option value="19">Rio de Janeiro (RJ)</option>
+                  <option value="20">Rio Grande do Norte (RN)</option>
+                  <option value="21">Rio Grande do Sul (RS)</option>
+                  <option value="22">Rondônia (RO)</option>
+                  <option value="23">Roraima (RR)</option>
+                  <option value="24">Santa Catarina (SC)</option>
+                  <option value="25">São Paulo (SP)</option>
+                  <option value="26">Sergipe (SE)</option>
+                  <option value="27">Tocantins (TO)</option>
+                  </select>
                 </div>
-                <div class="col-md">
-                  <div class="form-floating">
-                    <div class="form-floating">
-                        <input id="latitude" type="date" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
-                        <label id="lati" for="floatingInputGrid">Data</label>
-                      </div>
+
+                <div class="mb-3  row">
+                    <label for="user" class="form-label">Latitude:</label>
+                    <input type="text" name="user" class="form-control" id="user" placeholder="Nome de usuario" MAXLENGTH=15>
                   </div>
-                </div>
-                <div id="proc2" class="col-md">
-                    <div class="form-floating">
-                        <button id="proc"  class="btn btn-primary" type="submit">Procurar</button>
-                    </div>
+
+                <div class="mb-3  row">
+                    <label for="user" class="form-label">Longitude:</label>
+                    <input type="text" name="user" class="form-control" id="user" placeholder="Nome de usuario" MAXLENGTH=15>
                   </div>
-              </div>
-            <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Vazao</th>
-                    <th scope="col">Horario</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">123</th>
-                    <td>10:15</td>
-                  </tr>
-                </tbody>
-              </table>
+
+          <!--ENVIA-->
+
+        <div class="mb-3 row">
+          <button type="submit" class="btn btn-primary mb-3">Cadastrar</button>
         </div>
+      </form>
+    </div>
+    </div>
         <!--RODAPE DA PAGINA-->
 
         <footer  class="bg-primary text-center text-lg-start">

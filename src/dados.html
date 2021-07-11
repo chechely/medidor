@@ -17,7 +17,7 @@
 
         <!--CHAMA O ARQUIVO STYLE.CSS-->
 
-        <link rel="stylesheet" type="text/css"  href="/style.css" />
+        <link rel="stylesheet" type="text/css"  href="./style.css" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,13 +30,6 @@
         <!--LINK PARA JQUERY-->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
-
-
-        <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
-        <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
-        
-
         <style>
             .offcanvas-title{
     color:blanchedalmond;
@@ -54,35 +47,13 @@
         position: fixed;
         color:blanchedalmond;
     }
-    #map {
-        height: 500px;
-        width: 100%;
-        margin:auto;
+    .container{
+        margin: 50px;
     }
-    .container-fluid{
-        margin-bottom: 50px;
-        margin-top: 5px;
+    #foto{
+        width: 150px;
+        height: 150px;
     }
-    #pesq{
-        max-width: 400px;
-        margin: 5px;
-    }
-    #proc{
-        text-align: center;
-        font-size: 14px;
-    }
-    #latitude{
-        max-height: 40px;
-    }
-    #longitude{
-        max-height: 40px;
-    }
-    #lati{
-        font-size: 12px;
-    }
-    #longi{
-        font-size: 12px;
-    }    
         </style>
 </head>
 <body>  
@@ -125,11 +96,12 @@
                         Medidores</button></a>
                 </li>
                  <li class="nav-item">
-                    <a  class="nav-link active" aria-current="page" href="Seus-dados"><button  class="btn btn-primary" type="button" >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
-                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                    <a  class="nav-link active" aria-current="page" href="Localizacao"><button  class="btn btn-primary" type="button" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                           </svg>
-                        Seus dados</button></a>
+                        Localização</button></a>
                 </li>
              </ul>
             </div>
@@ -139,41 +111,8 @@
                     <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                   </svg>
                 Sair</button></a>
-            </div>
-            <div id="pesq" class="row g-1">
-                <div class="col-md">
-                  <div class="form-floating">
-                    <input id="longitude" type="text" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
-                    <label id="longi" for="floatingInputGrid">Longitude</label>
-                  </div>
-                </div>
-                <div class="col-md">
-                  <div class="form-floating">
-                    <div class="form-floating">
-                        <input id="latitude" type="text" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
-                        <label id="lati" for="floatingInputGrid">Latitude</label>
-                      </div>
-                  </div>
-                </div>
-                <div class="col-md">
-                    <div id="proc" class="form-floating">
-                        <button  class="btn btn-outline-dark" type="submit">Procurar</button>
-                    </div>
-                  </div>
-              </div>
+        </div>
      </nav>
-<div class="container-fluid">
-    <div  class="row align-items-center">
-            <div id='map'></div>
-            <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlY2hlbHkiLCJhIjoiY2txeTU0ZXFzMGlsaTJvcXVudmFzb2l5NCJ9.zFnq--QMlrOAjPHazAaapw';
-            var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11'
-            });
-            </script>
-       </div>
-    </div>
         <!--RODAPE DA PAGINA-->
 
         <footer  class="bg-primary text-center text-lg-start">

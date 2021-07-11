@@ -64,15 +64,17 @@ function data3(){
     return tudo
 }
 // Faz referência  a pasta onde estão os arquivos para o site poder "Encontra-los"
-
 app.use(express.static(__dirname + '/src'));
-app.use(express.static(__dirname + '/src/style.css'));
 app.use(express.static(__dirname + '/src/img'));
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.urlencoded({extended:true}))
 
 // Fazer a navegação entre as paginas html
 
-app.get("/", function(req,res){
+app.get("/Entrar", function(req,res){
+    res.sendFile(__dirname + "/src/Login.html");
+});
+
+app.get("/Inicio", function(req,res){
     res.sendFile(__dirname + "/src/Index.html");
 }); 
 app.get("/d", function(req,res){
@@ -89,8 +91,17 @@ app.get("/Historico", function(req,res){
 app.get("/Cadastro", function(req,res){
     res.sendFile(__dirname + "/src/Cadastro.html");
 });
-app.get("/Entrar", function(req,res){
-    res.sendFile(__dirname + "/src/Login.html");
+
+app.get("/Medidor", function(req,res){
+    res.sendFile(__dirname + "/src/medidor.html");
+});
+
+app.get("/Medidores-cadastrados", function(req,res){
+    res.sendFile(__dirname + "/src/medidores-cadastrados.html");
+});
+
+app.get("/Seus-dados", function(req,res){
+    res.sendFile(__dirname + "/src/dados.html");
 });
 
 // Porta que estamos usando localmente

@@ -15,7 +15,7 @@
         <link rel="icon" type="imagem/png" href="img/Logo.png">
 
         <!--CHAMA O ARQUIVO STYLE.CSS-->
-        <link  type="text/css"  href="/style.css">
+        <link  type="text/css"  href="style.css">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,7 +23,6 @@
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-        </head>
         <style>
 
             /* CENTRALIZA O TITULO */
@@ -49,24 +48,31 @@
 
             #img{
                 text-align: center;
-                margin-bottom: 60px;
+                margin-bottom: 20px;
+            }
+            #cad{
+                text-align: center;
+            }
+            #text{
+                text-align: center;
             }
         </style>
+    </head>
         <body>
             <div class="container">
 
                 <!--IMAGEM-->
 
                 <div id="img">
-                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                  </svg>
-                </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                      </svg>
+                    </div>
 
                 <!--FORMULARIO PARA LOGIN-->
 
-            <form action="/Inicio" method="POST" class="mb-3 row">
+            <form id="teste" action="/" method="POST" class="mb-3 row">
 
                 <!--RECEBE O USUARIO-->
 
@@ -86,7 +92,8 @@
 
                 <div class="mb-3 row">
                   <button type="submit" class="btn btn-primary mb-3">Entrar</button>
-                  <button action="/Cadastro" class="btn btn-primary mb-3">Cadastre-se</button>
+                  <h6 id="text">Ou</h6>
+                  <a id="cad" class="nav-link active" aria-current="page" href="Cadastro"><button  type="button" class="btn btn-primary mb-3">Cadastre-se</button></a>
                 </div>
               </form>
             </div>
