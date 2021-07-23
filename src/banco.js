@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'chechely',
     password: 'xuxu.2003',
-    database: 'teste'
+    database: 'prototipo'
 });
 
 // Inicia a conexão com o databese mostrando no terminal se foi bem sucedida ou não

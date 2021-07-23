@@ -28,7 +28,15 @@
     <script>"https://www.jsdelivr.com/package/npm/chart.js?path=dist"</script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!--LINK PARA JQUERY-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+
+
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+
     <style>
 
 /* Altera a cor do titulo do menu */
@@ -98,7 +106,24 @@
         min-height:200px;
         min-width: 30px;
     }
+        #map {
+        height: 500px;
+        width: 100%;
+        margin:auto;
+        margin-bottom: 60px;
+    }
+    #pesq_m{
+        margin: 2px;
+    }
     </style>
+    <script>
+        
+$(document).ready(function(){
+  $("#local").click(function(){
+    $("#map").fadeToggle("slow");
+  });
+});
+    </script>
 </head>
 <body>  
 
@@ -168,25 +193,42 @@
         <button type="button" onclick="ms();" class="btn btn-primary">m³/s</button>
       <button type="button" onclick="lh();"  class="btn btn-primary">L/h</button>
     </div> 
-    <div class="col-8">
-        <form id="pesq"  class="d-flex">
-            <input id="btt2" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button id="pesq2" class="btn btn-primary" type="submit">Procurar</button>
-          </form>
+        <div class="col-3">
+        <button type="button" id="local"  class="btn btn-primary">Localização</button>
+        </div>
+    <div class="col-4">
+                  <select class="form-select" aria-label="Default select example">
+                  <option selected>Medidor</option>
+                    <% for (item of Index) { %>
+                  <option value=""><%- item.nome_medidor %></option>
+                  <% } %>
+                  </select>
+        </div>
+    <div class="col-3" id="pesq_m">
+        <button type="button"   class="btn btn-primary">Procurar</button>
         </div>
     </div>
     <canvas id="grafico"></canvas>   
 </div>
 </div>
 </div>
+<div class="mapa">
+            <div id='map'></div>
+            <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlY2hlbHkiLCJhIjoiY2txeTU0ZXFzMGlsaTJvcXVudmFzb2l5NCJ9.zFnq--QMlrOAjPHazAaapw';
+            var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11'
+            });
+            </script>
+    </div>
 <script>
-
 // jquery que chama os dados do render lá do app.js para um outro array
 
-      var banana = [];
+      var dados_grafico = [];
         $(document).ready(function() {
-            $.get('/d', function(res) {
-                banana = res;
+            $.get('/dados_grafico', function(res) {
+                dados_grafico = res;
             })
         });
 
@@ -205,10 +247,10 @@ const ctx = document.getElementById('grafico').getContext('2d');
 const grafico = new Chart(ctx, {
     type: 'line',
     data: {
-    labels: banana[1],
+    labels: dados_grafico[1],
     datasets: [{
         label: 'Vazão',
-        data: banana[2],
+        data: dados_grafico[2],
 
 // Cores dos grafico
 
@@ -296,16 +338,16 @@ function lh(){
 
 // altera os dados da label 
 
-    grafico.data.labels = banana[1];
+    grafico.data.labels = dados_grafico[1];
 
 // altera os dados do datasets
 
-    grafico.data.datasets[0].data = banana[2];
+    grafico.data.datasets[0].data = dados_grafico[2];
 
 // Altera o titulo
 
     grafico.options.plugins.title.text = titulolh;
-    grafico.options.plugins.subtitle.text = "04/07/2021";
+    grafico.options.plugins.subtitle.text = dados_grafico[0];
 
 // Atualiza o grafico
 
@@ -315,16 +357,16 @@ function ms() {
 
 // altera os dados da label 
 
-    grafico.data.labels = banana[0];
+    grafico.data.labels = dados_grafico[1];
 
 // altera os dados do datasets
 
-    grafico.data.datasets[0].data = banana[2];
+    grafico.data.datasets[0].data = dados_grafico[2];
 
 // Altera o titulo
 
     grafico.options.plugins.title.text = tituloms;
-    grafico.options.plugins.subtitle.text = "05/07/2021";
+    grafico.options.plugins.subtitle.text = dados_grafico[0];
 
 // Atualiza o grafico
 

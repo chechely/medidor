@@ -7,13 +7,13 @@
     "body-parser": "^1.19.0",
     "bootstrap-icons": "^1.5.0",
     "chart.js": "^3.3.2",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "node": "^16.1.0",
     "sequelize": "^6.6.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \\\"Error: no test specified\\\" && exit"
   },
