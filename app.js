@@ -12,6 +12,9 @@ const app = express();
 
 app.set('view engine', 'ejs');
 
+const httpServer = require("http").createServer(app);
+const io = require('socket.io')(httpServer);
+
 // Chama o BodyParser que é encarregado de enviar os dados recebidos das paginas html
 
 const bodyParser = require("body-parser");
@@ -45,7 +48,12 @@ app.get("/dados_grafico", function(req,res){
     res.send(dados_medidor());
 }); 
 app.get("/Localizacao", function(req,res){
-    res.render('Localizacao')
+    connection.query("select  medidor.nome_medidor from medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario where usuario.nome_usuario = 'chechely' order by medidor.id_medidor desc;",[], function(erro,resultado){
+        if(erro){
+            res.status(200).send(erro)
+        }
+    res.render('Localizacao',{Localizacao : resultado})
+    });     
 });
 
 app.get("/Historico", function(req,res){
@@ -79,12 +87,21 @@ app.get("/Medidores-cadastrados", function(req,res){
 });
 
 app.get("/Seus-dados", function(req,res){
-    res.sendFile(__dirname + "/src/dados.html");
+    res.render('dados')
+});
+
+app.get("/Cadastrar-medicoes", function(req,res){
+    connection.query("select  medidor.nome_medidor,  medidor.id_medidor, medidor.longitude, medidor.latitude, medidor.cidade, medidor.estado from medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario where usuario.nome_usuario = 'chechely' order by medidor.id_medidor desc;",[], function(erro,resultado){
+        if(erro){
+            res.status(200).send(erro)
+        }
+    res.render('cadastrar_vazoes',{cadastrar_vazoes : resultado})
+    });
 });
 
 // Porta que estamos usando localmente
 
-app.listen(8080);
+httpServer.listen(8080);
 
 // Cria os arrays que irão receber os dados para o grafico
 
@@ -93,11 +110,9 @@ var vazao_v = [];
 var hora_v = [];
 
 // Pesquisas no banco para alimentar o grafico
-
 connection.query("select  medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v from medidor INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor where medidor.id_medidor = '0543' order by medidor_v.idmedidor_v desc limit 5;", function(err,result){
     var d1 = (result[0].datat)
     dia_v = [d1];
-
     var v1 = (result[0].vazao)
     var v2 = (result[1].vazao)
     var v3 = (result[2].vazao)
@@ -112,7 +127,6 @@ connection.query("select  medidor_v.vazao,medidor_v.datah, medidor_v.datat, medi
     var dt5 = (result[4].datah)
     hora_v = [dt1,dt2,dt3,dt4,dt5]
 });
-
 // Função que irá direcionar por um jquery os dados em um unico array e mandar para o grafico
 
 function dados_medidor(){
