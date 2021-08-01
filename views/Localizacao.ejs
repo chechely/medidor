@@ -15,10 +15,6 @@
 
         <link rel="icon" type="imagem/png" href="img/Logo.png">
 
-        <!--CHAMA O ARQUIVO STYLE.CSS-->
-
-        <link rel="stylesheet" type="text/css"  href="/style.css" />
-
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!--LINK PARA BOOTSTRAP-->
@@ -31,14 +27,17 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         
-
+        <!--LINK PARA MAPBOX-->
 
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
         
 
-        <style>
-            .offcanvas-title{
+<style>
+
+/* MUDA COR, TAMANHO E TAMANHO DA FONTE DO MENU */
+
+    .offcanvas-title{
     color:blanchedalmond;
     }
     
@@ -48,41 +47,45 @@
     #offcanvasWithBothOptions{
         width: 230px;
     }
+
+/* AJUSTA POSIÇÃO, TAMANHO E COR DO RODAPÉ */
+
     footer{
         bottom:0px;
         width:100%;
         position: fixed;
         color:blanchedalmond;
     }
+
+/* AJUSTA TAMANHO, POSIÇÃO, MAPA */
+    
     #map {
-        height: 500px;
+        height: 600px;
         width: 100%;
         margin:auto;
     }
+
     .container-fluid{
         margin-bottom: 50px;
         margin-top: 5px;
     }
+
+/* AJUSTA TAMANHO, MARGEN, TAMANHO DA FONTE E POSIÇÃO DOS SELETORES */
+
     #pesq{
         max-width: 400px;
         margin: 5px;
     }
+
     #proc{
         text-align: center;
         font-size: 14px;
     }
-    #longitude{
-        max-height: 40px;
-    }
-    #lati{
-        font-size: 12px;
-    }
-    #longi{
-        font-size: 12px;
-    }    
+  
         </style>
 </head>
 <body>  
+
     <!-- MENU OFFCANVAS-->
 
     <nav class="navbar navbar-primary bg-primary" >
@@ -91,13 +94,22 @@
                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
               </svg>
         </button> 
+
+    <!-- TITULO MENU OFFCANVAS COM BOTÃO PARA FECHAR -->
+
         <div class="offcanvas offcanvas-start bg-primary" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+
+    <!-- CORPO DO MENU -->
+
             <div class="offcanvas-body">
              <ul class="nav flex-column">
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA O INICIO -->
+
                  <li class="nav-item">
                      <a  class="nav-link active" aria-current="page" href="/Inicio"><button  class="btn btn-primary" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
@@ -106,15 +118,21 @@
                           </svg>
                         Inicio</button></a>
                  </li>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA O HISTORICO -->
+
                  <li class="nav-item">
                      <a  class="nav-link active" aria-current="page" href="historico"><button  class="btn btn-primary" type="button" >
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
-  <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
-  <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
-  <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
-</svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+                            <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                            <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+                            <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>
                         Historico</button></a>
                  </li>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA O CADASTRO DE MEDIDORES -->
+
                  <li class="nav-item">
                     <a  class="nav-link active" aria-current="page" href="Medidor"><button  class="btn btn-primary" type="button" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer2" viewBox="0 0 16 16">
@@ -123,6 +141,9 @@
                           </svg>
                         Medidores</button></a>
                 </li>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA SEUS DADOS -->
+
                  <li class="nav-item">
                     <a  class="nav-link active" aria-current="page" href="Seus-dados"><button  class="btn btn-primary" type="button" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -132,6 +153,9 @@
                 </li>
              </ul>
             </div>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA A SAÍDA -->
+
             <a  class="nav-link active" aria-current="page" href="Entrar"><button  class="btn btn-primary" type="button" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
@@ -139,6 +163,9 @@
                   </svg>
                 Sair</button></a>
             </div>
+
+    <!-- SELETOR DE ESTADO -->
+
             <div id="pesq" class="row g-1">
             <div class="col-md">
                   <select class="form-select" aria-label="Default select example">
@@ -172,6 +199,9 @@
                   <option value="27">Tocantins (TO)</option>
                   </select>
                 </div>
+
+    <!-- SELETOR DE MEDIDOR -->
+
             <div class="col-md">
                   <select class="form-select" aria-label="Default select example">
                   <option selected>Medidores</option>
@@ -181,6 +211,9 @@
                   </select>
                   </select>
                 </div>
+
+    <!-- BOTÃO PARA PROCURAR A LOCALIZAÇÃO -->
+
                 <div class="col-md">
                     <div id="proc" class="form-floating">
                         <button  class="btn btn-outline-dark" type="submit">Procurar</button>
@@ -188,6 +221,9 @@
                   </div>
               </div>
      </nav>
+
+    <!-- CONTAINER ONDE ESTÁ O MAPA -->
+
 <div class="container-fluid">
     <div  class="row align-items-center">
         <div class="col" id='mapa'>

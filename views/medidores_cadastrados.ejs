@@ -15,10 +15,6 @@
 
         <link rel="icon" type="imagem/png" href="img/Logo.png">
 
-        <!--CHAMA O ARQUIVO STYLE.CSS-->
-
-        <link rel="stylesheet" type="text/css"  href="./style.css" />
-
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!--LINK PARA BOOTSTRAP-->
@@ -31,45 +27,71 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        <!--LINK PARA CHART JS-->
-        <script>"https://www.jsdelivr.com/package/npm/chart.js?path=dist"</script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
 
-        <style>
-.offcanvas-title{
+/* MUDA COR DO MENU */
+
+    .offcanvas-title{
     color:blanchedalmond;
     }
-    
+
+/* MUDA O TAMANHO DA FONTE  DO MENU */
+
     .nav-item a button{
         font-size: 20px;
     }
+
+/* MUDA O TAMANHO  DO MENU */
+     
     #offcanvasWithBothOptions{
         width: 230px;
     }
+
+/* MUDA A COR, TAMANHO E POSIÇÃO DO RODAPÉ */
+
     footer{
         bottom:0px;
         width:100%;
         position:fixed;
         color:blanchedalmond;
     }
+
+/* DEFINE A MARGEM DO MENU */
+
     nav{
         margin-bottom: 20px;
     }
 
-    #bt{
-      margin:auto;
-      text-align: center;
-    }
+/* DEFINE A MARGEM DO INPUT DE BUSCA */ 
+
     #pesq{
         margin-right:10px;
         margin-left:10px;
     }
+
+/* ALTERA MARGEM E VISIBILIDADE DA TABELA */
+
     #tabela{
         margin: 5px;
+        margin-bottom: 50px;
     }
+    #tabela_edit{
+        margin: 5px;
+        margin-bottom: 50px;
+        display: none;
+    }    
 
-        </style>
+</style>
+
 </head>
+<script>
+$(document).ready(function(){
+    $(".editar").click(function(){
+        $("#tabela_edit").show();
+        $("#tabela").hide();
+    });
+  });
+</script>
 <body>  
      <!-- MENU OFFCANVAS-->
 
@@ -77,15 +99,24 @@
         <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions" >
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-              </svg>
+            </svg>
         </button> 
+
+    <!-- TITULO MENU OFFCANVAS COM BOTÃO PARA FECHAR -->
+
         <div class="offcanvas offcanvas-start bg-primary" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+
+    <!-- CORPO DO MENU -->
+
             <div class="offcanvas-body">
              <ul class="nav flex-column">
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA O INICIO -->
+
                  <li class="nav-item">
                      <a  class="nav-link active" aria-current="page" href="/Inicio"><button  class="btn btn-primary" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
@@ -94,15 +125,21 @@
                           </svg>
                         Inicio</button></a>
                  </li>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA O HISTORICO -->
+
                  <li class="nav-item">
                     <a  class="nav-link active" aria-current="page" href="Historico"><button  class="btn btn-primary" type="button" >
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
-  <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
-  <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
-  <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
-</svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+                            <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                            <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+                            <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>
                         Historico</button></a>
                 </li>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA O CADASTRO DE MEDIDORES -->
+
             <li class="nav-item">
                 <a  class="nav-link active" aria-current="page" href="Medidor"><button  class="btn btn-primary" type="button" >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer2" viewBox="0 0 16 16">
@@ -111,13 +148,19 @@
                       </svg>
                     Medidores</button></a>
             </li>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA O CADASTRO DE MEDIÇÕES -->
+
                 <li class="nav-item">
-                    
                     <a  class="nav-link active" aria-current="page" href="Cadastrar-medicoes"><button id="cad" class="btn btn-primary" type="button" >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart" viewBox="0 0 16 16">
-  <path d="M4 11H2v3h2v-3zm5-4H7v7h2V7zm5-5v12h-2V2h2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3z"/>
-</svg> Cadastrar medições</button></a>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer2" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z"/>
+                            <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z"/>
+                          </svg> Cadastrar medições</button></a>
                 </li>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA A LOCALIZAÇÃO -->
+
                  <li class="nav-item">
                      <a  class="nav-link active" aria-current="page" href="Localizacao"><button  class="btn btn-primary" type="button" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -126,6 +169,9 @@
                           </svg>
                          Localização</button></a>
                  </li>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA OS SEUS DADOS -->
+
                 <li class="nav-item">
                     <a  class="nav-link active" aria-current="page" href="Seus-dados"><button class="btn btn-primary">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -135,19 +181,31 @@
                 </li>
              </ul>
             </div>
-            <a  class="nav-link active" aria-current="page" href="Entrar"><button class="btn btn-primary" type="button" >
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA SAIR -->
+
+            <a  class="nav-link active" aria-current="page" href="sair"><button class="btn btn-primary" type="button" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
                     <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                   </svg>
                 Sair</button></a>
         </div>
+
+    <!-- FORMULARIO DE BUSCA -->
+
         <form id="pesq"  class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-dark" type="submit">Search</button>
         </form>
      </nav>
+
+    <!-- TABELA  -->
+
 <div id="tabela" class="table-responsive">
+
+    <!-- TITULOS DAS COLUNAS -->
+
 <table class="table table-hover table-bordered border-dark">
   <thead>
     <tr>
@@ -157,23 +215,101 @@
       <th scope="col">Cidade</th>
       <th scope="col">Longitude</th>
       <th scope="col">Longitude</th>
+      <th scope="col">Alterações</th>
     </tr>
   </thead>
+
+    <!-- DADOS QUE PREENCHERÃO A TABELA -->
+
   <tbody>
       <% for (item of medidores_cadastrados) { %>
         <tr>
-            <td><%- item.id_medidor %></td>
-            <td><%- item.nome_medidor %></td>
-            <td><%- item.estado %></td>
-            <td><%- item.cidade %></td>
-            <td><%- item.latitude %></td>
-            <td><%- item.longitude %></td>
+            <td style="text-align: center;"><%- item.id_medidor %></td>
+            <td style="text-align: center;"><%- item.nome_medidor %></td>
+            <td style="text-align: center;"><%- item.estado %></td>
+            <td style="text-align: center;"><%- item.cidade %></td>
+            <td style="text-align: center;"><%- item.latitude %></td>
+            <td style="text-align: center;"><%- item.longitude %></td>
+
+    <!-- BOTÃO EDITA OS DADOS DA TABELA -->
+
+            <td style="text-align: center;">
+                <div style="margin: 5px;" class="editar">
+                    <button type="button" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+                    </button>
+                </div>
+
+    <!-- BOTÃO QUE REMOVE OS DADOS DA TABELA -->
+
+              <div class="remove">
+              <button type="button" class="btn btn-primary">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+                    <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+                </svg>
+             </button>
+             </div>
+            </td>
           </tr>
     <% } %>
-    <tr>
   </tbody>
 </table>
             </div>
+            <div id="tabela_edit" class="table-responsive">
+
+    <!-- TITULOS DAS COLUNAS -->       
+
+                <table class="table table-hover table-bordered border-dark">
+                  <thead>
+                    <tr>
+                      <th scope="col">Id</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col">Cidade</th>
+                      <th scope="col">Longitude</th>
+                      <th scope="col">Longitude</th>
+                      <th scope="col">Alterações</th>
+                    </tr>
+                  </thead>
+
+    <!-- DADOS QUE PREENCHERÃO A TABELA -->
+
+                  <tbody>
+                    <% for (item of medidores_cadastrados) { %>
+                        <tr>
+                            <td style="min-width:80px"><input name="cod_med_tabela" type="text" value="<%- item.id_medidor %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+                            <td style="min-width:100px"><input type="text" value="<%- item.nome_medidor %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+                            <td style="min-width:100px"><input type="text" value="<%- item.estado %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+                            <td style="min-width:100px"><input type="text" value="<%- item.cidade %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+                            <td style="min-width:100px"><input type="text" value="<%- item.latitude %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+                            <td style="min-width:100px"><input type="text"  value="<%- item.longitude %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+
+    <!-- BOTÃO QUE SALVA A ALTERAÇÃO -->
+
+                            <td style="text-align: center;max-width:100px;">
+                                <button style="margin: 5px;" type="button" class="btn btn-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2" viewBox="0 0 16 16">
+                                        <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v4.5h2a.5.5 0 0 1 .354.854l-2.5 2.5a.5.5 0 0 1-.708 0l-2.5-2.5A.5.5 0 0 1 5.5 6.5h2V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+                                    </svg>
+                                </button> 
+
+    <!-- BOTÃO QUE CANCELA A ALTERAÇÃO -->
+
+                              <button type="button" class="btn btn-primary">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                  </svg>
+                             </button>
+                            </td>
+                          </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+            </div>
+
         <!--RODAPE DA PAGINA-->
 
         <footer  class="bg-primary text-center text-lg-start">

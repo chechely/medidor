@@ -14,16 +14,25 @@
 
         <link rel="icon" type="imagem/png" href="img/Logo.png">
 
-        <!--CHAMA O ARQUIVO STYLE.CSS-->
-        <link  type="text/css"  href="/style.css">
-
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!--LINK PARA BOOTSTRAP-->
 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"crossorigin="anonymous" />
+        
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity= "sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-        </head>
+                
+        <!--LINK PARA JQUERY-->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+    </head>
         <style>
             
             /* CENTRALIZA O TITULO */
@@ -44,6 +53,9 @@
                 text-align: center;
                 margin-bottom: 60px;
             }
+
+            /* AJUSTA OS CONTAINERS*/
+
             .container{
                 border-width: 20px;
                 margin-top:20px;
@@ -53,16 +65,40 @@
                 margin:auto;
                 border-width: 10px;
             }
-            #submit{
+
+            /* AJUSTA POSIÇÃO E MARGEN DE BOTÃO */
+
+            #envia_c{
                 text-align: center;
                 margin:auto;
                 margin-top:20px;
             }
+
+            /* AJUSTA FOOTER DO MODAL */
+
+            #footer_modal{
+                margin: auto;
+            }
         </style>
+
+<script>
+$(document).ready(function(){
+    $("#envia_cad").click(function(){
+        $('#envia_cad').hide();
+        $('#cancelar').hide();
+        $('#envia').show();
+    });
+  });
+</script>
+
         <body>
 
-                <!--ICON DE LOGIN-->
+                <!--CONTAINER -->
+
 <div class="container">
+
+                <!--ICON DE LOGIN-->
+
                 <div id="img">
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -72,75 +108,79 @@
 
                 <!--FORMULARIO PARA CADASTRO-->
 
-                <form action="/Inicio" method="POST" class="row g-3">
+                <form action="/cod_email" method="POST" class="row g-3">
 
                     <!--RECEBE O NOME-->
 
                     <div class="col-md-4">
-                        <label for="nome" class="form-label">Nome:</label>
-                        <input type="text" name="nome" class="form-control" id="nome" placeholder="Digite seu nome" MAXLENGTH=50>
+                        <label for="cad_nome" class="form-label">Nome:</label>
+                        <input type="text" name="cad_nome" class="form-control" id="cad_nome" placeholder="Digite seu nome" MAXLENGTH=50>
                       </div>
                     
                       <!--RECEBE O SOBRENOME-->
 
                       <div class="col-md-4">
-                        <label for="Sobrenome" class="form-label">Sobrenome:</label>
-                        <input type="text" name="sobrenome" class="form-control" id="sobrenome" placeholder="Digite seu sobrenome" MAXLENGTH=100>
+                        <label for="cad_sobrenome" class="form-label">Sobrenome:</label>
+                        <input type="text" name="cad_sobrenome" class="form-control" id="cad_sobrenome" placeholder="Digite seu sobrenome" MAXLENGTH=100>
                       </div>
 
                       <!--RECEBE O USER-->
 
                       <div class="col-md-4">
-                        <label for="user" class="form-label">Usuario:</label>
-                        <input type="text" name="user" class="form-control" id="user" placeholder="Crie um nome de usuario" MAXLENGTH=15>
+                        <label for="cad_usuario" class="form-label">Usuario:</label>
+                        <input type="text" name="cad_usuario" class="form-control" id="cad_usuario" placeholder="Crie um nome de usuario" MAXLENGTH=15>
                       </div>
 
                       <!--RECEBE O EMAIL-->
 
                     <div class="col-md-6">
-                        <label for="email" class="form-label">Email:</label>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" MAXLENGTH=100>
+                        <label for="cad_email" class="form-label">Email:</label>
+                        <input type="email" name="cad_email" class="form-control" id="cad_email" placeholder="name@example.com" MAXLENGTH=100>
                       </div>
 
                       <!--RECEBE A DATA DE NASCIMENTO-->
 
                       <div class="col-md-6">
                         <label for="DataNasci" class="form-label">Data de Nascimento:</label>
-                        <input type="date" name="DataNasci" class="form-control" id="DataNasci">
+                        <input type="date" value="" name="DataNasci" class="form-control" id="DataNasci">
                       </div>
 
                       <!--RECEBE A SENHA-->
 
                     <div class="col-md-6">
-                      <label for="senha" class="col-sm-2 col-form-label" >Senha:</label>
-                      <input type="password" name="senha" class="form-control" id="senha" placeholder="Digite sua senha" MAXLENGTH=10 MINLENGTH=8>   
+                      <label for="cad_senha" class="col-sm-2 col-form-label" >Senha:</label>
+                      <input type="password" name="cad_senha" class="form-control" id="cad_senha" placeholder="Digite sua senha" MAXLENGTH=10 MINLENGTH=8>   
                 </div>
 
                 <!--RECEBE O NUMERO DE TELEFONE-->
 
                 <div class="col-md-6">
-                    <label for="tel" class="col-sm-2 col-form-label">Telefone:</label>
-                    <input type="tel" name="tel" class="form-control" id="tel" placeholder="Ex. 5582999845166" MAXLENGTH=14>   
+                    <label for="cad_tel" class="col-sm-2 col-form-label">Telefone:</label>
+                    <input type="tel" name="cad_tel" class="form-control" id="cad_tel" placeholder="Ex. 5582999845166" MAXLENGTH=14>   
               </div>
 
               <!--RECEBE O GENERO-->
 
               <div class="col-md-4">
               <label class="form-check-label">Genero:</label>
+
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="m">
+                    <input class="form-check-input" value="Mulher" type="radio" name="genero" id="m">
                     <label class="form-check-label" for="m">Mulher</label>
-                  </div>                  
+                  </div>
+
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="h">
+                    <input class="form-check-input" value="Homem" type="radio" name="genero" id="h">
                     <label class="form-check-label" for="h">Homem</label>
                   </div>
+
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="nb">
+                    <input class="form-check-input" value="Não binário" type="radio" name="genero" id="nb">
                     <label class="form-check-label" for="nb">Não binário</label>
                   </div>
+
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="genero" id="ou">
+                    <input class="form-check-input" value="Outro" type="radio" name="genero" id="ou">
                     <label class="form-check-label" for="ou">Outro</label>
                   </div>
               </div>
@@ -159,11 +199,60 @@
                 <input type="text" name="cargo" class="form-control" id="cargo" placeholder="Ex. Gerente" MAXLENGTH=50>
               </div>
 
-              <!--RECEBE O CADASTRO-->
-              <div id="submit" class="col-md-4">
-                      <button  type="submit" class="btn btn-primary mb-3">Cadastre-se</button>
+              <!-- BOTÃO QUE ABRE O MODAL -->
+
+              <div  id="envia_c" class="col-md-4">
+                <button id="envia_cod"  type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Cadastrar</button>
+            </div>
+
+              </form>  
+
+              <!-- MODAL --> 
+
+            <div class="modal fade" id="exampleModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+              <!-- CABEÇA DO MODAL COM TITULO -->
+
+                        <div class="modal-header">
+                            <h5 class="modal-title">Codigo de confirmação</h5>
+                        </div>
+
+              <!-- CORPO DO MODAL -->
+
+                        <div class="modal-body">
+                            <h6>Foi enviado ao seu email um codigo de confirmação, cheque sua caixa de entrada e insira o codigo aqui:</h6>
+                            
+              <!-- RECEBE O CODIGO ENVIADO PELO EMAIL -->                            
+                                          
+                            <div style="margin: auto;" class="col-md-6">
+                                <input type="text" name="codigo_confi" class="form-control" id="codigo_confi" placeholder="HADG5" MAXLENGTH=50>           
+                            </div>
+                        </div>
+
+              <!-- RODAPÉ DO MODAL -->
+
+                        <div class="modal-footer">
+                        <div id="footer_modal">
+
+              <!-- BOTÃO PARA REENVIAR O CODIGO -->
+
+                            <button style="text-align:center;" type="button" class="btn btn-danger">Reenviar</button>
+ 
+              <!-- BOTÃO PARA CANCELAR -->                            
+                            
+                            <button type="button" id="cancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+              <!-- BOTÃO QUE CADASTRA OS DADOS -->
+                            
+                            <button type="button" id="envia_cad" class="btn btn-primary">Confirmar</button>                                               
+                            <button  style="display: none;" type = "submit"  id="envia" class = "btn btn-primary mb-3">Cadastre-se</button>
+                        </div>
+                        </div>
                     </div>
-              </form>
+                </div>
+            </div> 
             </div>
         </body>
 </html>

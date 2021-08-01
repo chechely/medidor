@@ -15,10 +15,6 @@
 
         <link rel="icon" type="imagem/png" href="img/Logo.png">
 
-        <!--CHAMA O ARQUIVO STYLE.CSS-->
-
-        <link rel="stylesheet" type="text/css"  href="./style.css" />
-
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!--LINK PARA BOOTSTRAP-->
@@ -35,26 +31,43 @@
         <script>"https://www.jsdelivr.com/package/npm/chart.js?path=dist"</script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <style>
-.offcanvas-title{
-    color:blanchedalmond;
+<style>
+
+    /* MUDA COR DO MENU */
+            
+    .offcanvas-title{
+        color:blanchedalmond;
     }
-    
+            
+    /* MUDA O TAMANHO DA FONTE  DO MENU */    
+            
     .nav-item a button{
-        font-size: 20px;
+         font-size: 20px;
     }
+            
+    /* MUDA O TAMANHO DO MENU */
+            
     #offcanvasWithBothOptions{
         width: 230px;
     }
+            
+    /* MARGEM DO MENU */
+            
+    nav{
+        margin-bottom: 20px;
+    }
+            
+    /* MUDA A COR, TAMANHO E POSIÇÃO DO RODAPÉ */
+    
     footer{
         bottom:0px;
         width:100%;
         position:fixed;
         color:blanchedalmond;
     }
-    nav{
-        margin-bottom: 20px;
-    }
+ 
+    /* MUDA O TAMANHO, ALTURA E A MARGEM DOS BOTÕES DE PESQUISA */
+
     #pesq{
         max-width: 400px;
         margin: auto;
@@ -65,14 +78,37 @@
     #proc2{
         text-align: center;
     }
+    #pesq2{
+        text-align: right;
+        margin-right: 5px;
+    }
+
+    /* MUDA A COR, TAMANHO E MARGEM DA TABELA */
+    
     #tabela_h{
         margin: 5px;
         margin-bottom:50px ;
     }
-
+    #tabela_edit_h{
+        display: none;
+        margin: 5px;
+        margin-bottom:50px ;
+    }
         </style>
+<script>
+
+// ESCONDE A TABELA ESTATICA E MOSTRA A TABELA DINAMICA
+
+    $(document).ready(function(){
+        $(".editar_h").click(function(){
+            $("#tabela_edit_h").show();
+            $("#tabela_h").hide();
+        });
+      });
+    </script>
 </head>
 <body>  
+
      <!-- MENU OFFCANVAS-->
 
      <nav class="navbar navbar-primary bg-primary" >
@@ -81,13 +117,22 @@
                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
               </svg>
         </button> 
+
+    <!-- TITULO MENU OFFCANVAS COM BOTÃO PARA FECHAR -->
+
         <div class="offcanvas offcanvas-start bg-primary" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
+
+    <!-- CORPO DO MENU -->
+
             <div class="offcanvas-body">
              <ul class="nav flex-column">
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA O INICIO -->
+
                  <li class="nav-item">
                      <a  class="nav-link active" aria-current="page" href="/Inicio"><button  class="btn btn-primary" type="button">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
@@ -96,6 +141,9 @@
                           </svg>
                         Inicio</button></a>
                  </li>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA O CADASTRO DE MEDIDORES -->
+
                  <li class="nav-item">
                     <a  class="nav-link active" aria-current="page" href="Medidor"><button  class="btn btn-primary" type="button" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer2" viewBox="0 0 16 16">
@@ -104,6 +152,9 @@
                           </svg>
                         Medidores</button></a>
                 </li>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA A LOCALIZAÇÃO -->
+
                  <li class="nav-item">
                      <a  class="nav-link active" aria-current="page" href="Localizacao"><button  class="btn btn-primary" type="button" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -112,6 +163,9 @@
                           </svg>
                         Localização</button></a>
                  </li>
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA OS SEUS DADOS -->
+
                  <li class="nav-item">
                     <a  class="nav-link active" aria-current="page" href="Seus-dados"><button  class="btn btn-primary" type="button" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
@@ -121,15 +175,31 @@
                 </li>
              </ul>
             </div>
-            <a  class="nav-link active" aria-current="page" href="Entrar"><button  class="btn btn-primary" type="button" >
+
+    <!-- BOTÃO QUE REDIRECIONA  PARA A SAÍDA -->
+
+            <a  class="nav-link active" aria-current="page" href="Sair"><button  class="btn btn-primary" type="button" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
                     <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                   </svg>
                 Sair</button></a>
         </div>
+
+    <!-- FORMULARIO DE PESQUISA -->
+
+          <form id="pesq2"  class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-dark" type="submit">Search</button>
+          </form>              
      </nav>
+
+    <!-- CONTAINER -->
+
 <div class="container-fluid">
+
+    <!-- RECEBE O NOME DO MEDIDOR -->
+
              <div id="pesq" class="row g-1">
                 <div class="col-md">
                   <div class="form-floating">
@@ -137,6 +207,9 @@
                     <label id="longi" for="floatingInputGrid">Nome do medidor</label>
                   </div>
                 </div>
+
+    <!-- RECEBE A DATA DO MEDIÇÃO -->
+
                 <div class="col-md">
                   <div class="form-floating">
                     <div class="form-floating">
@@ -145,13 +218,22 @@
                       </div>
                   </div>
                 </div>
+
+    <!-- BOTÃO QUE REALIZA A PESQUISA -->
+
                 <div id="proc2" class="col-md">
                     <div class="form-floating">
                         <button id="proc"  class="btn btn-primary" type="submit">Procurar</button>
                     </div>
                   </div>
               </div>
+
+    <!-- TABELA -->
+
         <div id="tabela_h" class="table-responsive">
+
+    <!-- TITULOS DAS COLUNAS -->
+
             <table class="table table-hover table-bordered border-dark">
                 <thead>
                   <tr>
@@ -162,24 +244,104 @@
                     <th scope="col">Vazao</th>
                     <th scope="col">Data</th>
                     <th scope="col">Horario</th>
+                    <th scope="col">Alterações</th>
                   </tr>
                 </thead>
+
+    <!-- DADOS QUE PREENCHERÃO A TABELA -->
+
                 <tbody>
                     <% for (item of historico) { %>
                         <tr>
-                            <td><%- item.id_medidor %></td>
-                            <td><%- item.nome_medidor %></td>
-                            <td><%- item.estado %></td>
-                            <td><%- item.cidade %></td>
-                            <td><%- item.vazao %></td>
-                            <td><%- item.datat %></td>
-                            <td><%- item.datah %></td>
-                          </tr>
+                            <td style="text-align: center;"><%- item.id_medidor %></td>
+                            <td style="text-align: center;"><%- item.nome_medidor %></td>
+                            <td style="text-align: center;"><%- item.estado %></td>
+                            <td style="text-align: center;"><%- item.cidade %></td>
+                            <td style="text-align: center;"><%- item.vazao %></td>
+                            <td style="text-align: center;"><%- item.datat %></td>
+                            <td style="text-align: center;"><%- item.datah %></td>
+
+    <!-- BOTÃO QUE SALVA A ALTERAÇÃO -->         
+
+                            <td style="text-align: center;">
+                                <div style="margin: 5px;" class="editar_h">
+                                    <button type="button" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                        </svg>
+                                    </button>
+                                </div> 
+
+    <!-- BOTÃO QUE CANCELA A ALTERAÇÃO -->
+
+                              <button type="button" class="btn btn-primary">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser-fill" viewBox="0 0 16 16">
+                                        <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm.66 11.34L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+                                 </svg>
+                            </button>
+                            </td>
+                            </tr>
                     <% } %>
                 </tbody>
+            </table>  
+        </div>
               </table>
+
+              <div id="tabela_edit_h" class="table-responsive">
+
+    <!-- TITULOS DAS COLUNAS -->
+
+                <table class="table table-hover table-bordered border-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">Vazao</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Horario</th>
+                        <th scope="col">Alterações</th>
+                      </tr>
+                    </thead>
+
+    <!-- DADOS QUE PREENCHERÃO A TABELA -->
+
+                    <tbody>
+                        <% for (item of historico) { %>
+                            <tr>
+                                <td style="min-width:80px"><input type="text"  value="<%- item.id_medidor %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+                                <td style="min-width:80px"><input type="text"  value="<%- item.nome_medidor %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+                                <td style="min-width:80px"><input type="text"  value="<%- item.estado %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+                                <td style="min-width:80px"><input type="text"  value="<%- item.cidade %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+                                <td style="min-width:80px"><input type="text"  value="<%- item.vazao %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+                                <td style="min-width:80px"><input type="date"  value="<%- item.datat %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+                                <td style="min-width:80px"><input type="time"  value="<%- item.datah %>"class="form-control" aria-describedby="passwordHelpInline"></td>
+
+    <!-- BOTÃO QUE SALVA A ALTERAÇÃO -->                                
+                                
+                                <td style="text-align: center;max-width:100px;">
+                                    <button style="margin: 5px;" type="button" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save2" viewBox="0 0 16 16">
+                                            <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v4.5h2a.5.5 0 0 1 .354.854l-2.5 2.5a.5.5 0 0 1-.708 0l-2.5-2.5A.5.5 0 0 1 5.5 6.5h2V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+                                        </svg>
+                                    </button> 
+
+    <!-- BOTÃO QUE CANCELA A ALTERAÇÃO -->
+
+                                    <button type="button" class="btn btn-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                        </svg>
+                                    </button>
+                                </td>
+                                </tr>
+                        <% } %>
+                    </tbody>
+                  </table>              
         </div>
-        </div>
+    </div>
         <!--RODAPE DA PAGINA-->
 
         <footer  class="bg-primary text-center text-lg-start">
