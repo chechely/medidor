@@ -140,7 +140,15 @@ $(document).ready(function() {
         dados_mapa = res;
     })
 });
-console.log(dados_mapa)
+
+// jquery que chama os dados do render lá do app.js para um outro array
+
+var dados_grafico = [];
+$(document).ready(function() {
+    $.get('/dados_grafico', function(res) {
+        dados_grafico = res;
+    })
+});
     </script>
 </head>
 <body>  
@@ -263,9 +271,7 @@ console.log(dados_mapa)
       </div>
       <div class="toast-body">
         Olá
-        <% for (item of Index) { %>
-        <%- item.nome_usuario %>
-        <% } %>
+        <dados_grafico 4=""></dados_grafico>
         , não há notificações!
     </div>
     </div>
@@ -468,14 +474,6 @@ var latitude = dados_mapa[1]
 
 // grafico
 
-// jquery que chama os dados do render lá do app.js para um outro array
-
-var dados_grafico = [];
-$(document).ready(function() {
-    $.get('/dados_grafico', function(res) {
-        dados_grafico = res;
-    })
-});
 // Altera o titulo do grafico
 
 const tituloms = "Vazão: Metros cubicos por segundo";
