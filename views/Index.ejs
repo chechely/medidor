@@ -22,8 +22,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
         
         <!--LINK PARA CHART JS-->
-    <script>"https://www.jsdelivr.com/package/npm/chart.js?path=dist"</script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>"https://www.jsdelivr.com/package/npm/chart.js?path=dist"</script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <!--LINK PARA JQUERY-->
 
@@ -271,7 +272,7 @@ $(document).ready(function() {
       </div>
       <div class="toast-body">
         Olá
-        <dados_grafico 4=""></dados_grafico>
+        
         , não há notificações!
     </div>
     </div>
@@ -283,7 +284,7 @@ $(document).ready(function() {
 
 <!-- FORMULARIO PARA  MOSTRAR SEUS MEDIDORES E A LOCALIZAÇÃO DELES  -->
 
-    <form action="/Inicio" method="POST">
+    <form action="/dados_grafico" method="POST">
     <div id="qua" class="row justify-content-between">
     <div id="bott" class="btn-group col-3">
 
@@ -309,7 +310,7 @@ $(document).ready(function() {
                   <select name="medidor_grafico" class="form-select" aria-label="Default select example">
                   <option selected>Medidores</option>
                     <% for (item of Index) { %>
-                  <option  value=""><%- item.nome_medidor %></option>
+                  <option  value="<%- item.nome_medidor %>"><%- item.nome_medidor %></option>
                   <% } %>
                   </select>
         </div>
@@ -317,7 +318,7 @@ $(document).ready(function() {
 <!-- BOTÃO QUE  OS DADOS DE ACORDO COM O QUE FOI SELECIONADO NOS BOTÕES ANTERIORES  -->
 
     <div class="col-3" id="pesq_m">
-        <button type="submit" onclick="localizacao();"  class="btn btn-primary">Procurar</button>
+        <button type="submit" class="btn btn-primary">Procurar</button>
         </div>
     </div>
     </form>
@@ -473,7 +474,6 @@ var latitude = dados_mapa[1]
 <script>
 
 // grafico
-
 // Altera o titulo do grafico
 
 const tituloms = "Vazão: Metros cubicos por segundo";

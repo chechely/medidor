@@ -131,16 +131,10 @@ $(document).ready(function(){
                         <input type="text" name="cad_usuario" class="form-control" id="cad_usuario" placeholder="Crie um nome de usuario" MAXLENGTH=15>
                       </div>
 
-                      <!--RECEBE O EMAIL-->
-
-                    <div class="col-md-6">
-                        <label for="cad_email" class="form-label">Email:</label>
-                        <input type="email" name="cad_email" class="form-control" id="cad_email" placeholder="name@example.com" MAXLENGTH=100>
-                      </div>
 
                       <!--RECEBE A DATA DE NASCIMENTO-->
 
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <label for="DataNasci" class="form-label">Data de Nascimento:</label>
                         <input type="date" value="" name="DataNasci" class="form-control" id="DataNasci">
                       </div>
@@ -199,59 +193,13 @@ $(document).ready(function(){
                 <input type="text" name="cargo" class="form-control" id="cargo" placeholder="Ex. Gerente" MAXLENGTH=50>
               </div>
 
-              <!-- BOTÃO QUE ABRE O MODAL -->
+              <!-- BOTÃO QUE ENVIA OS DADOS -->
+
               <div  id="envia_c" class="col-md-4">
-                <button id="envia_cod" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Cadastrar</button>
+                <button id="envia_cod" type="submit" class="btn btn-dark" >Cadastrar</button>
             </div>
 
               </form>  
-
-              <!-- MODAL --> 
-
-            <div class="modal fade" id="exampleModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-              <!-- CABEÇA DO MODAL COM TITULO -->
-
-                        <div class="modal-header">
-                            <h5 class="modal-title">Codigo de confirmação</h5>
-                        </div>
-
-              <!-- CORPO DO MODAL -->
-
-                        <div class="modal-body">
-                            <h6>Foi enviado ao seu email um codigo de confirmação, cheque sua caixa de entrada e insira o codigo aqui:</h6>
-                            
-              <!-- RECEBE O CODIGO ENVIADO PELO EMAIL -->                            
-                                          
-                            <div style="margin: auto;" class="col-md-6">
-                                <input type="text" name="codigo_confi" class="form-control" id="codigo_confi" placeholder="HADG5" MAXLENGTH=50>           
-                            </div>
-                        </div>
-
-              <!-- RODAPÉ DO MODAL -->
-
-                        <div class="modal-footer">
-                        <div id="footer_modal">
-
-              <!-- BOTÃO PARA REENVIAR O CODIGO -->
-
-                            <button style="text-align:center;" type="button" class="btn btn-danger">Reenviar</button>
- 
-              <!-- BOTÃO PARA CANCELAR -->                            
-                            
-                            <button type="button" id="cancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-
-              <!-- BOTÃO QUE CADASTRA OS DADOS -->
-                            
-                            <button type="button" id="envia_cad" class="btn btn-primary">Confirmar</button>                                               
-                            <button  style="display: none;" type = "submit"  id="envia" class = "btn btn-primary mb-3">Cadastre-se</button>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
             </div>
         </body>
 </html>
