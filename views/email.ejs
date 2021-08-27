@@ -44,52 +44,55 @@
             /* DEFINE A COR DO CORPO DA PAGINA */
 
             body{
-                background-color: #1E90FF;
+                background-color: #282a36;
             }
 
             /* CENTRALIZA A IMAGEM E DEFINE A MARGEM DE BAIXO */
 
             #img{
                 text-align: center;
-                margin-bottom: 60px;
+            
             }
 
-            /* AJUSTA OS CONTAINERS*/
-
+            img{
+              height: 100px;
+              width: 100px;
+              margin-top: 50px;
+            }
             .container{
                 border-width: 20px;
                 margin-top:20px;
                 max-width: 700px;
             }
-            .col-auto{
-                margin:auto;
-                border-width: 10px;
+            #email_cont{
+                margin-top:10px;
+                margin-left:10px;
             }
 
-            /* AJUSTA POSIÇÃO E MARGEN DE BOTÃO */
-
-            #envia_c{
-                text-align: center;
-                margin:auto;
-                margin-top:20px;
-            }
-
-            /* AJUSTA FOOTER DO MODAL */
-
-            #footer_modal{
-                margin: auto;
-            }
         </style>
 
-<script>
-$(document).ready(function(){
-    $("#envia_cad").click(function(){
-        $('#envia_cad').hide();
-        $('#cancelar').hide();
-        $('#envia').show();
-    });
-  });
-</script>
+<script> 
+          $(document).ready(function(){
+            $("#img").mouseenter(function(){
+              $("#logo").animate({
+                opacity: '0.5',
+                height: '125px',
+                width: '125px',
+                left:'5px',
+                rigth:'5px',
+              },'slow');
+            });
+            });
+            $(document).ready(function(){
+            $("#img").mouseenter(function(){
+            $("#logo").animate({
+                opacity: '1.0',
+                height: '100px',
+                width: '100px',
+              },'slow');
+            });
+          });
+ </script> 
 
         <body>
 
@@ -98,77 +101,28 @@ $(document).ready(function(){
 <div class="container">
 
                 <!--ICON DE LOGIN-->
-
                 <div id="img">
-                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                  </svg>
+                    <img id="logo" src="img/Logo.png">
                 </div>
 
+                <div id="email_cont" class="container">
                 <!--FORMULARIO PARA CADASTRO-->
                 
                 <form action="/Email" method="POST" class="row g-3">
                     <!--RECEBE O EMAIL-->
 
                     <div class="col-md-6">
-                      <label for="cad_email" class="form-label">Email:</label>
-                      <input type="email" name="cad_email" class="form-control" id="cad_email" placeholder="name@example.com" MAXLENGTH=100>
+                      <label style="color:white;" for="cad_email" class="form-label">Codigo de confirmação:</label>
+                      <input type="text" name="codigo_confi" class="form-control" id="codigo_confi" placeholder="HADG5" MAXLENGTH=50>
                     </div>
 
                    <!-- BOTÃO QUE ABRE O MODAL -->
-                  <div  id="envia_c" class="col-md-2">
-                       <br>
-                      <button id="envia_cod" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Confirmar</button>
+                  <div style="margin:auto;"  id="envia_c" class="col-md-6">
+                    <br>
+                      <button id="envia_cod" type="submit" class="btn btn-outline-primary">Confirmar</button>
                   </div>
-
-            <!-- MODAL --> 
-
-            <div class="modal fade" id="exampleModal">
-              <div class="modal-dialog">
-                  <div class="modal-content">
-
-            <!-- CABEÇA DO MODAL COM TITULO -->
-
-                      <div class="modal-header">
-                          <h5 class="modal-title">Codigo de confirmação</h5>
-                      </div>
-
-            <!-- CORPO DO MODAL -->
-
-                      <div class="modal-body">
-                          <h6>Foi enviado ao seu email um codigo de confirmação, cheque sua caixa de entrada e insira o codigo aqui:</h6>
-                          
-            <!-- RECEBE O CODIGO ENVIADO PELO EMAIL -->                            
-                                        
-                          <div style="margin: auto;" class="col-md-6">
-                              <input type="text" name="codigo_confi" class="form-control" id="codigo_confi" placeholder="HADG5" MAXLENGTH=50>           
-                          </div>
-                      </div>
-
-            <!-- RODAPÉ DO MODAL -->
-
-                      <div class="modal-footer">
-                      <div id="footer_modal">
-
-            <!-- BOTÃO PARA REENVIAR O CODIGO -->
-
-                          <button style="text-align:center;" type="button" class="btn btn-danger">Reenviar</button>
-
-            <!-- BOTÃO PARA CANCELAR -->                            
-                          
-                          <button type="button" id="cancelar" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-
-            <!-- BOTÃO QUE CADASTRA OS DADOS -->
-                          
-                          <button type="button" id="envia_cad" class="btn btn-primary">Confirmar</button>                                               
-                          <button  style="display: none;" type = "submit"  id="envia" class = "btn btn-primary mb-3">Cadastre-se</button>
-                      </div>
-                      </div>
-                  </div>
-              </div>
-          </div> 
       </form>  
             </div>
+        </div>
         </body>
 </html>

@@ -21,6 +21,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
           <style>
 
             /* CENTRALIZA O TITULO */
@@ -39,22 +41,54 @@
             /* DEFINE A COR DO CORPO DA PAGINA */
 
             body{
-                background-color: #1E90FF;
+                background-color: #282a36;
             }
 
             /* CENTRALIZA A IMAGEM E DEFINE A MARGEM DE BAIXO */
 
             #img{
                 text-align: center;
-                margin-bottom: 20px;
+            
             }
+
+            img{
+              height: 100px;
+              width: 100px;
+            }
+
             #cad{
                 text-align: center;
             }
             #text{
                 text-align: center;
+                color:white;
+            }
+            .form-label,#log_se{
+                color:white;
             }
         </style>
+        <script> 
+          $(document).ready(function(){
+            $("#img").mouseenter(function(){
+              $("#logo").animate({
+                opacity: '0.5',
+                height: '125px',
+                width: '125px',
+                left:'5px',
+                rigth:'5px',
+              },'slow');
+            });
+            });
+            $(document).ready(function(){
+            $("#img").mouseenter(function(){
+            $("#logo").animate({
+                opacity: '1.0',
+                height: '100px',
+                width: '100px',
+              },'slow');
+            });
+          });
+          </script> 
     </head>
         <body>
             <div class="container">
@@ -62,14 +96,9 @@
                 <!--IMAGEM-->
 
                 <div id="img">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                      </svg>
-                    </div>
-
+                    <img id="logo" src="img/Logo.png">
+                </div>
                 <!--FORMULARIO PARA LOGIN-->
-
             <form id="teste" action="/Entrar" method="POST" class="mb-3 row">
 
                 <!--RECEBE O USUARIO-->
@@ -82,16 +111,16 @@
                   <!--RECEBE A SENHA-->
 
                 <div class="mb-3  row">
-                  <label for="login_senha" class="col-sm-2 col-form-label">Senha:</label>
+                  <label id="log_se" for="login_senha" class="col-sm-2 col-form-label">Senha:</label>
                   <input type="password" name="login_senha" class="form-control" id="login_senha" placeholder="Digite sua senha" MAXLENGTH=10 MINLENGTH=8>   
             </div>
 
                   <!--ENVIA-->
 
                 <div class="mb-3 row">
-                  <button type="submit" class="btn btn-primary mb-3">Entrar</button>
+                  <button type="submit" class="btn btn-outline-primary mb-3">Entrar</button>
                   <h6 id="text">Ou</h6>
-                  <a id="cad" class="nav-link active" aria-current="page" href="Cadastro"><button  type="button" class="btn btn-primary mb-3">Cadastre-se</button></a>
+                  <a id="cad" class="nav-link active" aria-current="page" href="Cadastro"><button  type="button" class="btn btn-outline-primary mb-3">Cadastre-se</button></a>
                 </div>               
               </form>
             </div>

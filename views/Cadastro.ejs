@@ -44,16 +44,20 @@
             /* DEFINE A COR DO CORPO DA PAGINA */
 
             body{
-                background-color: #1E90FF;
+                background-color: #282a36;
             }
 
             /* CENTRALIZA A IMAGEM E DEFINE A MARGEM DE BAIXO */
 
             #img{
                 text-align: center;
-                margin-bottom: 60px;
+            
             }
 
+            img{
+              height: 100px;
+              width: 100px;
+            }
             /* AJUSTA OS CONTAINERS*/
 
             .container{
@@ -79,17 +83,31 @@
             #footer_modal{
                 margin: auto;
             }
+            .form-label,#cad_se,#cad_tele,.form-check-label,.form-check-input{
+              color:white;
+            }
         </style>
 
-<script>
-$(document).ready(function(){
-    $("#envia_cad").click(function(){
-        $('#envia_cad').hide();
-        $('#cancelar').hide();
-        $('#envia').show();
+<script> 
+    $(document).ready(function(){
+      $("#img").mouseenter(function(){
+        $("#logo").animate({
+          opacity: '0.5',
+          height: '125px',
+          width: '125px',
+        },'slow');
+      });
+      });
+      $(document).ready(function(){
+      $("#img").mouseenter(function(){
+      $("#logo").animate({
+          opacity: '1.0',
+          height: '100px',
+          width: '100px',
+        },'slow');
+      });
     });
-  });
-</script>
+    </script> 
 
         <body>
 
@@ -100,10 +118,7 @@ $(document).ready(function(){
                 <!--ICON DE LOGIN-->
 
                 <div id="img">
-                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                  </svg>
+                <img  id="logo" src="img/Logo.png">
                 </div>
 
                 <!--FORMULARIO PARA CADASTRO-->
@@ -131,10 +146,15 @@ $(document).ready(function(){
                         <input type="text" name="cad_usuario" class="form-control" id="cad_usuario" placeholder="Crie um nome de usuario" MAXLENGTH=15>
                       </div>
 
+                      <!--RECEBE O EMAIL-->
+                      <div class="col-md-6">
+                        <label for="cad_email" class="form-label">Email:</label>
+                        <input type="email" name="cad_email" class="form-control" id="cad_email" placeholder="name@example.com" MAXLENGTH=100>
+                      </div>
 
                       <!--RECEBE A DATA DE NASCIMENTO-->
 
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <label for="DataNasci" class="form-label">Data de Nascimento:</label>
                         <input type="date" value="" name="DataNasci" class="form-control" id="DataNasci">
                       </div>
@@ -142,14 +162,14 @@ $(document).ready(function(){
                       <!--RECEBE A SENHA-->
 
                     <div class="col-md-6">
-                      <label for="cad_senha" class="col-sm-2 col-form-label" >Senha:</label>
+                      <label id='cad_se' for="cad_senha" class="col-sm-2 col-form-label" >Senha:</label>
                       <input type="password" name="cad_senha" class="form-control" id="cad_senha" placeholder="Digite sua senha" MAXLENGTH=10 MINLENGTH=8>   
                 </div>
 
                 <!--RECEBE O NUMERO DE TELEFONE-->
 
                 <div class="col-md-6">
-                    <label for="cad_tel" class="col-sm-2 col-form-label">Telefone:</label>
+                    <label for="cad_tel" id='cad_tele' class="col-sm-2 col-form-label">Telefone:</label>
                     <input type="tel" name="cad_tel" class="form-control" id="cad_tel" placeholder="Ex. 5582999845166" MAXLENGTH=14>   
               </div>
 
@@ -196,7 +216,7 @@ $(document).ready(function(){
               <!-- BOTÃO QUE ENVIA OS DADOS -->
 
               <div  id="envia_c" class="col-md-4">
-                <button id="envia_cod" type="submit" class="btn btn-dark" >Cadastrar</button>
+                <button id="envia_cod" type="submit" class="btn btn-outline-primary" >Cadastrar</button>
             </div>
 
               </form>  

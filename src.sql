@@ -43,10 +43,7 @@ INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor;
 
 /* BUSCA O NOME DE USUARIO, DO MEDIDOR, VAZÃO, DATA E HORA */
 
-SELECT usuario.nome_usuario, medidor.nome_medidor, medidor_v.vazao,medidor_v.datah, medidor_v.datat
-FROM ((medidor
-INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario)
-INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor); 
+SELECT usuario.nome_usuario, medidor.nome_medidor, medidor_v.vazao,medidor_v.datah, medidor_v.datat FROM ((medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario) INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor) where usuario.nome_usuario= 'chechely' and medidor.id_medidor = '0543' order by medidor_v.idmedidor_v desc ; 
 
 /* BUSCA A VAZÃO, DATA E HORA DO MEDIDOR DE ID 0543 EM ORDEM DECRESCENTE */
 
@@ -63,4 +60,7 @@ WHERE datat = '19/07/2021';
 
 select * from usuario;
 
-delete from usuario where nome_usuario = 'mingi';
+delete from usuario where nome_usuario = '';
+
+select medidor.nome_medidor,medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v from medidor INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor where medidor.id_medidor = '0543' order by medidor_v.idmedidor_v desc limit 5;
+select  usuario.nome_usuario,medidor.nome_medidor from medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario where usuario.nome_usuario = 'chechely' order by medidor.id_medidor desc;
