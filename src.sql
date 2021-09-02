@@ -19,8 +19,7 @@ values('0128','Medidor2','-41.7763 ','-2.90393','Palmeira','Alagoas (AL)','chech
 
 /* INSERE UMA NOVA VAZÃO AO MEDIDOR DE ID 0543 */
 
-insert into medidor_v(vazao,datah,datat,id_medidor)
-values(299,'22:00:00','19/07/2021','0543');
+insert into medidor_v(vazao,datah,datat,id_medidor) values(299,'22:00:00','19/07/2021','0543');
 
 /* INSERE UMA NOVA VAZÃO AO MEDIDOR DE ID 0128 */
 

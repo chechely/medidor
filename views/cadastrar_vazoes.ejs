@@ -190,15 +190,15 @@
   <div id="cadt" class="container">
   <div id="cadm" class="container">
       
-     <form action="/" method="POST" class="mb-3 row">
+     <form action="/cad_v" method="POST" class="mb-3 row">
 
         <!-- ESCOLHE O CODIGO DO MEDIDOR  -->
 
                 <div class="mb-3  row"  data-bs-toggle="tooltip" data-bs-placement="right" title="O medidor deve ter um nome unico">
-                  <select class="form-select" aria-label="Default select example">
+                  <select  name = "cod_med_v" class="form-select" aria-label="Default select example">
                   <option selected>Codigo</option>
                     <% for (item of cadastrar_vazoes) { %>
-                  <option value=""><%- item.id_medidor %></option>
+                  <option value="<%- item.id_medidor %>"><%- item.id_medidor %></option>
                   <% } %>
                   </select>
                   </div>
@@ -214,15 +214,15 @@
           <!-- RECEBE A DATA -->
 
                 <div class="mb-3  row">
-                   <label for="Data" class="form-label">Data:</label>
-                  <input type="date" name="Data" class="form-control" id="Data">
+                   <label for="datatt" class="form-label">Data:</label>
+                  <input type="date" name="datatt" class="form-control" id="Data">
                 </div>
 
           <!-- RECEBE A VAZÃO -->
 
                 <div class="mb-3  row">
-                   <label for="hora" class="form-label">Horario:</label>
-                  <input type="time" name="hora" class="form-control" id="hora">
+                   <label for="datahh" class="form-label">Horario:</label>
+                  <input type="time" name="datahh" class="form-control" id="hora">
                   </div>
 
           <!--ENVIA-->

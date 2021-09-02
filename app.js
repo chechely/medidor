@@ -267,6 +267,38 @@ app.get("/Cadastro", function(req,res){
    res.render('Cadastro')
 });
 
+app.post("/cad_v", function(req,res){
+    console.log(req.body.cod_med_v)
+    connection.query("insert into medidor_v(vazao,datat,datah,id_medidor) values(?,?,?,?);",[req.body.vazao_cad,req.body.datatt,req.body.datahh,req.body.cod_med_v], function(erro,resultado){
+    if(resultado){
+        console.log('Cadastrado')
+    } else{
+        console.log('T-T',erro)
+    }
+    });
+ });
+ 
+ app.post("/apagar_vazao", function(req,res){
+    console.log(req.body.cod_med_v)
+    connection.query("delete from medidor_v where datat = ? and datah = ?;",[], function(erro,resultado){
+    if(resultado){
+        console.log('Cadastrado')
+    } else{
+        console.log('T-T',erro)
+    }
+    });
+ });
+
+ app.post("/atualizar", function(req,res){
+    console.log(req.body.cod_med_v)
+    connection.query("update from usuario where nome_usuario = '';",[], function(erro,resultado){
+    if(resultado){
+        console.log('Cadastrado')
+    } else{
+        console.log('T-T',erro)
+    }
+    });
+ });
 
 
 // RECEBE OS DADOS DO MEDIDOR QUE O USUARIO COLOCA NA PAGINA MEDIDOR
