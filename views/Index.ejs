@@ -152,7 +152,7 @@ $(document).ready(function() {
 
 var dados_grafico = [];
 $(document).ready(function() {
-    $.get('/dados_grafico', function(res) {
+    $.post('/dados_medidor', function(res) {
         dados_grafico = res;
     })
 });

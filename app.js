@@ -101,15 +101,77 @@ app.get("/Inicio", function(req,res){
     } 
 });
 
-app.post('/Inicio', function(req,res){
-    req.session.medidor_grafico = req.body.medidor_grafico
-});
-
 // ENVIA OS DADOS DO GRAFICO PARA A PAGINA DADOS_GRAFICO
 
-app.get("/dados_grafico", function(req,res){
-    res.send(dados_medidor());
-}); 
+app.post('/Inicio', function(req,res){
+    if (req.session.loggedin) {
+        var medidor;
+        medidor = req.body.medidor_grafico;
+        if (medidor) {
+            var dia_v = [];
+            var vazao_v = [];
+            var vazao_l = [];
+            var hora_v = [];
+  
+  // PESQUISAS NO BANCO PARA ALIMENTAR O GRAFICO
+  
+  connection.query("select medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v from medidor INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor where medidor.nome_medidor = ? order by medidor_v.idmedidor_v desc limit 5;",[medidor], function(err,result){
+      var d1 = (result[0].datat)
+      dia_v = [d1];
+  
+      var v1 = (result[0].vazao)
+      var v2 = (result[1].vazao)
+      var v3 = (result[2].vazao)
+      var v4 = (result[3].vazao)
+      var v5 = (result[4].vazao)
+      vazao_v = [v1,v2,v3,v4,v5]
+  
+      var vl1 = (result[0].vazao)/3.6
+      var vl2 = (result[1].vazao)/3.6
+      var vl3 = (result[2].vazao)/3.6
+      var vl4 = (result[3].vazao)/3.6
+      var vl5 = (result[4].vazao)/3.6
+      vazao_l = [vl1,vl2,vl3,vl4,vl5]
+  
+      var dt1 = (result[0].datah)
+      var dt2 = (result[1].datah)
+      var dt3 = (result[2].datah)
+      var dt4 = (result[3].datah)
+      var dt5 = (result[4].datah)
+      hora_v = [dt1,dt2,dt3,dt4,dt5]
+
+        // FUNÇÃO QUE IRÁ REDIRECIONAR POR UM JQUERY OS DADOS DE UM UNICO ARRAY E MANDAR PARA O GRAFICO 
+  
+  function dados_medidor(){
+    var dia;
+    dia = dia_v;
+
+    var hora;
+    hora = hora_v;
+
+    var dados;
+    dados = vazao_v;
+
+    var dados_l;
+    dados_l = vazao_l;
+
+    var tds_dados_medidor = [dia,hora,dados,dados_l];
+
+    return tds_dados_medidor
+}   
+res.redirect('/Inicio');
+    app.post('/dados_medidor', function(req,res){
+    res.send(dados_medidor())
+    });
+  });
+}else{
+    res.send('Medidor não tem nenhum dado');
+} 
+}else{
+    res.redirect('/Entrar');
+} 
+
+});
 
 app.get("/Email", function(req,res){
     res.render('email');
@@ -299,57 +361,6 @@ app.get('/Sair', function (req, res) {
     res.redirect('/Entrar');
   });
 
-  var dia_v = [];
-  var vazao_v = [];
-  var vazao_l = [];
-  var hora_v = [];
-  
-  // PESQUISAS NO BANCO PARA ALIMENTAR O GRAFICO
-  
-      connection.query("select medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v from medidor INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor where medidor.id_medidor = '0543' order by medidor_v.idmedidor_v desc limit 5;", function(err,result){
-      var d1 = (result[0].datat)
-      dia_v = [d1];
-  
-      var v1 = (result[0].vazao)
-      var v2 = (result[1].vazao)
-      var v3 = (result[2].vazao)
-      var v4 = (result[3].vazao)
-      var v5 = (result[4].vazao)
-      vazao_v = [v1,v2,v3,v4,v5]
-  
-      var vl1 = (result[0].vazao)/3.6
-      var vl2 = (result[1].vazao)/3.6
-      var vl3 = (result[2].vazao)/3.6
-      var vl4 = (result[3].vazao)/3.6
-      var vl5 = (result[4].vazao)/3.6
-      vazao_l = [vl1,vl2,vl3,vl4,vl5]
-  
-      var dt1 = (result[0].datah)
-      var dt2 = (result[1].datah)
-      var dt3 = (result[2].datah)
-      var dt4 = (result[3].datah)
-      var dt5 = (result[4].datah)
-      hora_v = [dt1,dt2,dt3,dt4,dt5]
-  });
-  // FUNÇÃO QUE IRÁ REDIRECIONAR POR UM JQUERY OS DADOS DE UM UNICO ARRAY E MANDAR PARA O GRAFICO 
-  
-  function dados_medidor(){
-      var dia;
-      dia = dia_v;
-  
-      var hora;
-      hora = hora_v;
-  
-      var dados;
-      dados = vazao_v;
-  
-      var dados_l;
-      dados_l = vazao_l;
-  
-      var tds_dados_medidor = [dia,hora,dados,dados_l];
-  
-      return tds_dados_medidor
-  }
 // FUNÇÃO QUE IRÁ REDIRECIONAR POR UM JQUERY OS DADOS DE UM UNICO ARRAY E MANDAR PARA O GRAFICO 
 
 
