@@ -16,15 +16,15 @@ const io = require('socket.io')(httpServer);
 
 const session = require('express-session');
 
-const flash = require('express-flash');
+var flash = require('express-flash');
 
 var path = require('path');
 
+var compression = require('compression')
+
+app.use(compression())
+
 const connection = require("./src/banco");
-
-// CHAMA O NOMALIER PARA ENVIAR EMAIL
-
-const nodemailer = require('nodemailer');
 
 // CHAMA O EJS
 
@@ -38,14 +38,21 @@ app.use(express.static(__dirname + '/src/img'));
 
 // CRIA UMA SESSÃO DE LOGIN
 
-app.use(session({ 
-    secret: 'bananafish',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 60000000 }
-}))
+app.set('trust proxy', 1);
+
+app.use(
+    session({
+      secret: 'ahkjdhkjbfjhiuuhAJKBA@6257469JD(&(*&%&&*(*)',
+      resave: false,
+      saveUninitialized: true,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        // secure: true, // becareful set this option, check here: https://www.npmjs.com/package/express-session#cookiesecure. In local, if you set this to true, you won't receive flash as you are using `http` in local, but http is not secure
+      },
+    })
+  );
  
-app.use(flash());
+  app.use(flash());
 
 // CHAMA O BODYPARSER PARA RECEBER OS DADOS DO HTML
 
@@ -60,7 +67,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // RENDERIZA O ARQUIVO LOGIN.EJS PARA A PAGINA DE ENTRAR
 
 app.get("/Entrar", function(req,res){
-    res.render('Login')
+    const no_login = req.flash('no_login');
+    res.render('Login',{no_login})
 });
 
 // CRIA UMA SESSÃO DE USUARIO, SE ELE ESTIVER CADASTRADO E COLOCAR SEUS DADOS CORRETAMENTE SERÁ REDIRECIONADO PARA A TELA DE INICIO
@@ -74,15 +82,16 @@ app.post('/Entrar', function(req,res) {
 				req.session.loggedin = true;
                 req.session.usuario = usuario;
 				req.session.senha = senha;
-				res.redirect('/Inicio');
+	            res.redirect('/Inicio');
 			} else {
-                res.render('Login',{teste1: 'Nome de usuário ou senha incorreto!' })
-                
+                req.flash('no_login',"Senha ou usuario esta incorreto, tente novamente!");
+                res.redirect('/Entrar');
 			}		
 			res.end();
 		});
-	} else {
-        res.render('Login',{ teste: 'Digite seu nome de usuário e senha !' })
+	} else {  
+        req.flash('no_login', 'Digite seu nome de usuário e senha!')
+        res.redirect('/Entrar');
 		res.end();
 	}
 });
@@ -177,52 +186,16 @@ app.get("/Email", function(req,res){
     res.render('email');
 }); 
 
-var codigo_cad = "";
-var possibilidade = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-for (var i = 0; i < 5; i++)
-codigo_cad += possibilidade.charAt(Math.floor(Math.random() * possibilidade.length));
-
-
-app.post("/Email", function(req,res){
-if (codigo_cad == req.body.codigo_confi){
-    res.redirect('/Inicio')
-}
-});
 app.post("/Cadastro", function(req,res){
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        host: "smtp.gmail.com",
-        port:465,
-        auth: {
-          user: 'michellesantosdeaquino@gmail.com',
-          pass: '99845105'
-        }
-      });
-      
-      var mailOptions = {
-        from: 'michellesantosdeaquino@gmail.com',
-        to: req.body.cad_email,
-        subject: 'Codigo de confirmação!',
-        text: codigo_cad
-      };
-      
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-          res.redirect('/Email');
-
-        connection.query("insert into usuario(nome_usuario,nome,sobrenome,email,data_nasci,senha,tel,genero,foto,cargo) values(?,?,?,?,?,?,?,?,?,?);",[req.body.cad_usuario,req.body.cad_nome,req.body.cad_sobrenome,req.body.cad_email,req.body.DataNasci,req.body.cad_senha,req.body.cad_tel,req.body.genero,req.body.imagem,req.body.cargo], function(erro,resultado){
+    connection.query("insert into usuario(nome_usuario,nome,sobrenome,email,data_nasci,senha,tel,genero,foto,cargo) values(?,?,?,?,?,?,?,?,?,?);",[req.body.cad_usuario,req.body.cad_nome,req.body.cad_sobrenome,req.body.cad_email,req.body.DataNasci,req.body.cad_senha,req.body.cad_tel,req.body.genero,req.body.imagem,req.body.cargo], function(erro,resultado){
             if(erro){
                 console.log("erro ao inserir dados no banco",erro)
             }else{  
                 console.log('Cadastrado e email enviado')
+                res.redirect('/Inicio')
             }
         }); 
-    }
-});
 });
 
 // ENVIA FUNÇÃO DADOS_MAPA PARA A PAGINA DADOS_MAPA
@@ -250,7 +223,7 @@ app.get("/Localizacao", function(req,res){
 
 app.get("/Historico", function(req,res){
     if (req.session.loggedin) {
-    connection.query("select medidor.cidade, medidor.estado,medidor.id_medidor,medidor.nome_medidor, medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v  from medidor INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor order by medidor_v.idmedidor_v desc;",[], function(erro,resultado){
+    connection.query("select usuario.nome_usuario,medidor.cidade, medidor.estado,medidor.id_medidor,medidor.nome_medidor, medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v  from ((medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario) INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor) where usuario.nome_usuario= ? order by medidor_v.idmedidor_v desc;",[req.session.usuario], function(erro,resultado){
         if(erro){
             res.status(200).send(erro)
         }
@@ -424,9 +397,14 @@ function dados_mapa(){
     var tds_dados_mapa = [longitude,latitude];
     return tds_dados_mapa
 }
+
 // PORTA QUE USAMOS LOCALMENTE
 
 httpServer.listen(8080);
+
+// DESATIVA O CABEÇALHO  X-Powered-By
+
+app.disable('x-powered-by');
 
 // EXPORTA CONSTANTE APP
 

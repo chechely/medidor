@@ -102,7 +102,6 @@
             <form id="teste" action="/Entrar" method="POST" class="mb-3 row">
 
                 <!--RECEBE O USUARIO-->
-
                 <div class="mb-3  row">
                     <label for="login_usuario" class="form-label">Usuario:</label>
                     <input type="text" name="login_usuario" class="form-control" id="login_usuario" placeholder="Nome de usuario" MAXLENGTH=15>
@@ -120,9 +119,14 @@
                 <div class="mb-3 row">
                   <button type="submit" class="btn btn-outline-primary mb-3">Entrar</button>
                   <h6 id="text">Ou</h6>
-                  <a id="cad" class="nav-link active" aria-current="page" href="Cadastro"><button  type="button" class="btn btn-outline-primary mb-3">Cadastre-se</button></a>
-                </div>               
-              </form>
-            </div>
+                  <a id="cad" class="nav-link active" aria-current="page" href="Cadastro"><button  type="button" class="btn btn-outline-primary mb-3">Cadastre-se</button></a> 
+                <% if (no_login != ''){ %>
+                  <div class="alert alert-danger" role="alert">
+                    <%= no_login %>
+                   </div>  
+                   <% } %>
+                </div>            
+              </form> 
+            </div>  
         </body>
 </html>

@@ -9,7 +9,7 @@ values('chechely','Michelle','Santos de Aquino','michellysantosdeaquino@gmail.co
 
 /* INSERE UM NOVO MEDIDOR COM ID, NOME E LOCALIZAÇÃO */
 
-insert into medidor(id_medidor,nome_medidor,longitude,latitude,cidade,estado,usuario_nome_usuario)
+insert into medidor(id,nome_medidor,longitude,latitude,cidade,estado,usuario_nome_usuario)
 values('0543','Medidor1','-73.968898','40.778848','Paulo Jacinto','Alagoas (AL)','chechely');
 
 /* INSERE UM NOVO MEDIDOR COM ID, NOME E LOCALIZAÇÃO */
@@ -19,7 +19,8 @@ values('0128','Medidor2','-41.7763 ','-2.90393','Palmeira','Alagoas (AL)','chech
 
 /* INSERE UMA NOVA VAZÃO AO MEDIDOR DE ID 0543 */
 
-insert into medidor_v(vazao,datah,datat,id_medidor) values(299,'22:00:00','19/07/2021','0543');
+insert into medidor_v(vazao,datah,datat,id_medidor)
+values(20,'15:15:00','02/08/2021','0543');
 
 /* INSERE UMA NOVA VAZÃO AO MEDIDOR DE ID 0128 */
 
@@ -61,5 +62,13 @@ select * from usuario;
 
 delete from usuario where nome_usuario = '';
 
+select  medidor.nome_medidor 
+from usuario 
+INNER JOIN medidor ON medidor.usuario_nome_usuario= usuario.nome_usuario;
+
 select medidor.nome_medidor,medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v from medidor INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor where medidor.id_medidor = '0543' order by medidor_v.idmedidor_v desc limit 5;
 select  usuario.nome_usuario,medidor.nome_medidor from medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario where usuario.nome_usuario = 'chechely' order by medidor.id_medidor desc;
+
+select usuario.nome_usuario,medidor.cidade, medidor.estado,medidor.id_medidor,medidor.nome_medidor, medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v  from ((medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario) INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor) where usuario.nome_usuario= 'chechely' order by medidor_v.idmedidor_v desc;
+
+
