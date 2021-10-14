@@ -63,6 +63,9 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/", function(req,res){
+    res.redirect('/Entrar');
+});
 
 // RENDERIZA O ARQUIVO LOGIN.EJS PARA A PAGINA DE ENTRAR
 
@@ -182,11 +185,6 @@ res.redirect('/Inicio');
 
 });
 
-app.get("/Email", function(req,res){
-    res.render('email');
-}); 
-
-
 app.post("/Cadastro", function(req,res){
     connection.query("insert into usuario(nome_usuario,nome,sobrenome,email,data_nasci,senha,tel,genero,foto,cargo) values(?,?,?,?,?,?,?,?,?,?);",[req.body.cad_usuario,req.body.cad_nome,req.body.cad_sobrenome,req.body.cad_email,req.body.DataNasci,req.body.cad_senha,req.body.cad_tel,req.body.genero,req.body.imagem,req.body.cargo], function(erro,resultado){
             if(erro){
@@ -241,18 +239,18 @@ app.get("/Cadastro", function(req,res){
 });
 
 app.post("/cad_v", function(req,res){
-    console.log(req.body.cod_med_v)
     connection.query("insert into medidor_v(vazao,datat,datah,id_medidor) values(?,?,?,?);",[req.body.vazao_cad,req.body.datatt,req.body.datahh,req.body.cod_med_v], function(erro,resultado){
     if(resultado){
-        console.log('Cadastrado')
+        req.flash('med','Cadastrado com sucesso!');
+        res.redirect('/Cadastrar-medicoes')
     } else{
-        console.log('T-T',erro)
+        req.flash('med_err','Erro ao cadastrar, tente novamente!');
+        res.redirect('/Cadastrar-medicoes')
     }
     });
  });
  
  app.post("/apagar_vazao", function(req,res){
-    console.log(req.body.cod_med_v)
     connection.query("delete from medidor_v where datat = ? and datah = ?;",[], function(erro,resultado){
     if(resultado){
         console.log('Cadastrado')
@@ -352,7 +350,9 @@ app.get("/Cadastrar-medicoes", function(req,res){
         if(erro){
             res.status(200).send(erro)
         }
-    res.render('cadastrar_vazoes',{cadastrar_vazoes : resultado})
+    const med = req.flash('med');
+    const med_err = req.flash('med_err');
+    res.render('cadastrar_vazoes',{cadastrar_vazoes : resultado,med:med,med_err:med_err})
     });
     }else{
         res.redirect('/Entrar');

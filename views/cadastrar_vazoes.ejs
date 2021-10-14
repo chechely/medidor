@@ -229,6 +229,18 @@
 
         <div class="mb-3 row">
           <button type="submit" class="btn btn-primary mb-3">Cadastrar</button>
+
+        <% if (med != ''){ %>
+            <div style="text-align: center;" class="alert alert-success" role="alert">
+              <%= med %>
+             </div>  
+             <% } %>
+
+            <% if (med_err != ''){ %>
+                <div style="text-align: center;" class="alert alert-danger" role="alert">
+                  <%= med_err %>
+                 </div>  
+                 <% } %>
         </div>
       </form>
     </div>
