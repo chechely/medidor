@@ -35,20 +35,28 @@
 
             .container{
                 margin-top: 50px;
+                max-width: 400px;
+                min-width: 320px;
+                border: 1px solid #282a36;
+                border-radius: 20px;
+                box-shadow: 2px 4px 8px #282a36;
+            }
+            #login{
+                margin:auto;
                 width: 300px;
             }
 
             /* DEFINE A COR DO CORPO DA PAGINA */
 
             body{
-                background-color: #282a36;
+                background-color: #11101D;
             }
 
             /* CENTRALIZA A IMAGEM E DEFINE A MARGEM DE BAIXO */
 
             #img{
                 text-align: center;
-            
+                margin-top: 50px;
             }
 
             img{
@@ -57,6 +65,7 @@
             }
 
             #cad{
+                margin:auto;
                 text-align: center;
             }
             #text{
@@ -66,14 +75,17 @@
             .form-label,#log_se{
                 color:white;
             }
+            .container-fluid{
+                margin:auto;
+            }
         </style>
         <script> 
           $(document).ready(function(){
             $("#img").mouseenter(function(){
               $("#logo").animate({
                 opacity: '0.5',
-                height: '125px',
-                width: '125px',
+                height: '110px',
+                width: '110px',
                 left:'5px',
                 rigth:'5px',
               },'slow');
@@ -91,20 +103,21 @@
           </script> 
     </head>
         <body>
+            <div class="container-fluid">
             <div class="container">
-
+                <div id="login" class="justify-content-center">
                 <!--IMAGEM-->
 
                 <div id="img">
                     <img id="logo" src="img/Logo.png">
                 </div>
                 <!--FORMULARIO PARA LOGIN-->
-            <form id="teste" action="/Entrar" method="POST" class="mb-3 row">
+            <form id="teste" action="/Entrar" method="POST" class="justify-content-center mb-3">
 
                 <!--RECEBE O USUARIO-->
                 <div class="mb-3  row">
-                    <label for="login_usuario" class="form-label">Usuario:</label>
-                    <input type="text" name="login_usuario" class="form-control" id="login_usuario" placeholder="Nome de usuario" MAXLENGTH=15>
+                    <label for="login_usuario" class="form-label">Usuário:</label>
+                    <input type="text" name="login_usuario" class="form-control" id="login_usuario" placeholder="Nome de usuário" MAXLENGTH=15>
                   </div>
 
                   <!--RECEBE A SENHA-->
@@ -119,7 +132,7 @@
                 <div class="mb-3 row">
                   <button type="submit" class="btn btn-outline-primary mb-3">Entrar</button>
                   <h6 id="text">Ou</h6>
-                  <a id="cad" class="nav-link active" aria-current="page" href="Cadastro"><button  type="button" class="btn btn-outline-primary mb-3">Cadastre-se</button></a> 
+                  <a id="cad" class="nav-link active mb-3 row" aria-current="page" href="Cadastro"><button  type="button" class="btn btn-outline-primary mb-3">Cadastre-se</button></a> 
                 <% if (no_login != ''){ %>
                   <div class="alert alert-danger" role="alert">
                     <%= no_login %>
@@ -128,5 +141,7 @@
                 </div>            
               </form> 
             </div>  
+        </div>
+    </div>
         </body>
 </html>

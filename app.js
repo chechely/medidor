@@ -101,12 +101,14 @@ app.post('/Entrar', function(req,res) {
 
 // ENVIA OS DADOS DO USUARIO, MEDIDOR E VAZÃO PARA A PAGINA INICIO
 app.get("/Inicio", function(req,res){
+    const aviso = req.flash('aviso');
     if (req.session.loggedin) {
-    connection.query("select  usuario.nome_usuario,medidor.nome_medidor from medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario where usuario.nome_usuario = ? order by medidor.id_medidor desc;",[req.session.usuario], function(erro,resultado){
+        connection.query("select  medidor.id_medidor, medidor.nome_medidor from usuario INNER JOIN medidor ON medidor.usuario_nome_usuario= usuario.nome_usuario where usuario.nome_usuario = ?;",[req.session.usuario], function(erro,resultado){
         if(erro){
             res.status(200).send(erro)
         }
-    res.render('Index',{Index : resultado})
+    req.flash('aviso','batata');
+    res.render('Index',{Index : resultado, aviso:aviso})
     });
     }else{
         res.redirect('/Entrar');
@@ -124,12 +126,15 @@ app.post('/Inicio', function(req,res){
             var vazao_v = [];
             var vazao_l = [];
             var hora_v = [];
+        
   
   // PESQUISAS NO BANCO PARA ALIMENTAR O GRAFICO
   
   connection.query("select medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v from medidor INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor where medidor.nome_medidor = ? order by medidor_v.idmedidor_v desc limit 5;",[medidor], function(err,result){
       var d1 = (result[0].datat)
       dia_v = [d1];
+
+      console.log(result[0].datat)
   
       var v1 = (result[0].vazao)
       var v2 = (result[1].vazao)
@@ -272,26 +277,6 @@ app.post("/cad_v", function(req,res){
  });
 
 
-// RECEBE OS DADOS DO MEDIDOR QUE O USUARIO COLOCA NA PAGINA MEDIDOR
-
-function codigo_medidor() {
-
-var texto = "";
-var possibilidade = "0123456789";
-
-for (var i = 0; i < 5; i++)
-texto += possibilidade.charAt(Math.floor(Math.random() * possibilidade.length));
-
-    var codigo_medi;
-    codigo_medi = texto
-    return codigo_medi
-}
-
-// RENDERIZA A PAGINA MEDIDOR.EJS  PARA A PAGINA MEDIDOR
-
-app.get("/Codi_medidor", function(req,res){
-    res.send(codigo_medidor())   
-});
 
 app.get("/Medidor", function(req,res){
     if (req.session.loggedin) {
@@ -302,13 +287,7 @@ app.get("/Medidor", function(req,res){
 });
 
 app.post("/Medidor", function(req,res){
-    var codigo_medidor;
-    document.ready(function() {
-    get('/Codi_medidor', function(res) {
-        codigo_medidor = res;
-    })
-});
-    connection.query("insert into medidor(id_medidor,nome_medidor,longitude,latitude,cidade,estado,usuario_nome_usuario) values(?,?,?,?,?,?,?);",[codigo_medidor,req.body.nome_med,req.body.m_longitude,req.body.m_latitude,req.body.m_cidade,req.body.m_estado,req.session.usuario], function(erro,resultado){
+    connection.query("insert into medidor(id_medidor,nome_medidor,longitude,latitude,cidade,estado,usuario_nome_usuario) values(?,?,?,?,?,?,?);",[req.body.codigo_medidor,req.body.nome_med,req.body.m_longitude,req.body.m_latitude,req.body.m_cidade,req.body.m_estado,req.session.usuario], function(erro,resultado){
     if(erro){
         console.log("erro ao inserir dados no banco")
     }else{
