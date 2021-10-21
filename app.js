@@ -46,7 +46,7 @@ app.set('trust proxy', 1);
 
 app.use(
     session({
-      secret: process.env.SESSION_SECRET,
+      secret: "skjflkkhgu48378921-039=-iodmçvdvmn",
       resave: false,
       saveUninitialized: true,
       store: sessionStore,
