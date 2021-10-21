@@ -11,6 +11,7 @@ const connection = mysql.createConnection({
     database: 'prototipo'
 });
 
+
 // Inicia a conexão com o databese mostrando no terminal se foi bem sucedida ou não
 
 connection.connect(function(err){

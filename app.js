@@ -27,6 +27,8 @@ var compression = require('compression')
 app.use(compression())
 
 const connection = require("./src/banco");
+var MySQLStore = require('express-mysql-session')(session);
+var sessionStore = new MySQLStore(connection);
 
 // CHAMA O EJS
 
@@ -44,9 +46,10 @@ app.set('trust proxy', 1);
 
 app.use(
     session({
-      secret: 'ahkjdhkjbfjhiuuhAJKBA@6257469JD(&(*&%&&*(*)',
+      secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
+      store: sessionStore,
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
         // secure: true, // becareful set this option, check here: https://www.npmjs.com/package/express-session#cookiesecure. In local, if you set this to true, you won't receive flash as you are using `http` in local, but http is not secure
@@ -442,3 +445,4 @@ app.disable('x-powered-by');
 // EXPORTA CONSTANTE APP
 
 module.exports = app;
+module.exports = session;
