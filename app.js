@@ -5,18 +5,18 @@ const http = require('http');
 
 // CHAMA O PACOTE EXPRESS JS
 
-const express = require("express");
+var express = require('express');
+
 const app = express();
 
 const httpServer = require("http").createServer(app);
 
 // CHAMA O SOCKET  
 
-var cookieSession = require('cookie-session')
 
 const io = require('socket.io')(httpServer);
 
-var session = require('cookie-session');
+const session = require('express-session');
 
 var flash = require('express-flash');
 
@@ -42,13 +42,17 @@ app.use(express.static(__dirname + '/src/img'));
 
 app.set('trust proxy', 1);
 
-app.use(cookieSession({
-    name: 'session',
-    keys: ['hsjkdhahflkhelhrurgtuiggjnvjbrh6348675'],
-  
-    // Cookie Options
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
-  }))
+app.use(
+    session({
+      secret: 'ahkjdhkjbfjhiuuhAJKBA@6257469JD(&(*&%&&*(*)',
+      resave: false,
+      saveUninitialized: true,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+        // secure: true, // becareful set this option, check here: https://www.npmjs.com/package/express-session#cookiesecure. In local, if you set this to true, you won't receive flash as you are using `http` in local, but http is not secure
+      },
+    })
+  );
   
  
   app.use(flash());
