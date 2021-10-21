@@ -346,6 +346,7 @@ body{
     height: 360px;
     }
     #pesq_m{
+        margin-left: 50px;
         margin-top: 5px;
         min-width: 130px;
         max-width: 130px;
@@ -380,6 +381,9 @@ body{
         max-width: 100%;
         margin:auto;
     }
+    .not{
+        position: fixed;
+    }
     </style>
     <script>
 
@@ -400,17 +404,18 @@ $(document).ready(function() {
     })
 });
 
-// jquery que chama os dados do render lá do app.js para um outro array
-
 var dados_grafico = [];
 $(document).ready(function() {
     $.post('/dados_medidor', function(res) {
         dados_grafico = res;
-    })
+        socket.emit('msg',dados_grafico);
+        console.log(dados_grafico);
+    });
 });
     </script>
 </head>
 <body>  
+    <script src="/socket.io/socket.io.js"></script>
     <!-- MENU OFFCANVAS-->
         <div class="sidebar">
             <div class="logo-details">
@@ -418,6 +423,17 @@ $(document).ready(function() {
                 <i class='bx bx-menu' id="btn" ></i>
             </div>
             <ul class="nav-list">
+                <li>
+                    <div class="not">
+                        <% if (aviso != ''){ %>
+                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                            <span class="visually-hidden">New alerts</span>
+                            <% } %>
+                        </div>
+                      <i onclick="datahora();" id="liveToastBtn" class='bx bx-bell'>
+                      </i>
+                    
+                  </li>
               <li>
                 <a href="/Inicio">
                   <i class='bx bx-home-circle'></i>
@@ -499,6 +515,85 @@ $(document).ready(function() {
           }
           </script>
 
+<!-- BOTÃO DE NOTIFICAÇÕES -->
+
+<button onclick="datahora();" type="button" class="btn" style="background-color:#282a36 ; color: white;" id="liveToastBtn">
+    <% if (aviso != ''){ %>
+    <span class="badge bg-danger">Aviso</span>
+    <% } %>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+        <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
+    </svg>
+    </button>
+
+    <!-- TOAST QUE MOSTRA AS NOTIFICAÇÕES -->
+<% if (aviso == ''){ %>
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+          </svg>
+        <strong class="me-auto">  Notificações</strong>
+        <small id="dataa"></small>
+
+    <!-- INFORMA A HORA ATUAL DESDE QUE BOTÃO FOR CLICADO -->
+
+    <script>
+    function datahora(){
+        var dataAtual = new Date();
+        var horas = dataAtual.getHours();
+        var minutos = dataAtual.getMinutes();
+        var data_hora = horas +  "h" + ":" + minutos + "min";
+    document.getElementById("dataa").innerHTML = data_hora;
+}
+    </script>
+
+    <!-- BOTÃO QUE FECHA A NOTIFICAÇÃO -->
+
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+
+      <div class="toast-body"> 
+          <p><%= aviso %></p>
+    </div>
+    </div>
+  </div>
+  <% } %>
+
+  <% if (aviso != ''){ %>
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+           </svg>
+        <strong class="me-auto">  Aviso</strong>
+        <small id="dataa"></small>
+
+    <!-- INFORMA A HORA ATUAL DESDE QUE BOTÃO FOR CLICADO -->
+
+    <script>
+    function datahora(){
+        var dataAtual = new Date();
+        var horas = dataAtual.getHours();
+        var minutos = dataAtual.getMinutes();
+        var data_hora = horas + ":" + minutos;
+    document.getElementById("dataa").innerHTML = data_hora;
+}
+    </script>
+
+    <!-- BOTÃO QUE FECHA A NOTIFICAÇÃO -->
+
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+
+      <div class="toast-body"> 
+    </div>
+    </div>
+  </div>
+  <% } %>
 
 <!-- GRAFICO -->
 <div class="container">
@@ -690,8 +785,8 @@ var latitude = dados_mapa[1]
 // grafico
 // Altera o titulo do grafico
 
-const tituloms = "Vazão: Metros cubicos por segundo";
-const titulolh = "Vazão: Litros por hora";
+const tituloms = "Vazão : Metros cubicos por segundo";
+const titulolh = "Vazão : Litros por hora";
 
 Chart.defaults.font.size = 13;
 Chart.defaults.color='#000000';
@@ -711,14 +806,14 @@ data: dados_grafico[2],
 // Cores dos grafico
 
 backgroundColor: [
-    'rgba(0,0,205)'
+    '#B0E0E6'
 ],
-fill: false,
+fill: true,
 
 // Cor da borda do grafico
 
 borderColor: [
-    'rgba(0,0,205)'
+    '#6495ED'
 ],
 
 // Tamanho da borda do grafico
@@ -741,10 +836,20 @@ scales: {
 y: {
     beginAtZero: false,
     display: true,
+    title: {
+        display: true,
+        text: 'Vazão',
+        lineHeight: 1.2,
+    },
 },
 x:{
     beginAtZero: false,
     display: true,
+    title: {
+        display: true,
+        text: 'Hora',
+        lineHeight: 1.2,
+    },
 },
 },
 

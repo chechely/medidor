@@ -128,33 +128,31 @@
                     <img id="logo" src="img/Logo.png">
                 </div>
                 <!--FORMULARIO PARA LOGIN-->
-            <form id="teste" action="/Entrar" method="POST" class="justify-content-center mb-3">
+            <form id="teste" action="/Nova-senha" method="POST" class="justify-content-center mb-3">
 
                 <!--RECEBE O USUARIO-->
 
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1"><i class="bx bxs-user"></i></span>
-                    <input type="text" class="form-control" name="login_usuario" id="login_usuario" placeholder="Usuário" aria-label="Usuário" aria-describedby="Usuário" MAXLENGTH=15>
+                <div class="mb-3">
+                    <label for="req_email" class="form-label">Email:</label>
+                    <input type="text" name="req_email" class="form-control"  placeholder="Nome de usuário">
                   </div>
 
                   <!--RECEBE A SENHA-->
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1"><i class="bx bxs-key"></i></span>
-                    <input name="login_senha"  id="login_senha" type="password" class="form-control" placeholder="Senha" MAXLENGTH=10 MINLENGTH=8 aria-label="Senha" aria-describedby="Senha">
-                  </div>
+
+                <div class="mb-3">
+                  <label id="log_se" for="req_senha" class="col-sm-4 col-form-label">Nova senha:</label>
+                  <input type="password" name="req_senha" class="form-control"  placeholder="Digite sua senha" MAXLENGTH=10 MINLENGTH=8>   
+            </div>
+
+            <div class="mb-3">
+                <label id="log_se" for="rec_rep" class="col-sm-6 col-form-label">Repita a nova senha:</label>
+                <input type="password" name="rec_rep" class="form-control"  placeholder="Digite sua senha" MAXLENGTH=10 MINLENGTH=8>   
+          </div>
 
                   <!--ENVIA-->
 
                 <div id="sub" class="mb-3">
-                  <button id="bt"  type="submit" class="btn btn-outline-primary mb-3">Entrar</button>
-                  <h6 id="text">Ou</h6>
-                  <a id="cad" class="nav-link active" aria-current="page" href="Cadastro"><button id="bt1"  type="button" class="btn btn-outline-primary mb-3">Cadastre-se</button></a>
-                  <a id="cad" class="nav-link active" aria-current="page" href="Nova-senha"><button id="bt1"  type="button" class="btn btn-outline-primary mb-3">Esqueci a senha</button></a> 
-                <% if (no_login != ''){ %>
-                  <div style="background-color: white; color:red; border: 1px solid rgba(255, 0, 0, 0.589);" class="alert alert-danger" role="alert">
-                    <%= no_login %>
-                   </div>  
-                   <% } %>
+                  <button id="bt"  type="submit" class="btn btn-outline-primary mb-3">Atualizar</button>
                 </div>            
               </form> 
             </div>  
