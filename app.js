@@ -424,9 +424,10 @@ connection.query("SELECT * FROM  medidor_v;", function(erro,resultado){
 
 */
 
+
 // PORTA QUE USAMOS LOCALMENTE
 
-httpServer.listen(8080);
+httpServer.listen(3000);
 
 // DESATIVA O CABEÇALHO  X-Powered-By
 
