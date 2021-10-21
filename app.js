@@ -12,9 +12,11 @@ const httpServer = require("http").createServer(app);
 
 // CHAMA O SOCKET  
 
+var cookieSession = require('cookie-session')
+
 const io = require('socket.io')(httpServer);
 
-const session = require('express-session');
+var session = require('cookie-session');
 
 var flash = require('express-flash');
 
