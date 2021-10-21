@@ -425,9 +425,11 @@ connection.query("SELECT * FROM  medidor_v;", function(erro,resultado){
 */
 
 
-// PORTA QUE USAMOS LOCALMENTE
+// PORTA QUE USAMOS LOCALMENTE E NO HEROKU
 
-httpServer.listen(3000);
+httpServer.listen(process.env.PORT || 3000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
 
 // DESATIVA O CABEÇALHO  X-Powered-By
 
