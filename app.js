@@ -42,17 +42,14 @@ app.use(express.static(__dirname + '/src/img'));
 
 app.set('trust proxy', 1);
 
-app.use(
-    session({
-      secret: 'ahkjdhkjbfjhiuuhAJKBA@6257469JD(&(*&%&&*(*)',
-      resave: true,
-      saveUninitialized: false,
-      cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-        // secure: true, // becareful set this option, check here: https://www.npmjs.com/package/express-session#cookiesecure. In local, if you set this to true, you won't receive flash as you are using `http` in local, but http is not secure
-      },
-    })
-  );
+app.use(cookieSession({
+    name: 'session',
+    keys: ['hsjkdhahflkhelhrurgtuiggjnvjbrh6348675'],
+  
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }))
+  
  
   app.use(flash());
 
