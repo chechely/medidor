@@ -27,8 +27,8 @@ var compression = require('compression')
 app.use(compression())
 
 const connection = require("./src/banco");
-var MySQLStore = require('express-mysql-session')(session);
-var sessionStore = new MySQLStore(connection);
+//var MySQLStore = require('express-mysql-session')(session);
+//var sessionStore = new MySQLStore(connection);
 
 // CHAMA O EJS
 
@@ -49,7 +49,7 @@ app.use(
       secret: "skjflkkhgu48378921-039=-iodmçvdvmn",
       resave: false,
       saveUninitialized: true,
-      store: sessionStore,
+      //store: sessionStore,
       cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
         // secure: true, // becareful set this option, check here: https://www.npmjs.com/package/express-session#cookiesecure. In local, if you set this to true, you won't receive flash as you are using `http` in local, but http is not secure
@@ -389,7 +389,7 @@ var longitude_mapa = [];
 var latitude_mapa = [];
 
 // BUSCA A LONGITUDE E A LATITUDE DO BANCO E COLOCA NO ARRAY
-
+/*
 connection.query("select  medidor.nome_medidor,  medidor.id_medidor, medidor.longitude, medidor.latitude, medidor.cidade, medidor.estado from medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario where  medidor.nome_medidor = 'Medidor1';", function(err,result){
    var longit = (result[0].longitude);
    longitude_mapa = longit ;
@@ -398,7 +398,7 @@ connection.query("select  medidor.nome_medidor,  medidor.id_medidor, medidor.lon
     latitude_mapa = latit ;
 });
 
-
+*/
 // DADOS DO MAPA COLOCADOS EM UMA FUNÇÃO
 
 function dados_mapa(){
