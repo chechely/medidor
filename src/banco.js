@@ -5,17 +5,17 @@ const mysql = require ('mysql');
 // Cria uma constante que indica o database e o usuario de dominio dele, junto com a senha
 
 const connection = mysql.createConnection({
+     /*
     host:'localhost',
     user: 'chechely',
     password: 'xuxu.2003',
     database: 'prototipo'
+    */
 
-    /* host: 'bsxhgkaksohfxjkryiij-mysql.services.clever-cloud.com',
+    host: 'bsxhgkaksohfxjkryiij-mysql.services.clever-cloud.com',
     user: 'uhsel6hckcsczsdo',
     password: 'rFYEjyUKSlOuLxpr20wk',
     database: 'bsxhgkaksohfxjkryiij'
-
-    */
 });
 
 
