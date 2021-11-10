@@ -38,17 +38,30 @@
 
 <style>
 
-img{
-        height: 30px;
-        width: 30px;
-            }
+/* DEFINE A COR DE FUNDO DO SITE */
 
-            *{
+body{
+        background-color: #F8F8FF;
+    }
+
+/* AJUSTA O TAMANHO DA IMAGEM */
+
+img{
+    height: 30px;
+    width: 30px;
+}
+
+/* AJUSTA O TAMANHO DA IMAGEM */
+
+*{
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
-    .sidebar{
+
+/* AJUSTA TAMANHO, POSIÇÃO, TRANSIÇÃO E COR DE FUNDO DO MENU */
+
+.sidebar{
   position: fixed;
   left: 0px;
   top: 0px;
@@ -59,19 +72,31 @@ img{
   z-index: 99;
   transition: all 0.5s ease;
 }
+
+/* AJUSTA O TAMANHO DO MENU QUANDO ESTIVER ABERTO */
+
 .sidebar.open{
   width: 250px;
 }
+
+/* AJUSTA O TAMANHO, POSIÇÃO E DEIXA O DISPLAY */
+
 .sidebar .logo-details{
   height: 60px;
   display: flex;
   align-items: center;
   position: relative;
 }
+
+/* EFEITO DE TRANSIÇÃO NA LOGO */
+
 .sidebar .logo-details .icon{
   opacity: 0;
   transition: all 0.5s ease;
 }
+
+/* AJUSTA O TAMANHO DA FONTE, OPACIDADE E TRANSIÇÃO DO DIV logo_details  ONDE FICA O NOME MENU E O BOTÃO PARA ABRIR O MENU */
+
 .sidebar .logo-details .logo_name{
   color: #fff;
   font-size: 20px;
@@ -79,10 +104,16 @@ img{
   opacity: 0;
   transition: all 0.5s ease;
 }
+
+/* AJUSTA A OPACIDADE DO MENU AO SER ABERTO */
+
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name{
   opacity: 1;
 }
+
+/* AJUSTA POSIÇÃO, TAMANHO DA FONTE, POSIÇÃO DO TEXTO E TRANSIÇÃO DO MENU  */
+
 .sidebar .logo-details #btn{
   position: absolute;
   top: 50%;
@@ -95,9 +126,15 @@ img{
   cursor: pointer;
   transition: all 0.5s ease;
 }
+
+/* DEIXA O TEXO DO MENU POSICIONADO A DIREITA QUANDO ESTÁ ABERTO */
+
 .sidebar.open .logo-details #btn{
   text-align: right;
 }
+
+/* MUDA A COR, TAMANHO DA FONTE, ALTURA DA LINHA E TAMANHO MINIMO DA LISTA QUE ESTÁ NO MENU */
+
 .sidebar i{
   color: #fff;
   height: 70px;
@@ -106,24 +143,33 @@ img{
   text-align: center;
   line-height: 70px;
 }
+
+/* DEFINE ALTURA E MARGEM DE CIMA DA LISTA, A LISTA É O QUE CONTEM O LINKS QUE DIRECIONAM PARA AS OUTRAS PAGINAS DO SITE */
+
 .sidebar .nav-list{
   margin-top: 20px;
   height: 100%;
 }
+
+/* DEFINE POSIÇÃO, MARGIM E TIRA OS PONTINHOS QUE GERALMENTE APARECEM EM CADA ITEM DA LISTA  */
+
 .sidebar li{
   position: relative;
   margin: 8px 0;
   list-style: none;
 }
+
+/* */
+
 .sidebar li .tooltip{
   position: absolute;
   top: -20px;
-  left: calc(100% + 15px);
+  left: calc(100% + 10px);
   z-index: 3;
   background: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  padding: 6px 12px;
-  border-radius: 4px;
+  padding: 2px 10px;
+  border-radius: 2px;
   font-size: 15px;
   font-weight: 400;
   opacity: 0;
@@ -287,7 +333,7 @@ footer{
         bottom:0px;
         width:100%;
         position:fixed;
-        color:blanchedalmond;
+        color:white;
         background-color: #11101D;
     }
 
@@ -409,7 +455,7 @@ footer{
 
         <!-- CONTAINER -->
   <div id="cad" class="container">
-  <div id="cadt" class="container">
+  <div id="cadt" class="justify-content-center">
   <div id="cadm" class="container">
       
      <form action="/cad_v" method="POST" class="mb-3">
@@ -475,9 +521,9 @@ footer{
             <div class="text-lg p-3">
                 <div class="text-center">
                     <a  id="footer">Oficinas 4.0: Projeto 1 - prototipo de medidor inteligente</a>
-                    <a style="color:white;" href="https://oficinas40.vitoria.ifes.edu.br/">
+                    <a style="color:#FFF;" href="https://oficinas40.vitoria.ifes.edu.br/">
                         <i class='bx bx-window'></i></a>                  
-                  <a style="color:white;" href="https://www.instagram.com/oficinas4.0/">
+                  <a style="color:#FFF;" href="https://www.instagram.com/oficinas4.0/">
                         <i class='bx bxl-instagram-alt'></i></a></a>
                   </div>
           </div>        

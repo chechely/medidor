@@ -38,6 +38,12 @@
  
 <style>
 
+/* DEFINE A COR DE FUNDO DO SITE */
+
+body{
+        background-color:#F8F8FF;
+    }
+
     *{
   margin: 0px;
   padding: 0px;
@@ -246,11 +252,11 @@
         bottom:0px;
         width:100%;
         position:fixed;
-        color:blanchedalmond;
+        color:white;
         background-color: #11101D;
     }
     #insta{
-        color:blanchedalmond;
+        color:white;
         margin-left:10px;
     }
 
@@ -398,7 +404,7 @@
 
         <div class="mb-3  row"  data-bs-toggle="tooltip" data-bs-placement="right" title="O medidor deve ter um nome unico">
             <label for="codigo_medidor" class="form-label">Codigo:</label>
-            <input type="text" name="codigo_medidor" class="form-control" id="codigo_medidor" placeholder="Medidor" MAXLENGTH=50>
+            <input type="number" name="codigo_medidor" class="form-control" id="codigo_medidor">
         </div>
 
         <!-- RECEBE O NOME-->

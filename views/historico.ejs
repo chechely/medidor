@@ -38,6 +38,12 @@
 
 <style>
 
+/* DEFINE A COR DE FUNDO DO SITE */
+
+body{
+        background-color: 	#F8F8FF;
+    }
+
 img{
         height: 30px;
         width: 30px;
@@ -288,11 +294,11 @@ img{
         bottom:0px;
         width:100%;
         position:fixed;
-        color:blanchedalmond;
+        color:white;
         background-color: #11101D;
     }
     #insta{
-        color:blanchedalmond;
+        color:white;
         margin-left:10px;
     }
     /* MUDA O TAMANHO, ALTURA E A MARGEM DOS BOTÕES DE PESQUISA */
@@ -352,12 +358,12 @@ img{
     </script>
 </head>
 <body>  
-
     <div class="sidebar">
         <div class="logo-details">
             <div class="logo_name">Menu</div>
             <i class='bx bx-menu' id="btn" ></i>
         </div>
+        <div class="menu-close">
         <ul class="nav-list">
           <li>
             <a href="/Inicio">
@@ -421,14 +427,22 @@ img{
             </a>
          </li>
         </ul>
+    </div>
       </div>
       <script>
+      let menu_close = document.querySelector(".menu-close");
       let sidebar = document.querySelector(".sidebar");
-      let closeBtn = document.querySelector("#btn");
+      let closeBtn = document.querySelector(".sidebar");
+      let closeMenu = document.querySelector("#btn");
     
       closeBtn.addEventListener("mouseenter", ()=>{
         sidebar.classList.toggle("open");
         menuBtnChange();
+      });
+
+      closeMenu.addEventListener("click", ()=>{
+        menu_close.classList.toggle("open");
+        menuChange();
       });
 
     
@@ -439,6 +453,13 @@ img{
          closeBtn.classList.replace("bx-menu-alt-right","bx-menu");
        }
       }
+
+      $(document).ready(function(){
+        $("#btn").click(function(){
+            $(".menu-close").css("display", "none");
+            $(".menu-close").css("display", "");
+         });
+        });
       </script>
 
     <!-- CONTAINER -->
@@ -479,9 +500,9 @@ img{
 
     <!-- TITULOS DAS COLUNAS -->
 
-            <table class="table table-light table-hover table-bordered border-dark">
+            <table class="table table-hover">
                 <thead>
-                  <tr>
+                  <tr style="text-align: center;">
                     <th scope="col">Id</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Estado</th>
@@ -539,9 +560,9 @@ img{
 
     <!-- TITULOS DAS COLUNAS -->
 
-                <table class="table table-hover table-bordered border-dark">
+                <table class="table table-hover">
                     <thead>
-                      <tr>
+                      <tr style="text-align: center;">
                         <th scope="col">Id</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Estado</th>
@@ -597,9 +618,9 @@ img{
           <div class="text-lg p-3">
             <div class="text-center">
                 <a  id="footer">Oficinas 4.0: Projeto 1 - prototipo de medidor inteligente</a>
-                <a style="color:white;" href="https://oficinas40.vitoria.ifes.edu.br/">
+                <a style="color:#FFF;" href="https://oficinas40.vitoria.ifes.edu.br/">
                     <i class='bx bx-window'></i></a>                  
-              <a style="color:white;" href="https://www.instagram.com/oficinas4.0/">
+              <a style="color:#FFF;" href="https://www.instagram.com/oficinas4.0/">
                     <i class='bx bxl-instagram-alt'></i></a></a>
               </div>
         </div>          

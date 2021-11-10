@@ -13,10 +13,13 @@ const httpServer = require("http").createServer(app);
 
 // CHAMA O SOCKET  
 
-
 const io = require('socket.io')(httpServer);
 
+// CHAMA O EXPRESS SESSION  
+
 const session = require('express-session');
+
+// CHAMA O EXPRESS FLASH  
 
 var flash = require('express-flash');
 
@@ -27,8 +30,6 @@ var compression = require('compression')
 app.use(compression())
 
 const connection = require("./src/banco");
-//var MySQLStore = require('express-mysql-session')(session);
-//var sessionStore = new MySQLStore(connection);
 
 // CHAMA O EJS
 
@@ -44,20 +45,22 @@ app.use(express.static(__dirname + '/src/img'));
 
 app.set('trust proxy', 1);
 
+// CRIA UMA SESSÃO PARA O USUARIO
+
 app.use(
     session({
       secret: "skjflkkhgu48378921-039=-iodmçvdvmn",
       resave: false,
       saveUninitialized: true,
-      //store: sessionStore,
       cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-        // secure: true, // becareful set this option, check here: https://www.npmjs.com/package/express-session#cookiesecure. In local, if you set this to true, you won't receive flash as you are using `http` in local, but http is not secure
+        maxAge: 1000 * 60 * 60 * 24 * 7,
       },
     })
   );
   
  
+// USA O EXPRESS FLASH
+
   app.use(flash());
 
 // CHAMA O BODYPARSER PARA RECEBER OS DADOS DO HTML
@@ -106,15 +109,17 @@ app.post('/Entrar', function(req,res) {
 });
 
 // ENVIA OS DADOS DO USUARIO, MEDIDOR E VAZÃO PARA A PAGINA INICIO
+
 app.get("/Inicio", function(req,res){
     if (req.session.loggedin) {
+
+// ATRAVES DA PESQUISA PODEMOS SABER SE ALGUM MEDIDOR NÃO RECEBEU NENHUMA ATUALIZAÇÃO E ENTÃO ENVIAREMOS UMA NOTIFICAÇÃO PELO FLASH SESSION
+
         let aviso = req.flash('aviso');
-        connection.query("select medidor.id_medidor, medidor.nome_medidor, medidor_v.vazao, medidor_v.datat from ((medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario) INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor)  where vazao=null or datat = '2021-10-21' and usuario.nome_usuario = 'chechely';", function(err,result){
-            var medidor_av = result.nome_medidor;
 
-            var data = result.datat;
+        let dados = req.flash('dados');
 
-            var vazao = result.vazao;
+    connection.query("select medidor.id_medidor, medidor.nome_medidor, medidor_v.vazao, medidor_v.datat from ((medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario) INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor)  where vazao=null or datat = '2021-10-21' and usuario.nome_usuario = ?;",[req.session.usuario], function(err,result){
 
             if(result.length > 0){
                 console.log(result.length)
@@ -123,11 +128,13 @@ app.get("/Inicio", function(req,res){
             }
          });
 
+// ENVIA TODOS OS MEDIDORES CADASTRADOS PARA A TELA INICIAL
+         
         connection.query("select  medidor.id_medidor, medidor.nome_medidor from usuario INNER JOIN medidor ON medidor.usuario_nome_usuario= usuario.nome_usuario where usuario.nome_usuario = ?;",[req.session.usuario], function(erro,resultado){
         if(erro){
             res.status(200).send(erro)
         }
-    res.render('Index',{Index : resultado, aviso:aviso})
+    res.render('Index',{Index : resultado, aviso:aviso,dados:dados})
     });
     }else{
         res.redirect('/Entrar');
@@ -138,6 +145,9 @@ app.get("/Inicio", function(req,res){
 
 app.post('/Inicio', function(req,res){
     if (req.session.loggedin) {
+
+// CRIA UMA VARIAVEL COM O MEDIDOR ESCOLHIDO PELO USUARIO
+
         var medidor;
         medidor = req.body.medidor_grafico;
         if (medidor) {
@@ -145,16 +155,17 @@ app.post('/Inicio', function(req,res){
             var vazao_v = [];
             var vazao_l = [];
             var hora_v = [];
-  // PESQUISAS NO BANCO PARA ALIMENTAR O GRAFICO
-  
-  connection.query("select medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v from medidor INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor where medidor.nome_medidor = ? order by medidor_v.idmedidor_v desc limit 5;",[medidor], function(err,result){
+            var longi_lat = [];
+
+  // PESQUISA OS DADOS DO MEDIDOR ESCOLHIDO
+
+  connection.query("select medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v,medidor.longitude, medidor.latitude from medidor INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor where medidor.nome_medidor = ? order by medidor_v.idmedidor_v desc limit 5;",[medidor], function(err,result){
     
-    console.log(result)
+// CRIA 5 VARIAVEIS COM AS VAZÕES MAIS RECENTES COM A DATA E A HORA DE CADA UMA
 
     var d1 = (result[0].datat)
       dia_v = [d1];
 
-      console.log(result[0].datat)
   
       var v1 = (result[0].vazao)
       var v2 = (result[1].vazao)
@@ -177,8 +188,14 @@ app.post('/Inicio', function(req,res){
       var dt5 = (result[4].datah)
       hora_v = [dt1,dt2,dt3,dt4,dt5]
 
-        // FUNÇÃO QUE IRÁ REDIRECIONAR POR UM JQUERY OS DADOS DE UM UNICO ARRAY E MANDAR PARA O GRAFICO 
-  
+      var longitude = (result[0].longitude)
+      var latitude = (result[0].latitude)
+      longi_lat = [longitude,latitude]
+
+      console.log(result)
+
+// FUNÇÃO QUE IRÁ REDIRECIONAR POR UM JQUERY OS DADOS DE UM UNICO ARRAY E MANDAR PARA O GRAFICO 
+
   function dados_medidor(){
     var dia;
     dia = dia_v;
@@ -192,15 +209,24 @@ app.post('/Inicio', function(req,res){
     var dados_l;
     dados_l = vazao_l;
 
-    var tds_dados_medidor = [dia,hora,dados,dados_l];
+    var mapa;
+    mapa = longi_lat;
+
+    var tds_dados_medidor = [dia,hora,dados,dados_l,mapa];
 
     return tds_dados_medidor
 }   
+
 res.redirect('/Inicio');
-    app.post('/dados_medidor', function(req,res){
+
+// PEGA OS DADOS DA FUNÇÃO E ENVIA PARA /DADOS_MEDIDOR
+
+    app.get('/dados_medidor', function(req,res){
+    req.flash('dados',vazao_v);
     res.send(dados_medidor())
     });
-  });
+});
+
 }else{
     res.send('Medidor não tem nenhum dado');
 } 
@@ -209,6 +235,8 @@ res.redirect('/Inicio');
 } 
 
 });
+
+// CADASTRA UM NOVO USUARIO
 
 app.post("/Cadastro", function(req,res){
     connection.query("insert into usuario(nome_usuario,nome,sobrenome,email,data_nasci,senha,tel,genero,foto,cargo) values(?,?,?,?,?,?,?,?,?,?);",[req.body.cad_usuario,req.body.cad_nome,req.body.cad_sobrenome,req.body.cad_email,req.body.DataNasci,req.body.cad_senha,req.body.cad_tel,req.body.genero,req.body.imagem,req.body.cargo], function(erro,resultado){
@@ -231,6 +259,9 @@ app.get("/dados_mapa", function(req,res){
 
 app.get("/Localizacao", function(req,res){
     if (req.session.loggedin) {
+
+// PEGA A LONGITUDE E A LATITUDE DO MEDIDOR ESCOLHIDO
+
     connection.query("select  medidor.nome_medidor from medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario where usuario.nome_usuario = ? order by medidor.id_medidor desc;",[req.session.usuario], function(erro,resultado){
         if(erro){
             res.status(200).send(erro)
@@ -263,17 +294,27 @@ app.get("/Cadastro", function(req,res){
    res.render('Cadastro')
 });
 
+// CADASTRA NOVAS MEDIÇÕES NO BANCO
+
 app.post("/cad_v", function(req,res){
     connection.query("insert into medidor_v(vazao,datat,datah,id_medidor) values(?,?,?,?);",[req.body.vazao_cad,req.body.datatt,req.body.datahh,req.body.cod_med_v], function(erro,resultado){
     if(resultado){
+
+// CASO O MEDIDOR FOR CADASTRADO COM SUCESSO APARECERÁ UMA DIV DE ALERTA INDICANDO O SUCESSO
+
         req.flash('med','Cadastrado com sucesso!');
         res.redirect('/Cadastrar-medicoes')
     } else{
+
+// CASO O MEDIDOR NÃO FOR CADASTRADO  APARECERÁ UMA DIV DE ALERTA INDICANDO A FALHA
+
         req.flash('med_err','Erro ao cadastrar, tente novamente!');
         res.redirect('/Cadastrar-medicoes')
     }
     });
  });
+
+// APAGA OS DADOS
  
  app.post("/apagar_vazao", function(req,res){
     connection.query("delete from medidor_v where datat = ? and datah = ?;",[], function(erro,resultado){
@@ -284,6 +325,8 @@ app.post("/cad_v", function(req,res){
     }
     });
  });
+
+// ATUALIZA OS DADOS 
 
  app.post("/atualizar", function(req,res){
     console.log(req.body.cod_med_v)
@@ -296,7 +339,7 @@ app.post("/cad_v", function(req,res){
     });
  });
 
-
+// CRIA UMA PAGINA QUE CADASTRA NOVOS MEDIDORES
 
 app.get("/Medidor", function(req,res){
     if (req.session.loggedin) {
@@ -335,7 +378,20 @@ app.get("/Medidores-cadastrados", function(req,res){
 
 app.get("/Seus-dados", function(req,res){
     if (req.session.loggedin) {
-    res.render('dados')
+        connection.query("select nome_usuario, nome, sobrenome, email, data_nasci, senha, tel, genero, foto, cargo from usuario where nome_usuario = ?;",[req.session.usuario], function(erro,resultado){
+            if(erro){
+                res.status(200).send(erro)
+            }
+            connection.query("select count(id_medidor) from medidor where usuario_nome_usuario =?;",[req.session.usuario], function(erro,result){
+                if(erro){
+                    res.status(200).send(erro)
+                }
+                const dados_med =["teste","teste"];
+
+                console.log(dados_med)
+            res.render('dados',{dados_usuario : resultado,dados_med:dados_med})
+        });
+    });
     }else{
         res.redirect('/Entrar');
     } 
@@ -357,6 +413,8 @@ app.get("/Cadastrar-medicoes", function(req,res){
         res.redirect('/Entrar');
     } 
 });
+
+// CRIA UMA PAGINA PARA ATUALIZAR A SENHA DE USUARIO
 
 app.get("/Nova-senha", function(req,res){
     res.render('rec_senha');
@@ -380,40 +438,9 @@ app.get('/Sair', function (req, res) {
     res.redirect('/Entrar');
   });
 
-// FUNÇÃO QUE IRÁ REDIRECIONAR POR UM JQUERY OS DADOS DE UM UNICO ARRAY E MANDAR PARA O GRAFICO 
 
-
-// CRIA ARRAY´S VAZIOS PARA RECEBER A LONGITUDE E A LATITUDE
-
-var longitude_mapa = [];
-var latitude_mapa = [];
-
-// BUSCA A LONGITUDE E A LATITUDE DO BANCO E COLOCA NO ARRAY
-/*
-connection.query("select  medidor.nome_medidor,  medidor.id_medidor, medidor.longitude, medidor.latitude, medidor.cidade, medidor.estado from medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario where  medidor.nome_medidor = 'Medidor1';", function(err,result){
-   var longit = (result[0].longitude);
-   longitude_mapa = longit ;
-
-   var latit = (result[0].latitude);
-    latitude_mapa = latit ;
-});
-
-*/
-// DADOS DO MAPA COLOCADOS EM UMA FUNÇÃO
-
-function dados_mapa(){
-    var longitude;
-    longitude = longitude_mapa;
-
-    var latitude;
-    latitude = latitude_mapa;
-
-    var tds_dados_mapa = [longitude,latitude];
-    return tds_dados_mapa
-}
-
-
-/* io.on("connection", (socket) => {
+ /*
+  io.on("connection", (socket) => {
 
 socket.on('msg',(msg) => {
 connection.query("SELECT * FROM  medidor_v;", function(erro,resultado){
@@ -427,10 +454,12 @@ connection.query("SELECT * FROM  medidor_v;", function(erro,resultado){
 }); 
 });
 
-});
-
+}); 
 */
+io.on("connection", (socket) => {
 
+    console.log(socket) 
+    }); 
 
 // PORTA QUE USAMOS LOCALMENTE E NO HEROKU
 
@@ -445,4 +474,3 @@ app.disable('x-powered-by');
 // EXPORTA CONSTANTE APP
 
 module.exports = app;
-module.exports = session;

@@ -32,9 +32,13 @@
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         
         <style>
-    body{
-        background-color: #F0FFF0;
+
+/* DEFINE A COR DE FUNDO DO SITE */
+
+body{
+        background-color: #F8F8FF;
     }
+
     footer{
         bottom:0px;
         width:100%;
@@ -296,6 +300,21 @@
 .text-center{
         margin-left: 80px;
     }
+
+.container{
+    margin-left: 80px;
+    margin-bottom: 80px;
+    max-width: 75%;
+    }
+.card{
+    max-width: 500px;
+    min-width: 200px;
+    border-radius: 20px;
+    margin:10px;
+}
+.row {
+    margin: auto;
+}
         </style>
 </head>
 <body>  
@@ -387,15 +406,53 @@
        }
       }
       </script>
+      <div class="container">
+        <div class="row">
+        <% for (item of dados_usuario) { %>
+            <div class="card" style="max-width: 25rem;min-width: 15rem;">
+                <img style="height: 150px; width: 150px; margin: auto; border: 1px solid #DCDCDC; margin-top: 5px; border-radius: 50%;" src="/img/Logo.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title" style="text-align: center;"><%- item.nome %> <%- item.sobrenome %></h5>
+                  <hr>
+                  <p class="card-text"> <i class="bx bx-calendar"> Data de Nascimento:</i></p>
+                  <p class="card-text"> <%- item.data_nasci %></p>
+                  <hr>
+                  <p class="card-text"> <i class="bx bx-mail-send"> Email:</i></p>
+                  <p class="card-text"><%- item.email %></p>
+                  <hr>
+                  <p class="card-text"> <i class="bx bx-devices"> Telefone:</i></p>
+                  <p class="card-text"><%- item.tel %></p>
+                  <hr>
+                  <p class="card-text"> <i class="bx bx-user"> Genêro:</i></p>
+                  <p class="card-text"> <%- item.genero %></p>
+                  <hr>
+                  <p class="card-text"> <i class="bx bx-wallet"> Cargo:</i></p>
+                  <p class="card-text"> <%- item.cargo %></p>
+                </div>
+              </div>
+            <% } %>
+                <div class="card" style="max-width: 25rem;min-width: 15rem;">
+                    <div class="card-body">
+                      <h5 class="card-title" style="text-align: center;">Medidores</h5>
+                      <p class="card-text"> <i class="bx bx-tachometer"> Medidores cadastrados:</i></p>
+                      <p class="card-text"> </p>
+                      <p class="card-text"> <i class="bx bx-bar-chart-alt-2"> Media das vazões:</i></p>
+                      <p class="card-text"></p>
+                      <p class="card-text"> <i class="bx bx-bar-chart-alt-2"> Total de medições:</i></p>
+                      <p class="card-text"></p>
+                    </div>
+                  </div>
+      </div>
+</div>
         <!--RODAPE DA PAGINA-->
 
         <footer  class="text-lg">
             <div class="text-lg p-3">
               <div class="text-center">
                 <a  id="footer">Oficinas 4.0: Projeto 1 - prototipo de medidor inteligente</a>
-                <a style="color:white;" href="https://oficinas40.vitoria.ifes.edu.br/">
+                <a style="color:#FFF;" href="https://oficinas40.vitoria.ifes.edu.br/">
                     <i class='bx bx-window'></i></a>                  
-              <a style="color:white;" href="https://www.instagram.com/oficinas4.0/">
+              <a style="color:#FFF;" href="https://www.instagram.com/oficinas4.0/">
                     <i class='bx bxl-instagram-alt'></i></a></a>
               </div>
           </div>          

@@ -41,7 +41,7 @@
 
     <style>
 body{
-        background-color: 	#FFFAFA;
+        background-color: #F8F8FF;
     }
 *{
   margin: 0px;
@@ -288,11 +288,11 @@ body{
         bottom:0px;
         width:100%;
         position:fixed;
-        color:blanchedalmond;
+        color:white;
         background-color: #11101D;
     }
     #insta{
-        color:blanchedalmond;
+        color:white;
         margin-left:10px;
     }
 
@@ -300,7 +300,7 @@ body{
 
     #container{
         max-width: 100%;
-        margin-bottom: 70px;
+        margin-bottom: 25px;
         margin-top: 40px;
         margin-left: 80px;
     }
@@ -308,7 +308,6 @@ body{
 /* Muda posição, altura minima, tamanho minimo e tamanho maximo do container onde está o grafico*/
     
     canvas{
-        max-width: 600px;
         height: 350px;
         min-width: 250px;
     }
@@ -331,19 +330,18 @@ body{
     }
         #map {
         margin:5px;
-        max-width: 600px;
-        height: 350px;
+        min-height: 350px;
         min-width: 300px;   
     }
     #mapa {
     margin:2px;
     margin-top:5px;
+    margin-right:5px;
     border: 1px solid #DCDCDC;
     box-shadow: 5px 8px 10px #DCDCDC;
     border-radius: 20px;
     min-width: 350px;
-    max-width: 600px;
-    height: 360px;
+    min-height: 360px;
     }
     #pesq_m{
         margin-left: 50px;
@@ -353,14 +351,14 @@ body{
     }
     #chart-container{
         margin-bottom:5px;
+        margin-right:5px;
         margin-top:5px;
-        margin:2px;
+        margin:5px;
         border: 1px solid #DCDCDC;
         border-radius: 20px;
         box-shadow: 5px 8px 10px #DCDCDC;
         min-width:350px;
-        max-width: 600px;
-        max-height: 360px;
+        min-height: 250px;
     }
     #cont-graf{
         margin-top: 50px;
@@ -395,27 +393,35 @@ $(document).ready(function(){
     });
   });
 
-// ENVIA  A LONGITUDE E A LATITUDE DO MAPA
-
-var dados_mapa = [];
-$(document).ready(function() {
-    $.get('/dados_mapa', function(res) {
-        dados_mapa = res;
-    })
-});
-
+/*
 var dados_grafico = [];
 $(document).ready(function() {
     $.post('/dados_medidor', function(res) {
         dados_grafico = res;
-        socket.emit('msg',dados_grafico);
-        console.log(dados_grafico);
     });
 });
+*/
     </script>
 </head>
-<body>  
+<body>
+
     <script src="/socket.io/socket.io.js"></script>
+    <script>
+    
+    const socket = io(); 
+    var dados_grafico = [];
+    socket.on('connect',function(socket){
+        $(document).ready(function() {
+    $.get('/dados_medidor', function(res) {
+        dados_grafico = res;
+        // $("#teste").append(dados_grafico);
+    });
+});
+
+    })
+    
+    </script>
+
     <!-- MENU OFFCANVAS-->
         <div class="sidebar">
             <div class="logo-details">
@@ -597,6 +603,9 @@ $(document).ready(function() {
 
 <!-- GRAFICO -->
 <div class="container">
+
+    <div style="font-size: 100px;"id="teste">
+    </div>
 <div id="container">
 
 <!-- FORMULARIO PARA  MOSTRAR SEUS MEDIDORES E A LOCALIZAÇÃO DELES  -->
@@ -610,7 +619,7 @@ $(document).ready(function() {
                   <select name="medidor_grafico" class="form-select" id="select" aria-label="Default select example">
                   <option selected>Medidores</option>
                     <% for (item of Index) { %>
-                  <option   value="<%- item.nome_medidor %>"><%- item.nome_medidor %></option>
+                  <option value="<%- item.nome_medidor %>"><%- item.nome_medidor %></option>
                   <% } %>
                   </select>
         </div>
@@ -623,7 +632,10 @@ $(document).ready(function() {
     </div>
     </form>
 
+    <div  class="row justify-content-center">
+
 <!-- CONTAINER DO GRAFICO E DO MAPA -->
+
          <div id="cont-graf">
             <div class="row">
             <div class="col">
@@ -651,29 +663,18 @@ $(document).ready(function() {
 
 <script>
 
-$(document).ready(function(){
-    $("#local").click(function(){
-      $("#map").fadeToggle("slow");
-    });
-  });
 
-var longitude = dados_mapa[0];
-var latitude = dados_mapa[1]
   mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlY2hlbHkiLCJhIjoiY2txeTU0ZXFzMGlsaTJvcXVudmFzb2l5NCJ9.zFnq--QMlrOAjPHazAaapw';
   var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v9',
-      center : [-36.6558194,-9.4069362],
+      center : [-36.6297982, -9.4139915],
       zoom:17
   });
-  function localizacao(){
-    var map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v9',
-      center : [longitude,latitude],
-      zoom:17
-  });
-  }
+
+
+  // Tamanho do ponto
+
   var size = 100;
 
   // This implements `StyleImageInterface`
@@ -758,7 +759,7 @@ var latitude = dados_mapa[1]
                       'type': 'Feature',
                       'geometry': {
                           'type': 'Point',
-                          'coordinates': [-36.6558194,-9.4069362] // icon position [lng, lat]
+                          'coordinates': dados_grafico[4] // icon position [lng, lat]
                       }
                   }
               ]
@@ -778,6 +779,7 @@ var latitude = dados_mapa[1]
 
     </div>
     </div>
+</div>
     </div>
 </div>
 <script>
@@ -942,9 +944,9 @@ grafico.update();
             <div class="text-lg p-3">
               <div class="text-center">
                 <a  id="footer">Oficinas 4.0: Projeto 1 - prototipo de medidor inteligente</a>
-                <a style="color:white;" href="https://oficinas40.vitoria.ifes.edu.br/">
+                <a style="color:#FFF;" href="https://oficinas40.vitoria.ifes.edu.br/">
                     <i class='bx bx-window'></i></a>                  
-              <a style="color:white;" href="https://www.instagram.com/oficinas4.0/">
+              <a style="color:#FFF;" href="https://www.instagram.com/oficinas4.0/">
                     <i class='bx bxl-instagram-alt'></i></a></a>
               </div>
           </div>          
