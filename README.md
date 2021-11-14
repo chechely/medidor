@@ -6,7 +6,6 @@
 
 Professor orientador:
 
-<<<<<<< HEAD
 - Mahelvson
 
 Desenvolvedores do prototipo:
@@ -16,17 +15,6 @@ Desenvolvedores do prototipo:
 - Matheus
 - Samuel
 - Saulo
-=======
--
-
-Desenvolvedores do prototipo:
-
--
--
--
--
--
->>>>>>> 01d72fc25cea64daea69ad3289120d821c4da06c
 
 Desenvolvedores web:
 
@@ -42,26 +30,16 @@ Desenvolvedores web:
 
 ## :computer: Recursos da aplicação
 
-<<<<<<< HEAD
-+ Localização dos Medidores
-+ Monitoramento dos Medidores
-+ Adicionar Medidores
-+ Adicionar Medições
-+ Historico de medições
-=======
 - Localização dos Medidores
 - Monitoramento dos Medidores
 - Adicionar Medidores
 - Adicionar Medições
 - Historico de medições
->>>>>>> 01d72fc25cea64daea69ad3289120d821c4da06c
 
 ### Como utilizar os recursos da aplicação
 
 
 #### :bust_in_silhouette:  Cadastrando-se na plataforma
-
-![cadastro_SparkVideo](https://user-images.githubusercontent.com/72949904/141689299-37d5c874-e87e-479f-bd31-cb36a706df90.gif)
 
 ![cadastro_SparkVideo](https://user-images.githubusercontent.com/72949904/141689299-37d5c874-e87e-479f-bd31-cb36a706df90.gif)
 
@@ -96,11 +74,6 @@ E clique em cadastrar.
 Na tela de início selecione o medidor e clique em procurar.
 
 ![inicio_SparkVideo (1)](https://user-images.githubusercontent.com/72949904/141690223-78ed8507-a583-4e90-a4c0-92945b945a44.gif)
-<<<<<<< HEAD
-=======
-
-#### :card_file_box:  Visualizando Historico de medições
->>>>>>> 01d72fc25cea64daea69ad3289120d821c4da06c
 
 #### :card_file_box:  Visualizando Historico de medições
  
@@ -115,11 +88,7 @@ Na tela de início ao selecionar o medidor e  clicar em procurar mostra no mapa.
 ![localizacao_SparkVideo](https://user-images.githubusercontent.com/72949904/141689509-22eb4951-fc15-48da-b7eb-b32d86c62b6c.gif)
 
 
-<<<<<<< HEAD
 ## 🛠 Tecnologias
-=======
-### 🛠 Tecnologias
->>>>>>> 01d72fc25cea64daea69ad3289120d821c4da06c
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
@@ -156,4 +125,3 @@ $ npm install
 # O servidor inciará na porta indicada: 
 #Exemplo: 3333 - acesse <http://localhost:3333>
 ```  
- 
