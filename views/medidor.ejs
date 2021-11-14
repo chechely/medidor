@@ -626,6 +626,18 @@ body{
             <button type="submit" class="btn btn-outline-primary mb-3">Cadastrar</button>
         </div>
       </form>
+      <% if (med_cad != ''){ %>
+        <div style="text-align: center;" class="alert alert-success" role="alert">
+          <%= med_cad %>
+         </div>  
+         <% } %>
+
+         <% if (med_cad_err != ''){ %>
+            <div style="text-align: center;" class="alert alert-danger" role="alert">
+              <%= med_cad_err %>
+           </div>  
+        <% } %>
+        
     </div>
     </div>
 </div>

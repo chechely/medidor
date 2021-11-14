@@ -154,6 +154,11 @@
 
                 <div id="sub" class="mb-3">
                   <button id="bt"  type="submit" class="btn btn-outline-primary mb-3">Atualizar</button>
+                  <% if (senha_up != ''){ %>
+                    <div style="background-color: #11101D; color:red; border: 1px solid #282a36;" class="alert alert-danger" role="alert">
+                      <%= senha_up %>
+                     </div>  
+                     <% } %>
                 </div>            
               </form> 
             </div>  

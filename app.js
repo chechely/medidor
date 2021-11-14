@@ -125,7 +125,6 @@ app.get("/Inicio", function(req,res){
     connection.query("select medidor.id_medidor, medidor.nome_medidor, medidor_v.vazao, medidor_v.datat from ((medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario) INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor)  where vazao=null or datat = '2021-10-21' and usuario.nome_usuario = ?;",[req.session.usuario], function(err,result){
 
             if(result.length > 0){
-                console.log(result.length)
             }else{
                 req.flash('aviso',"O medidor(es)",result.nome_medidor,"não tem registro de vazão");
             }
@@ -195,7 +194,6 @@ app.post('/Inicio', function(req,res){
       var latitude = (result[0].latitude)
       longi_lat = [longitude,latitude]
 
-      console.log(result)
 
 // FUNÇÃO QUE IRÁ REDIRECIONAR POR UM JQUERY OS DADOS DE UM UNICO ARRAY E MANDAR PARA O GRAFICO 
 
@@ -243,57 +241,16 @@ res.redirect('/Inicio');
 
 app.post("/Cadastro", function(req,res){
     connection.query("insert into usuario(nome_usuario,nome,sobrenome,email,data_nasci,senha,tel,genero,foto,cargo) values(?,?,?,?,?,?,?,?,?,?);",[req.body.cad_usuario,req.body.cad_nome,req.body.cad_sobrenome,req.body.cad_email,req.body.DataNasci,req.body.cad_senha,req.body.cad_tel,req.body.genero,req.body.imagem,req.body.cargo], function(erro,resultado){
-        console.log(req.body.cad_usuario)
-        if(req.body.cad_usuario & req.body.cad_nome & req.body.cad_sobrenome & req.body.cad_email & req.body.DataNasci & req.body.cad_senha & req.body.cad_tel & req.body.genero & req.body.imagem & req.body.cargo === ""){
-            req.flash('err_cad',"Cadastro realizado com sucesso!");
-            res.redirect('/Cadastro');
-        } 
-        if(req.body.cad_usuario === ""){
-            req.flash('err_cad',"Digite o nome de usuario!");
-            res.redirect('/Cadastro');
-        } 
-        if(req.body.cad_nome === ""){
-            req.flash('err_cad',"Digite o seu nome!");
-            res.redirect('/Cadastro');
-        } 
-        if(req.body.cad_sobrenome === ""){
-            req.flash('err_cad',"Digite o seu sobrenome!");
-            res.redirect('/Cadastro');
-        } 
-        if(req.body.cad_email === ""){
-            req.flash('err_cad',"Digite o seu email!");
-            res.redirect('/Cadastro');
-        } 
-        if(req.body.cad_DataNasci === ""){
-            req.flash('err_cad',"Digite a sua data de nascimento!");
-            res.redirect('/Cadastro');
-        } 
-        if(req.body.cad_senha === ""){
-            req.flash('err_cad',"Digite a sua senha!");
-            res.redirect('/Cadastro');
-        } 
         if(req.body.cad_senha_n !== req.body.cad_senha){
             req.flash('err_cad',"Senha e confirmação de senha diferentes!");
             res.redirect('/Cadastro');
-        } 
-        if(req.body.cad_tel === ""){
-            req.flash('err_cad',"Digite o seu numero de telefone!");
-            res.redirect('/Cadastro');
-        }
-        if(req.body.cad_genero === ""){
-            req.flash('err_cad',"Selecione o seu genêro!");
-            res.redirect('/Cadastro');
-        } 
-        if(req.body.cad_imagem === ""){
-            req.flash('err_cad',"Insira sua foto!");
-            res.redirect('/Cadastro');
-        } 
-        if(req.body.cad_cargo === ""){
-            req.flash('err_cad',"Digite o seu cargo!");
-            res.redirect('/Cadastro');
-        } 
+        }  
         else{
         if(erro){
+
+            req.flash('err_cad',"Erro ao realizar cadastro, tente novamente!");
+            res.redirect('/Cadastro');
+
             }else{ 
                 res.redirect('/Inicio')
             }
@@ -372,9 +329,9 @@ app.post("/cad_v", function(req,res){
  app.post("/apagar_vazao", function(req,res){
     connection.query("delete from medidor_v where datat = ? and datah = ?;",[], function(erro,resultado){
     if(resultado){
-        console.log('Cadastrado')
+        
     } else{
-        console.log('T-T',erro)
+        
     }
     });
  });
@@ -382,12 +339,12 @@ app.post("/cad_v", function(req,res){
 // ATUALIZA OS DADOS 
 
  app.post("/atualizar", function(req,res){
-    console.log(req.body.cod_med_v)
+    
     connection.query("update from usuario where nome_usuario = '';",[], function(erro,resultado){
     if(resultado){
-        console.log('Cadastrado')
+      
     } else{
-        console.log('T-T',erro)
+       
     }
     });
  });
@@ -396,7 +353,11 @@ app.post("/cad_v", function(req,res){
 
 app.get("/Medidor", function(req,res){
     if (req.session.loggedin) {
-    res.render('medidor') 
+
+    const med_cad = req.flash('med_cad');
+    const med_cad_err = req.flash('med_cad_err');
+    res.render('medidor',{med_cad:med_cad,med_cad_err:med_cad_err}) 
+
     }else{
         res.redirect('/Entrar');
     }   
@@ -405,9 +366,11 @@ app.get("/Medidor", function(req,res){
 app.post("/Medidor", function(req,res){
     connection.query("insert into medidor(id_medidor,nome_medidor,longitude,latitude,cidade,estado,usuario_nome_usuario) values(?,?,?,?,?,?,?);",[req.body.codigo_medidor,req.body.nome_med,req.body.m_longitude,req.body.m_latitude,req.body.m_cidade,req.body.m_estado,req.session.usuario], function(erro,resultado){
     if(erro){
-        console.log("erro ao inserir dados no banco")
+        req.flash('med_cad_err',"Erro ao inserir medidor, tente novamente!");
+        res.redirect('/Medidor');
     }else{
-        res.redirect('/Medidores-cadastrados');
+        req.flash('med_cad',"Medidore cadastrado com sucesso!");
+        res.redirect('/Medidor');
     }
     });   
 });
@@ -462,17 +425,24 @@ app.get("/Cadastrar-medicoes", function(req,res){
 // CRIA UMA PAGINA PARA ATUALIZAR A SENHA DE USUARIO
 
 app.get("/Nova-senha", function(req,res){
-    res.render('rec_senha');
+    const senha_up = req.flash('senha_up');
+    res.render('rec_senha',{senha_up});
 }); 
 
 app.post("/Nova-senha", function(req,res){
 if(req.body.rec_rep === req.body.req_senha){
     connection.query("UPDATE usuario SET senha=? WHERE email=?;",[req.body.req_senha,req.body.req_email], function(err,result){
         if(err){
-            res.status(200).send(err)
+            req.flash('senha_up',"Erro ao tentar atualizar a senha, tente novamente!");
+            res.redirect('/Nova-senha')
         }else{
-    res.redirect('Entrar')}
+        res.redirect('/Entrar')
+        }
      });
+}
+else{
+    req.flash('senha_up',"Senha e confirmação de senha não estão iguais!");
+    res.redirect('/Nova-senha')
 }
 });
 
@@ -512,7 +482,7 @@ app.post('/localizacao', function(req,res){
 
 res.redirect('/Localizacao');
 
-// PEGA OS DADOS DA FUNÇÃO E ENVIA PARA /DADOS_MEDIDOR
+// PEGA OS DADOS DA FUNÇÃO E ENVIA PARA /DADOS_GRAFICO
 
     app.get('/dados_grafico', function(req,res){
     res.send(dados_grafico())
@@ -555,7 +525,7 @@ connection.query("SELECT * FROM  medidor_v;", function(erro,resultado){
 */
 io.on("connection", (socket) => {
 
-    console.log(socket) 
+    
     }); 
 
 // PORTA QUE USAMOS LOCALMENTE E NO HEROKU
