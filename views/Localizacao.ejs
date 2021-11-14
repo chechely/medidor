@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang='pt-br'>
-<html>
     <head>
 
       <!-- TITULO DO SITE -->
@@ -55,7 +54,10 @@ img{
   padding: 0px;
   box-sizing: border-box;
 }
-    .sidebar{
+
+/* AJUSTA TAMANHO, POSIÇÃO, TRANSIÇÃO E COR DE FUNDO DO MENU */
+
+.sidebar{
   position: fixed;
   left: 0px;
   top: 0px;
@@ -66,19 +68,31 @@ img{
   z-index: 99;
   transition: all 0.5s ease;
 }
+
+/* AJUSTA O TAMANHO DO MENU QUANDO ESTIVER ABERTO */
+
 .sidebar.open{
   width: 250px;
 }
+
+/* AJUSTA O TAMANHO, POSIÇÃO E DEIXA O DISPLAY */
+
 .sidebar .logo-details{
   height: 60px;
   display: flex;
   align-items: center;
   position: relative;
 }
+
+/* EFEITO DE TRANSIÇÃO NA LOGO */
+
 .sidebar .logo-details .icon{
   opacity: 0;
   transition: all 0.5s ease;
 }
+
+/* AJUSTA O TAMANHO DA FONTE, OPACIDADE E TRANSIÇÃO DO DIV logo_details  ONDE FICA O NOME MENU E O BOTÃO PARA ABRIR O MENU */
+
 .sidebar .logo-details .logo_name{
   color: #fff;
   font-size: 20px;
@@ -86,10 +100,16 @@ img{
   opacity: 0;
   transition: all 0.5s ease;
 }
+
+/* AJUSTA A OPACIDADE DO MENU AO SER ABERTO */
+
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name{
   opacity: 1;
 }
+
+/* AJUSTA POSIÇÃO, TAMANHO DA FONTE, POSIÇÃO DO TEXTO E TRANSIÇÃO DO MENU  */
+
 .sidebar .logo-details #btn{
   position: absolute;
   top: 50%;
@@ -102,9 +122,15 @@ img{
   cursor: pointer;
   transition: all 0.5s ease;
 }
+
+/* DEIXA O TEXO DO MENU POSICIONADO A DIREITA QUANDO ESTÁ ABERTO */
+
 .sidebar.open .logo-details #btn{
   text-align: right;
 }
+
+/* MUDA A COR, TAMANHO DA FONTE, ALTURA DA LINHA E TAMANHO MINIMO DA LISTA QUE ESTÁ NO MENU */
+
 .sidebar i{
   color: #fff;
   height: 70px;
@@ -113,24 +139,33 @@ img{
   text-align: center;
   line-height: 70px;
 }
+
+/* DEFINE ALTURA E MARGEM DE CIMA DA LISTA, A LISTA É O QUE CONTEM O LINKS QUE DIRECIONAM PARA AS OUTRAS PAGINAS DO SITE */
+
 .sidebar .nav-list{
   margin-top: 20px;
   height: 100%;
 }
+
+/* DEFINE POSIÇÃO, MARGIM E TIRA OS PONTINHOS QUE GERALMENTE APARECEM EM CADA ITEM DA LISTA  */
+
 .sidebar li{
   position: relative;
   margin: 8px 0;
   list-style: none;
 }
+
+/* DEFINE A POSIÇÃO, COR DE FUNDO, BORDA, SOMBRA, TAMANHO DA FONTE E ETC DA LISTA NO MENU */
+
 .sidebar li .tooltip{
   position: absolute;
   top: -20px;
-  left: calc(100% + 15px);
+  left: calc(100% + 10px);
   z-index: 3;
   background: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  padding: 6px 12px;
-  border-radius: 4px;
+  padding: 2px 10px;
+  border-radius: 2px;
   font-size: 15px;
   font-weight: 400;
   opacity: 0;
@@ -138,6 +173,9 @@ img{
   pointer-events: none;
   transition: 0s;
 }
+
+/* QUANDO PASSAR O MOUSE SOBRE A DIV QUE TEM O CLASS=TOOLTIP ALTERARÁ A TRANSIÇÃO, TAMANHO E OPACIDADE */
+
 .sidebar li:hover .tooltip{
   opacity: 1;
   pointer-events: auto;
@@ -145,34 +183,15 @@ img{
   top: 50%;
   transform: translateY(-50%);
 }
+
+/* QUANDO O MENU ESTIVER ABERTO A DIV QUE TEM O CLASS=TOOLTIP NÃO IRÁ APARECER */
+
 .sidebar.open li .tooltip{
   display: none;
 }
-.sidebar input{
-  font-size: 15px;
-  color: #FFF;
-  font-weight: 400;
-  outline: none;
-  height: 50px;
-  width: 100%;
-  width: 50px;
-  border: none;
-  border-radius: 12px;
-  transition: all 0.5s ease;
-  background: #1d1b31;
-}
-.sidebar.open input{
-  padding: 0 20px 0 50px;
-  width: 100%;
-}
-.sidebar.open .bx-search:hover{
-  background: #1d1b31;
-  color: #FFF;
-}
-.sidebar .bx-search:hover{
-  background: #FFF;
-  color: #11101d;
-}
+
+/* MODIFICA TAMANHO, ALTURA, ALINHAMENTO, COR DE FUNDO, TRANSIÇÃO E BORDA REDONDA DE TODOS OS ATRIBUTOS <a> DENTRO DO MENU */
+
 .sidebar li a{
   display: flex;
   height: 100%;
@@ -183,9 +202,15 @@ img{
   transition: all 0.4s ease;
   background: #11101D;
 }
+
+/*  QUANDO O MOUSE PASSAR PELO ATRIBUTO <a> DENTRO DO MENU MUDARÁ A COR DE FUNDO */
+
 .sidebar li a:hover{
   background: #FFF;
 }
+
+/* MODIFICA COR, TAMANHO DA FONTE, OPACIDADE E TRANSIÇÃO DA DIV COM O CLASS=links_name */
+
 .sidebar li a .links_name{
   color: #fff;
   font-size: 15px;
@@ -195,25 +220,37 @@ img{
   pointer-events: none;
   transition: 0.4s;
 }
+
+/* QUANDO O MENU ESTÁ ABERTO MUDA A OPACIDADE */
+
 .sidebar.open li a .links_name{
   opacity: 1;
   pointer-events: auto;
 }
+
+/* QUANDO O MOUSE PASSAR PELA DIV CLASS=links_name E O ATRIBUTO i ADICIONA TRANSIÇÃO E MUDAR A COR DA FONTE */
+
 .sidebar li a:hover .links_name,
 .sidebar li a:hover i{
   transition: all 0.5s ease;
   color: #11101D;
 }
+
+/* MUDA A ALTURA, TAMANHO DA FONTE, BORDA REDONDA E ALTURA DA LINHA DO ATRIBUTO i  */
+
 .sidebar li i{
   height: 50px;
   line-height: 50px;
   font-size: 18px;
   border-radius: 12px;
 }
+
+/* MUDA A POSIÇÃO, TAMANHO, ALTURA, COR DE FUNDO E TRANSIÇÃO DA DIV COM CLASS=PROFILE */
+
 .sidebar li.profile{
   position: fixed;
   height: 60px;
-  width: 78px;
+  width: 75px;
   left: 0;
   bottom: -8px;
   padding: 10px 14px;
@@ -221,14 +258,23 @@ img{
   transition: all 0.5s ease;
   overflow: hidden;
 }
+
+/* QUANDO O MENU ESTIVER ABERTO A DIV COM CLASS=PROFILE MUDARA O TAMANHO */
+
 .sidebar.open li.profile{
   width: 250px;
 }
+
+/* DEIXA A DIV COM CLASS=PROFILE-DETAILS FLEXIVEL E MUDA O ALINHAMENTO */
+
 .sidebar li .profile-details{
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
 }
+
+/* DEFINE ALTURA, TAMANHO, MARGEN E BORDA REDONDA DA IMAGEM DENTRO DO MENU */
+
 .sidebar li img{
   height: 45px;
   width: 45px;
@@ -236,6 +282,9 @@ img{
   border-radius: 6px;
   margin-right: 10px;
 }
+
+/* DEFINE O TAMANHO, COR E O ESPESSURA DA FONTE   */
+
 .sidebar li.profile .name,
 .sidebar li.profile .job{
   font-size: 15px;
@@ -243,9 +292,15 @@ img{
   color: #fff;
   white-space: nowrap;
 }
+
+/* DEFINE TAMANHO DA FONTE */
+
 .sidebar li.profile .job{
   font-size: 12px;
 }
+
+/* DEFINE POSIÇÃO, TRANSIÇÃO, BORDA ARRENDONDA, ALTURA, TAMANHO E COR DE FUNDO    */
+
 .sidebar .profile #log_out{
   position: absolute;
   top: 50%;
@@ -258,10 +313,16 @@ img{
   border-radius: 0px;
   transition: all 0.5s ease;
 }
+
+/* ALTERA O FUNDO E O TAMANHO */
+
 .sidebar.open .profile #log_out{
   width: 50px;
   background: none;
 }
+
+/* DEFINE A POSIÇÃO, COR DE FUNDO, ALTURA MINIMA, TAMANHO E TRANSIÇÃO */
+
 .home-section{
   position: relative;
   background: #E4E9F7;
@@ -272,10 +333,16 @@ img{
   transition: all 0.5s ease;
   z-index: 2;
 }
+
+/* QUANDO O MENU ESTÁ ABERTO A DIV COM CLASS=HOME-SECTION ALTERA O SEU TAMANHO */
+
 .sidebar.open ~ .home-section{
   left: 250px;
   width: calc(100% - 250px);
 }
+
+/* DEFINE A COR, TAMANHO, ESPESSURA E MARGEN DA DIV COM CLASS=HOME-SECTION */
+
 .home-section .text{
   display: inline-block;
   color: #11101d;
@@ -283,11 +350,67 @@ img{
   font-weight: 500;
   margin: 18px
 }
+
+/* A DIV CLASS=TOOLTIP NÃO APARECE QUANDO O MENU ESTÁ ABERTO */
+
 @media (max-width: 420px) {
   .sidebar li .tooltip{
     display: none;
   }
 }
+
+/* EM TELAS MENORES QUE 450PX O MENU IRÁ SUMIR E MUDARÁ A MARGEN ESQUERDA DO TEXTO NO RODAPÉ */
+
+@media only screen and (max-width: 450px) {
+  .tudo .sidebar{
+    display: none;
+  }
+  .text-center{
+        margin-left: 0px;
+    }
+    #map { 
+       position: absolute;
+       margin-top: 90px; 
+       margin-bottom: 90px; 
+       width: 85%; 
+       height: 75%; 
+    }
+}
+
+
+@media only screen and (min-width: 450px) {
+    .menu-mobile{
+        display: none;
+    }
+    .pesq2{
+    margin-left: 80px;
+    }
+    .pesq{
+    margin-left: 80px;
+    }
+}
+
+   #map { 
+       position: absolute;
+       top: 60px; 
+       bottom: 80px; 
+       width: 85%; 
+       height: 75%; 
+       border: 1px solid #DCDCDC;
+        box-shadow: 5px 8px 10px #DCDCDC;
+        border-radius: 20px;
+    }
+
+    #mapa {
+    margin:auto;
+    height: 100%;
+    width: 100%;
+    }
+
+    .container{
+        margin: auto;
+    }
+
 /* MUDA A COR, TAMANHO E POSIÇÃO DO RODAPÉ */
 
 footer{
@@ -303,17 +426,7 @@ footer{
     }
 
 /* AJUSTA TAMANHO, POSIÇÃO, MAPA */
-    
-    #map {
-        height: 600px;
-        width: 100%;
-        margin:auto;
-    }
 
-    .container-fluid{
-        margin-bottom: 5px;
-        margin-top: 5px;
-    }
 
 /* AJUSTA TAMANHO, MARGEN, TAMANHO DA FONTE E POSIÇÃO DOS SELETORES */
 
@@ -326,16 +439,24 @@ footer{
         text-align: center;
         font-size: 14px;
     }
-
-    .text-center{
-        margin-left: 80px;
-    }
   
         </style>
 </head>
 <body>  
 
-    <div class="sidebar">
+<script>
+    var dados_grafico = [];
+$(document).ready(function() {
+    $.get('/dados_grafico', function(res) {
+        dados_grafico = res;
+    });
+});
+</script>
+<div class="tudo">
+    <nav class="menu-mobile" style="color: white; background: #11101D; width: 100%; height: 50px;"><svg style="height: 50px;"  id="btn2" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+      </svg></nav>
+      <div class="sidebar">
         <div class="logo-details">
             <div class="logo_name">Menu</div>
             <i class='bx bx-menu' id="btn" ></i>
@@ -405,15 +526,24 @@ footer{
         </ul>
       </div>
       <script>
+    $("#btn2").click(function(){
+     $(".sidebar.open").show(250);
+    });
+
       let sidebar = document.querySelector(".sidebar");
       let closeBtn = document.querySelector("#btn");
+      let closeBtn2 = document.querySelector("#btn2");
     
       closeBtn.addEventListener("mouseenter", ()=>{
         sidebar.classList.toggle("open");
         menuBtnChange();
       });
 
-    
+      closeBtn2.addEventListener("mouseenter", ()=>{
+        sidebar.classList.toggle("open");
+        menuBtnChange2();
+      });
+
       function menuBtnChange() {
        if(sidebar.classList.contains("open")){
          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
@@ -421,41 +551,50 @@ footer{
          closeBtn.classList.replace("bx-menu-alt-right","bx-menu");
        }
       }
+
+      function menuBtnChange2() {
+        $("#btn").click(function(){
+        $(".sidebar").hide(250);
+        });
+      }
       </script>
+<div class="container-fluid">
 
     <!-- SELETOR DE ESTADO -->
 
+    <div class="pesq2">
+    <form action="/Localizacao" method="POST">
             <div id="pesq" class="row g-1">
             <div class="col-md">
-                  <select class="form-select" aria-label="Default select example">
+                  <select name="estado_l" class="form-select" aria-label="Default select example">
                   <option selected>Estado</option>
-                  <option value="1">Acre (AC)</option>
-                  <option value="2">Alagoas (AL)</option>
-                  <option value="3">Amapá (AP)</option>
-                  <option value="4">Amazonas (AM)</option>
-                  <option value="5">Bahia (BA)</option>
-                  <option value="6">Ceará (CE)</option>
-                  <option value="7">Distrito Federal (DF)</option>
-                  <option value="8">Espírito Santo (ES)</option>
-                  <option value="9">Goiás (GO)</option>
-                  <option value="10">Maranhão (MA)</option>
-                  <option value="11">Mato Grosso (MT)</option>
-                  <option value="12">Mato Grosso do Sul (MS)</option>
-                  <option value="13">Minas Gerais (MG)</option>
-                  <option value="14">Pará (PA)</option>
-                  <option value="15">Paraíba (PB)</option>
-                  <option value="16">Paraná (PR)</option>
-                  <option value="17">Pernambuco (PE)</option>
-                  <option value="18">Piauí (PI)</option>
-                  <option value="19">Rio de Janeiro (RJ)</option>
-                  <option value="20">Rio Grande do Norte (RN)</option>
-                  <option value="21">Rio Grande do Sul (RS)</option>
-                  <option value="22">Rondônia (RO)</option>
-                  <option value="23">Roraima (RR)</option>
-                  <option value="24">Santa Catarina (SC)</option>
-                  <option value="25">São Paulo (SP)</option>
-                  <option value="26">Sergipe (SE)</option>
-                  <option value="27">Tocantins (TO)</option>
+                  <option value="Acre (AC)">Acre (AC)</option>
+                  <option value="Alagoas (AL)">Alagoas (AL)</option>
+                  <option value="Amapá (AP)">Amapá (AP)</option>
+                  <option value="Amazonas (AM)">Amazonas (AM)</option>
+                  <option value="Bahia (BA)">Bahia (BA)</option>
+                  <option value="Ceará (CE)">Ceará (CE)</option>
+                  <option value="Distrito Federal (DF)">Distrito Federal (DF)</option>
+                  <option value="Espírito Santo (ES)">Espírito Santo (ES)</option>
+                  <option value="Goiás (GO)">Goiás (GO)</option>
+                  <option value="Maranhão (MA)">Maranhão (MA)</option>
+                  <option value="Mato Grosso (MT)">Mato Grosso (MT)</option>
+                  <option value="Mato Grosso do Sul (MS)">Mato Grosso do Sul (MS)</option>
+                  <option value="Minas Gerais (MG)">Minas Gerais (MG)</option>
+                  <option value="Pará (PA)">Pará (PA)</option>
+                  <option value="Paraíba (PB)">Paraíba (PB)</option>
+                  <option value="Paraná (PR)">Paraná (PR)</option>
+                  <option value="Pernambuco (PE">Pernambuco (PE)</option>
+                  <option value="Piauí (PI)">Piauí (PI)</option>
+                  <option value="Rio de Janeiro (RJ)">Rio de Janeiro (RJ)</option>
+                  <option value="Rio Grande do Norte (RN)">Rio Grande do Norte (RN)</option>
+                  <option value="Rio Grande do Sul (RS)">Rio Grande do Sul (RS)</option>
+                  <option value="Rondônia (RO)">Rondônia (RO)</option>
+                  <option value="Roraima (RR)">Roraima (RR)</option>
+                  <option value="Santa Catarina (SC)">Santa Catarina (SC)</option>
+                  <option value="São Paulo (SP)">São Paulo (SP)</option>
+                  <option value="Sergipe (SE)">Sergipe (SE)</option>
+                  <option value="Tocantins (TO)">Tocantins (TO)</option>
                   </select>
                 </div>
 
@@ -468,63 +607,53 @@ footer{
                     </div>
                   </div>
               </div>
-     </nav>
 
+            </form>
+        </div>
     <!-- CONTAINER ONDE ESTÁ O MAPA -->
 
-<div class="container-fluid">
-    <div  class="row align-items-center">
+<div class="container">
         <div class="col" id='mapa'>
             <div id='map'></div>
         </div>
-    </script>
-    <style>
-    body { margin: 0; padding: 0; }
-    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-    </style>
-    </head>
-    <body>
-    <!-- Load the `mapbox-gl-geocoder` plugin. -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
-    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css" type="text/css">
-     
+
     <script>
-        // TO MAKE THE MAP APPEAR YOU MUST
-        // ADD YOUR ACCESS TOKEN FROM
-        // https://account.mapbox.com
-        mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlY2hlbHkiLCJhIjoiY2txeTU0ZXFzMGlsaTJvcXVudmFzb2l5NCJ9.zFnq--QMlrOAjPHazAaapw';
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlY2hlbHkiLCJhIjoiY2txeTU0ZXFzMGlsaTJvcXVudmFzb2l5NCJ9.zFnq--QMlrOAjPHazAaapw';
     const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-79.4512, 43.6568],
-    zoom: 13
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center : [-55.7202126,-11.0567508],
+        zoom:3
     });
-     
-    // Add the control to the map.
-    map.addControl(
-    new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    mapboxgl: mapboxgl
-    })
-    );
+  
+    const marker1 = new mapboxgl.Marker({ color: 'red'})
+        .setLngLat([ -48.5024, -1.45502])
+        .addTo(map);
+
+    const marker2 = new mapboxgl.Marker({ color: 'red'})
+        .setLngLat([-35.7351, -9.66625])
+        .addTo(map);
+
+    const marker3 = new mapboxgl.Marker({ color: 'red'})
+        .setLngLat([-36.631, -9.41618])
+        .addTo(map);
+
     </script>
        </div>
     </div>
+</div>
+        <!--RODAPE DA PAGINA-->
+
         <!--RODAPE DA PAGINA-->
 
         <footer  class="text-lg">
             <div class="text-lg p-3">
               <div class="text-center">
                 <a  id="footer">Oficinas 4.0: Projeto 1 - prototipo de medidor inteligente</a>
-                <a id="insta">
-                  <a href="https://oficinas40.vitoria.ifes.edu.br/">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
-                          <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
-                        </svg></a>                  
-              <a href="https://www.instagram.com/oficinas4.0/">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-                  <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
-                </svg></a></a>
+                <a style="color:#FFF;" href="https://oficinas40.vitoria.ifes.edu.br/">
+                    <i class='bx bx-window'></i></a>                  
+              <a style="color:#FFF;" href="https://www.instagram.com/oficinas4.0/">
+                    <i class='bx bxl-instagram-alt'></i></a></a>
               </div>
           </div>          
     </footer>

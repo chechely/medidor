@@ -75,9 +75,10 @@ select nome_usuario, nome, sobrenome, email, data_nasci, senha, tel, genero, fot
 
 select medidor.longitude, medidor.latitude,medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v from medidor INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor where medidor.nome_medidor = "Medidor1" order by medidor_v.idmedidor_v desc limit 5;
 
-select count(*)
-from medidor;
+select count(id_medidor) from medidor where usuario_nome_usuario ="chechely";
 
 select count(medidor.id_medidor) from ((medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario) INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor);
 
 select count(idmedidor_v) as total, avg(vazao) as media,count(vazao) as total_v from ((medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario) INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor)  where  usuario.nome_usuario = 'chechely';
+
+select * from medidor;

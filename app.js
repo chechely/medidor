@@ -45,11 +45,15 @@ app.use(express.static(__dirname + '/src/img'));
 
 app.set('trust proxy', 1);
 
+// PARA TER ACESSO AS SENHAS NO .ENV
+
+require('dotenv').config();
+
 // CRIA UMA SESSÃO PARA O USUARIO
 
 app.use(
     session({
-      secret: "skjflkkhgu48378921-039=-iodmçvdvmn",
+      secret: process.env.SS_SECRET,
       resave: false,
       saveUninitialized: true,
       cookie: {
@@ -57,7 +61,6 @@ app.use(
       },
     })
   );
-  
  
 // USA O EXPRESS FLASH
 
@@ -240,12 +243,61 @@ res.redirect('/Inicio');
 
 app.post("/Cadastro", function(req,res){
     connection.query("insert into usuario(nome_usuario,nome,sobrenome,email,data_nasci,senha,tel,genero,foto,cargo) values(?,?,?,?,?,?,?,?,?,?);",[req.body.cad_usuario,req.body.cad_nome,req.body.cad_sobrenome,req.body.cad_email,req.body.DataNasci,req.body.cad_senha,req.body.cad_tel,req.body.genero,req.body.imagem,req.body.cargo], function(erro,resultado){
-            if(erro){
-                console.log("erro ao inserir dados no banco",erro)
-            }else{  
-                console.log('Cadastrado e email enviado')
+        console.log(req.body.cad_usuario)
+        if(req.body.cad_usuario & req.body.cad_nome & req.body.cad_sobrenome & req.body.cad_email & req.body.DataNasci & req.body.cad_senha & req.body.cad_tel & req.body.genero & req.body.imagem & req.body.cargo === ""){
+            req.flash('err_cad',"Cadastro realizado com sucesso!");
+            res.redirect('/Cadastro');
+        } 
+        if(req.body.cad_usuario === ""){
+            req.flash('err_cad',"Digite o nome de usuario!");
+            res.redirect('/Cadastro');
+        } 
+        if(req.body.cad_nome === ""){
+            req.flash('err_cad',"Digite o seu nome!");
+            res.redirect('/Cadastro');
+        } 
+        if(req.body.cad_sobrenome === ""){
+            req.flash('err_cad',"Digite o seu sobrenome!");
+            res.redirect('/Cadastro');
+        } 
+        if(req.body.cad_email === ""){
+            req.flash('err_cad',"Digite o seu email!");
+            res.redirect('/Cadastro');
+        } 
+        if(req.body.cad_DataNasci === ""){
+            req.flash('err_cad',"Digite a sua data de nascimento!");
+            res.redirect('/Cadastro');
+        } 
+        if(req.body.cad_senha === ""){
+            req.flash('err_cad',"Digite a sua senha!");
+            res.redirect('/Cadastro');
+        } 
+        if(req.body.cad_senha_n !== req.body.cad_senha){
+            req.flash('err_cad',"Senha e confirmação de senha diferentes!");
+            res.redirect('/Cadastro');
+        } 
+        if(req.body.cad_tel === ""){
+            req.flash('err_cad',"Digite o seu numero de telefone!");
+            res.redirect('/Cadastro');
+        }
+        if(req.body.cad_genero === ""){
+            req.flash('err_cad',"Selecione o seu genêro!");
+            res.redirect('/Cadastro');
+        } 
+        if(req.body.cad_imagem === ""){
+            req.flash('err_cad',"Insira sua foto!");
+            res.redirect('/Cadastro');
+        } 
+        if(req.body.cad_cargo === ""){
+            req.flash('err_cad',"Digite o seu cargo!");
+            res.redirect('/Cadastro');
+        } 
+        else{
+        if(erro){
+            }else{ 
                 res.redirect('/Inicio')
             }
+        }
         }); 
 });
 
@@ -291,7 +343,8 @@ app.get("/Historico", function(req,res){
 // RENDERIZA O ARQUIVO CADASTRO.EJS PARA A PAGINA CADASTRO
 
 app.get("/Cadastro", function(req,res){
-   res.render('Cadastro')
+    const err_cad = req.flash('err_cad');
+   res.render('Cadastro',{err_cad})
 });
 
 // CADASTRA NOVAS MEDIÇÕES NO BANCO
@@ -382,15 +435,7 @@ app.get("/Seus-dados", function(req,res){
             if(erro){
                 res.status(200).send(erro)
             }
-            connection.query("select count(id_medidor) from medidor where usuario_nome_usuario =?;",[req.session.usuario], function(erro,result){
-                if(erro){
-                    res.status(200).send(erro)
-                }
-                const dados_med =["teste","teste"];
-
-                console.log(dados_med)
-            res.render('dados',{dados_usuario : resultado,dados_med:dados_med})
-        });
+            res.render('dados',{dados_usuario : resultado})
     });
     }else{
         res.redirect('/Entrar');
@@ -429,6 +474,58 @@ if(req.body.rec_rep === req.body.req_senha){
     res.redirect('Entrar')}
      });
 }
+});
+
+// ENVIA OS DADOS DO GRAFICO PARA A PAGINA DADOS_GRAFICO
+
+app.post('/localizacao', function(req,res){
+    if (req.session.loggedin) {
+
+// CRIA UMA VARIAVEL COM O MEDIDOR ESCOLHIDO PELO USUARIO
+
+        var estado_l;
+        estado_l = req.body.estado_l;
+        if (estado_l) {
+            var longi_lat = [];
+
+  // PESQUISA OS DADOS DO MEDIDOR ESCOLHIDO
+
+  connection.query("select longitude, latitude from medidor where estado=?;",[estado_l], function(err,result){
+    
+// CRIA  VARIAVEIS COM AS VAZÕES MAIS RECENTES COM A DATA E A HORA DE CADA UMA
+
+      var longitude = (result[0].longitude)
+      var latitude = (result[0].latitude)
+      longi_lat = [longitude,latitude]
+
+// FUNÇÃO QUE IRÁ REDIRECIONAR POR UM JQUERY OS DADOS DE UM UNICO ARRAY E MANDAR PARA O GRAFICO 
+
+  function dados_grafico(){
+
+    var mapa;
+    mapa = longi_lat;
+
+    var grafico = [mapa];
+
+    return grafico
+}   
+
+res.redirect('/Localizacao');
+
+// PEGA OS DADOS DA FUNÇÃO E ENVIA PARA /DADOS_MEDIDOR
+
+    app.get('/dados_grafico', function(req,res){
+    res.send(dados_grafico())
+    });
+});
+
+}else{
+    res.send('Medidor não tem nenhum dado');
+} 
+}else{
+    res.redirect('/Entrar');
+} 
+
 });
 
 // DESTROI A SESSÃO E REDIRECIONA PARA A PAGINA DE LOGIN

@@ -87,6 +87,10 @@
             .form-label,#cad_se,#cad_tele,.form-check-label,.form-check-input{
               color:white;
             }
+            #sub{
+                margin:auto;
+                text-align: center;
+            }
         </style>
 
 <script> 
@@ -162,14 +166,21 @@
 
                       <!--RECEBE A SENHA-->
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <label id='cad_se' for="cad_senha" class="col-sm-2 col-form-label" >Senha:</label>
                       <input type="password" name="cad_senha" class="form-control" id="cad_senha" placeholder="Digite sua senha" MAXLENGTH=10 MINLENGTH=8>   
                 </div>
 
+                      <!--RECEBE A SENHA-->
+
+                      <div class="col-md-4">
+                        <label id='cad_se' for="cad_senha" class="col-sm-9 col-form-label" >Confirmar senha:</label>
+                        <input type="password" name="cad_senha_n" class="form-control" id="cad_senha_n" placeholder="Digite sua senha" MAXLENGTH=10 MINLENGTH=8>   
+                  </div>
+
                 <!--RECEBE O NUMERO DE TELEFONE-->
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="cad_tel" id='cad_tele' class="col-sm-2 col-form-label">Telefone:</label>
                     <input type="tel" name="cad_tel" class="form-control" id="cad_tel" placeholder="Ex. 5582999845166" MAXLENGTH=14>   
               </div>
@@ -219,6 +230,14 @@
               <div  id="envia_c" class="col-md-4">
                 <button id="envia_cod" type="submit" class="btn btn-outline-primary" >Cadastrar</button>
             </div>
+
+            <div id="sub" class="mb-3">
+            <% if (err_cad != ''){ %>
+                <div style="background-color: #11101D; color:red; border: 1px solid #282a36;" class="alert alert-danger" role="alert">
+                  <%= err_cad %>
+                 </div>  
+                 <% } %>
+                </div>
 
               </form>  
             </div>

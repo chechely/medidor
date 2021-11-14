@@ -48,7 +48,10 @@ img{
   padding: 0px;
   box-sizing: border-box;
 }
-    .sidebar{
+
+/* AJUSTA TAMANHO, POSIÇÃO, TRANSIÇÃO E COR DE FUNDO DO MENU */
+
+.sidebar{
   position: fixed;
   left: 0px;
   top: 0px;
@@ -59,19 +62,31 @@ img{
   z-index: 99;
   transition: all 0.5s ease;
 }
+
+/* AJUSTA O TAMANHO DO MENU QUANDO ESTIVER ABERTO */
+
 .sidebar.open{
   width: 250px;
 }
+
+/* AJUSTA O TAMANHO, POSIÇÃO E DEIXA O DISPLAY */
+
 .sidebar .logo-details{
   height: 60px;
   display: flex;
   align-items: center;
   position: relative;
 }
+
+/* EFEITO DE TRANSIÇÃO NA LOGO */
+
 .sidebar .logo-details .icon{
   opacity: 0;
   transition: all 0.5s ease;
 }
+
+/* AJUSTA O TAMANHO DA FONTE, OPACIDADE E TRANSIÇÃO DO DIV logo_details  ONDE FICA O NOME MENU E O BOTÃO PARA ABRIR O MENU */
+
 .sidebar .logo-details .logo_name{
   color: #fff;
   font-size: 20px;
@@ -79,10 +94,16 @@ img{
   opacity: 0;
   transition: all 0.5s ease;
 }
+
+/* AJUSTA A OPACIDADE DO MENU AO SER ABERTO */
+
 .sidebar.open .logo-details .icon,
 .sidebar.open .logo-details .logo_name{
   opacity: 1;
 }
+
+/* AJUSTA POSIÇÃO, TAMANHO DA FONTE, POSIÇÃO DO TEXTO E TRANSIÇÃO DO MENU  */
+
 .sidebar .logo-details #btn{
   position: absolute;
   top: 50%;
@@ -95,9 +116,15 @@ img{
   cursor: pointer;
   transition: all 0.5s ease;
 }
+
+/* DEIXA O TEXO DO MENU POSICIONADO A DIREITA QUANDO ESTÁ ABERTO */
+
 .sidebar.open .logo-details #btn{
   text-align: right;
 }
+
+/* MUDA A COR, TAMANHO DA FONTE, ALTURA DA LINHA E TAMANHO MINIMO DA LISTA QUE ESTÁ NO MENU */
+
 .sidebar i{
   color: #fff;
   height: 70px;
@@ -106,24 +133,33 @@ img{
   text-align: center;
   line-height: 70px;
 }
+
+/* DEFINE ALTURA E MARGEM DE CIMA DA LISTA, A LISTA É O QUE CONTEM O LINKS QUE DIRECIONAM PARA AS OUTRAS PAGINAS DO SITE */
+
 .sidebar .nav-list{
   margin-top: 20px;
   height: 100%;
 }
+
+/* DEFINE POSIÇÃO, MARGIM E TIRA OS PONTINHOS QUE GERALMENTE APARECEM EM CADA ITEM DA LISTA  */
+
 .sidebar li{
   position: relative;
   margin: 8px 0;
   list-style: none;
 }
+
+/* DEFINE A POSIÇÃO, COR DE FUNDO, BORDA, SOMBRA, TAMANHO DA FONTE E ETC DA LISTA NO MENU */
+
 .sidebar li .tooltip{
   position: absolute;
   top: -20px;
-  left: calc(100% + 15px);
+  left: calc(100% + 10px);
   z-index: 3;
   background: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  padding: 6px 12px;
-  border-radius: 4px;
+  padding: 2px 10px;
+  border-radius: 2px;
   font-size: 15px;
   font-weight: 400;
   opacity: 0;
@@ -131,6 +167,9 @@ img{
   pointer-events: none;
   transition: 0s;
 }
+
+/* QUANDO PASSAR O MOUSE SOBRE A DIV QUE TEM O CLASS=TOOLTIP ALTERARÁ A TRANSIÇÃO, TAMANHO E OPACIDADE */
+
 .sidebar li:hover .tooltip{
   opacity: 1;
   pointer-events: auto;
@@ -138,34 +177,15 @@ img{
   top: 50%;
   transform: translateY(-50%);
 }
+
+/* QUANDO O MENU ESTIVER ABERTO A DIV QUE TEM O CLASS=TOOLTIP NÃO IRÁ APARECER */
+
 .sidebar.open li .tooltip{
   display: none;
 }
-.sidebar input{
-  font-size: 15px;
-  color: #FFF;
-  font-weight: 400;
-  outline: none;
-  height: 50px;
-  width: 100%;
-  width: 50px;
-  border: none;
-  border-radius: 12px;
-  transition: all 0.5s ease;
-  background: #1d1b31;
-}
-.sidebar.open input{
-  padding: 0 20px 0 50px;
-  width: 100%;
-}
-.sidebar.open .bx-search:hover{
-  background: #1d1b31;
-  color: #FFF;
-}
-.sidebar .bx-search:hover{
-  background: #FFF;
-  color: #11101d;
-}
+
+/* MODIFICA TAMANHO, ALTURA, ALINHAMENTO, COR DE FUNDO, TRANSIÇÃO E BORDA REDONDA DE TODOS OS ATRIBUTOS <a> DENTRO DO MENU */
+
 .sidebar li a{
   display: flex;
   height: 100%;
@@ -176,9 +196,15 @@ img{
   transition: all 0.4s ease;
   background: #11101D;
 }
+
+/*  QUANDO O MOUSE PASSAR PELO ATRIBUTO <a> DENTRO DO MENU MUDARÁ A COR DE FUNDO */
+
 .sidebar li a:hover{
   background: #FFF;
 }
+
+/* MODIFICA COR, TAMANHO DA FONTE, OPACIDADE E TRANSIÇÃO DA DIV COM O CLASS=links_name */
+
 .sidebar li a .links_name{
   color: #fff;
   font-size: 15px;
@@ -188,25 +214,37 @@ img{
   pointer-events: none;
   transition: 0.4s;
 }
+
+/* QUANDO O MENU ESTÁ ABERTO MUDA A OPACIDADE */
+
 .sidebar.open li a .links_name{
   opacity: 1;
   pointer-events: auto;
 }
+
+/* QUANDO O MOUSE PASSAR PELA DIV CLASS=links_name E O ATRIBUTO i ADICIONA TRANSIÇÃO E MUDAR A COR DA FONTE */
+
 .sidebar li a:hover .links_name,
 .sidebar li a:hover i{
   transition: all 0.5s ease;
   color: #11101D;
 }
+
+/* MUDA A ALTURA, TAMANHO DA FONTE, BORDA REDONDA E ALTURA DA LINHA DO ATRIBUTO i  */
+
 .sidebar li i{
   height: 50px;
   line-height: 50px;
   font-size: 18px;
   border-radius: 12px;
 }
+
+/* MUDA A POSIÇÃO, TAMANHO, ALTURA, COR DE FUNDO E TRANSIÇÃO DA DIV COM CLASS=PROFILE */
+
 .sidebar li.profile{
   position: fixed;
   height: 60px;
-  width: 78px;
+  width: 75px;
   left: 0;
   bottom: -8px;
   padding: 10px 14px;
@@ -214,14 +252,23 @@ img{
   transition: all 0.5s ease;
   overflow: hidden;
 }
+
+/* QUANDO O MENU ESTIVER ABERTO A DIV COM CLASS=PROFILE MUDARA O TAMANHO */
+
 .sidebar.open li.profile{
   width: 250px;
 }
+
+/* DEIXA A DIV COM CLASS=PROFILE-DETAILS FLEXIVEL E MUDA O ALINHAMENTO */
+
 .sidebar li .profile-details{
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
 }
+
+/* DEFINE ALTURA, TAMANHO, MARGEN E BORDA REDONDA DA IMAGEM DENTRO DO MENU */
+
 .sidebar li img{
   height: 45px;
   width: 45px;
@@ -229,6 +276,9 @@ img{
   border-radius: 6px;
   margin-right: 10px;
 }
+
+/* DEFINE O TAMANHO, COR E O ESPESSURA DA FONTE   */
+
 .sidebar li.profile .name,
 .sidebar li.profile .job{
   font-size: 15px;
@@ -236,9 +286,15 @@ img{
   color: #fff;
   white-space: nowrap;
 }
+
+/* DEFINE TAMANHO DA FONTE */
+
 .sidebar li.profile .job{
   font-size: 12px;
 }
+
+/* DEFINE POSIÇÃO, TRANSIÇÃO, BORDA ARRENDONDA, ALTURA, TAMANHO E COR DE FUNDO    */
+
 .sidebar .profile #log_out{
   position: absolute;
   top: 50%;
@@ -251,10 +307,16 @@ img{
   border-radius: 0px;
   transition: all 0.5s ease;
 }
+
+/* ALTERA O FUNDO E O TAMANHO */
+
 .sidebar.open .profile #log_out{
   width: 50px;
   background: none;
 }
+
+/* DEFINE A POSIÇÃO, COR DE FUNDO, ALTURA MINIMA, TAMANHO E TRANSIÇÃO */
+
 .home-section{
   position: relative;
   background: #E4E9F7;
@@ -265,10 +327,16 @@ img{
   transition: all 0.5s ease;
   z-index: 2;
 }
+
+/* QUANDO O MENU ESTÁ ABERTO A DIV COM CLASS=HOME-SECTION ALTERA O SEU TAMANHO */
+
 .sidebar.open ~ .home-section{
   left: 250px;
   width: calc(100% - 250px);
 }
+
+/* DEFINE A COR, TAMANHO, ESPESSURA E MARGEN DA DIV COM CLASS=HOME-SECTION */
+
 .home-section .text{
   display: inline-block;
   color: #11101d;
@@ -276,10 +344,43 @@ img{
   font-weight: 500;
   margin: 18px
 }
+
+/* A DIV CLASS=TOOLTIP NÃO APARECE QUANDO O MENU ESTÁ ABERTO */
+
 @media (max-width: 420px) {
   .sidebar li .tooltip{
     display: none;
   }
+}
+
+/* EM TELAS MENORES QUE 450PX O MENU IRÁ SUMIR E MUDARÁ A MARGEN ESQUERDA DO TEXTO NO RODAPÉ */
+
+@media only screen and (max-width: 450px) {
+  .tudo .sidebar{
+    display: none;
+  }
+  .text-center{
+        margin-left: 0px;
+    }
+    #tabela{
+        margin-left: 0px;
+    }
+    #tabela_edit{
+        margin-left: 0px;
+    }
+}
+
+
+@media only screen and (min-width: 450px) {
+    .menu-mobile{
+        display: none;
+    }
+    #tabela{
+        margin-left: 85px;
+    }
+    #tabela_edit{
+        margin-left: 85px;
+    }
 }
 
 /* MUDA A COR, TAMANHO E POSIÇÃO DO RODAPÉ */
@@ -310,12 +411,10 @@ footer{
     #tabela{
         margin: 5px;
         margin-bottom: 50px;
-        margin-left: 85px;
     }
     #tabela_edit{
         margin: 5px;
         margin-bottom: 50px;
-        margin-left: 85px;
         display: none;
     }  
     
@@ -342,7 +441,12 @@ $(document).ready(function(){
   });  
 </script>
 <body>  
-    <div class="sidebar">
+
+    <div class="tudo">
+        <nav class="menu-mobile" style="color: white; background: #11101D; width: 100%; height: 50px;"><svg style="height: 50px;"  id="btn2" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+          </svg></nav>
+          <div class="sidebar">
         <div class="logo-details">
             <div class="logo_name">Menu</div>
             <i class='bx bx-menu' id="btn" ></i>
@@ -412,21 +516,36 @@ $(document).ready(function(){
         </ul>
       </div>
       <script>
+     $("#btn2").click(function(){
+     $(".sidebar.open").show(250);
+    });
+
       let sidebar = document.querySelector(".sidebar");
       let closeBtn = document.querySelector("#btn");
+      let closeBtn2 = document.querySelector("#btn2");
     
       closeBtn.addEventListener("mouseenter", ()=>{
         sidebar.classList.toggle("open");
         menuBtnChange();
       });
 
-    
+      closeBtn2.addEventListener("mouseenter", ()=>{
+        sidebar.classList.toggle("open");
+        menuBtnChange2();
+      });
+
       function menuBtnChange() {
        if(sidebar.classList.contains("open")){
          closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");
        }else {
          closeBtn.classList.replace("bx-menu-alt-right","bx-menu");
        }
+      }
+
+      function menuBtnChange2() {
+        $("#btn").click(function(){
+        $(".sidebar").hide(250);
+        });
       }
       </script>
 
@@ -541,6 +660,7 @@ $(document).ready(function(){
                   </tbody>
                 </table>
             </div>
+        </div>
 
         <!--RODAPE DA PAGINA-->
 
