@@ -372,6 +372,7 @@ body{
     }
 }
 
+/* QUANDO A TELA TIVER MAIS QUE 450PX O MENU MOBILE NÃO IRA APARECER E É ADICIONADO UMA MARGEM A ESQUERDA  */
 
 @media only screen and (min-width: 450px) {
     .menu-mobile{
@@ -415,9 +416,14 @@ body{
         min-width: 250px;
     }
 
+/* DEFINE O TAMANHO DA FONTE */    
+
     #pesq2{
        font-size: 14px;
     }
+
+/* DEFINE O TAMANHO MAXIMO DA DIV E A MARGEM */    
+
     #bott{
        max-width: 100px;
        margin:10px;
@@ -431,6 +437,9 @@ body{
         width: 100%;
         margin:auto;
     }
+
+/* DEFINE MARGEM, ALTURA, TAMANHO E BORDA DO MAPA */
+
         #map {
         margin:2px;
         min-height: 400px;
@@ -439,6 +448,9 @@ body{
         max-width: 98%;  
         border-radius: 20px;
     }
+
+/* DEFINE MARGEM, BORDAR, TAMANHO E ALTURA DA DIV EM QUE ESTÁ O MAPA  */
+
     #mapa {
     margin:2px;
     margin-top:2px;
@@ -449,12 +461,18 @@ body{
     min-width: 350px;
     min-height: 400px;
     }
+
+/* DEFINE MARGEM E TAMANHO DA DIV */
+
     #pesq_m{
         margin-left: 50px;
         margin-top: 5px;
         min-width: 130px;
         max-width: 130px;
     }
+
+/* DEFINE MARGEM, BORDA, SOMBRA, TAMANNHO E ALTURA DA DIV EM QUE ESTA O GRAFICO */    
+
     #chart-container{
         margin-bottom:5px;
         margin-right:5px;
@@ -466,18 +484,30 @@ body{
         min-width:350px;
         min-height: 250px;
     }
+
+/* DEFINE MARGEM E TAMANHO */
+
     #cont-graf{
         margin-top: 50px;
         margin-bottom: 50px;
         width: 100%;
     }
+
+/* DEFINE TAMANHO DA FONTE */
+
     #liveToast{
         font-size: 16px;
     }
+
+/* DEFINE O TAMANHO DO ATRIBUTO QUE SELECIONA OS MEDIDORES */
+
     #select{
         min-width: 130px;
         max-width: 130px;
     }
+
+/* DEFINE TAMANHO, MARGEM E POSIÇÃO */
+
     .container{
         max-width: 100%;
         margin:auto;
@@ -510,7 +540,9 @@ $(document).ready(function() {
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-    
+
+// PEGA OS DADOS PARA EXIBIR NO GRAFICO E MAPA
+
     const socket = io(); 
     var dados_grafico = [];
     socket.on('connect',function(socket){
@@ -524,15 +556,27 @@ $(document).ready(function() {
     })
     
     </script>
+
+<!-- MENU -->
+
 <div class="tudo">
+
+<!-- MENU QUE SÓ APARECE EM TELAS MENORES DE 450 PX -->
+
     <nav class="menu-mobile" style="color: white; background: #11101D; width: 100%; height: 50px;"><svg style="height: 50px;"  id="btn2" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
       </svg></nav>
+
+<!-- ICONE QUE PERMITE ABRIR O MENU -->  
+
        <div class="sidebar">
             <div class="logo-details">
                 <div class="logo_name">Menu</div>
                 <i class='bx bx-menu' id="btn" ></i>
             </div>
+
+<!-- BOTÃO QUE ABRE UM TOAST PARA VISUALIZAR NOTIFICAÇÕES  -->
+
             <ul class="nav-list">
                 <li class="noti">
                     <div class="not">
@@ -546,12 +590,18 @@ $(document).ready(function() {
                     
                   </li>
               <li>
+
+<!-- DIRECIONA PARA O INICIO -->   
+
                 <a href="/Inicio">
                   <i class='bx bx-home-circle'></i>
                   <span class="links_name">inicio</span>
                 </a>
                  <span class="tooltip">Inicio</span>
               </li>
+
+<!-- DIRECIONA PARA O HISTORICO -->
+
               <li>
                <a href="/Historico">
                  <i class='bx bx-history' ></i>
@@ -559,6 +609,9 @@ $(document).ready(function() {
                </a>
                <span class="tooltip">Histórico</span>
              </li>
+
+<!-- DIRECIONA PARA A LOCALIZAÇÃO -->
+
              <li>
                <a href="/Localizacao">
                  <i class='bx bx-location-plus' ></i>
@@ -566,6 +619,9 @@ $(document).ready(function() {
                </a>
                <span class="tooltip">Localização</span>
              </li>
+
+<!-- DIRECIONA PARA CADASTRAR  MEDIDOR -->
+
              <li>
                <a href="/Medidor">
                  <i class='bx bx-message-alt-add' ></i>
@@ -573,6 +629,9 @@ $(document).ready(function() {
                </a>
                <span class="tooltip">Medidor</span>
              </li>
+
+<!-- DIRECIONA PARA OS MEDIDORES CADASTRADOS  -->
+
              <li>
                <a href="/medidores-cadastrados">
                  <i class='bx bx-tachometer' ></i>
@@ -580,6 +639,9 @@ $(document).ready(function() {
                </a>
                <span class="tooltip">Medidores cadastrados</span>
              </li>
+
+<!-- DIRECIONA PARA O CADASTRO DE MEDIÇÕES -->
+
              <li>
                <a href="/Cadastrar-medicoes">
                  <i class='bx bx-bar-chart-alt-2' ></i>
@@ -587,6 +649,9 @@ $(document).ready(function() {
                </a>
                <span class="tooltip">Cadastrar vazões</span>
              </li>
+
+<!-- DIRECIONA PARA O SEU PERFIL -->
+
              <li>
                <a href="/Seus-dados">
                  <i class='bx bx-user' ></i>
@@ -594,6 +659,9 @@ $(document).ready(function() {
                </a>
                <span class="tooltip">Perfil</span>
              </li>
+
+<!-- BOTÃO PARA SAIR DA SESSÃO -->
+
              <li class="profile">
                  <div class="profile-details">
                     <img id="logo" src="img/Logo.png">
@@ -609,6 +677,9 @@ $(document).ready(function() {
             </ul>
           </div>
           <script>
+
+// ABRE O MENU QUANDO O DISPOSITIVO TEM MENOS DE 45O PX
+
     $("#btn2").click(function(){
      $(".sidebar.open").show(250);
     });
@@ -616,6 +687,8 @@ $(document).ready(function() {
       let sidebar = document.querySelector(".sidebar");
       let closeBtn = document.querySelector("#btn");
       let closeBtn2 = document.querySelector("#btn2");
+
+// ABRE OU FECHA O MENU QUANDO O MOUSE PASSA PELO ICONE DE MENU
     
       closeBtn.addEventListener("mouseenter", ()=>{
         sidebar.classList.toggle("open");
@@ -635,6 +708,8 @@ $(document).ready(function() {
        }
       }
 
+// FECHA O MENU QUANDO O DISPOSITIVO TEM MENOS DE 45O PX
+
       function menuBtnChange2() {
         $("#btn").click(function(){
         $(".sidebar").hide(250);
@@ -644,6 +719,7 @@ $(document).ready(function() {
           </script>
 
     <!-- TOAST QUE MOSTRA AS NOTIFICAÇÕES -->
+
 <% if (aviso == ''){ %>
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
@@ -774,8 +850,12 @@ $(document).ready(function() {
 
 <script>
 
+// TOKEN QUE PERMITE O ACESSO AO MAPA DO MAPBOX 
 
   mapboxgl.accessToken = 'pk.eyJ1IjoiY2hlY2hlbHkiLCJhIjoiY2txeTU0ZXFzMGlsaTJvcXVudmFzb2l5NCJ9.zFnq--QMlrOAjPHazAaapw';
+  
+// FUNÇÃO QUE GERA O GRAFICO
+
   var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v9',
@@ -784,19 +864,18 @@ $(document).ready(function() {
   });
 
 
-  // Tamanho do ponto
+  // TAMANHO DO PONTO VERMELHO
 
   var size = 100;
 
-  // This implements `StyleImageInterface`
-  // to draw a pulsing dot icon on the map.
+  // CRIA O PONTO 
+
   var pulsingDot = {
       width: size,
       height: size,
       data: new Uint8Array(size * size * 4),
 
-      // When the layer is added to the map,
-      // get the rendering context for the map canvas.
+      
       onAdd: function () {
           var canvas = document.createElement('canvas');
           canvas.width = this.width;
@@ -804,7 +883,8 @@ $(document).ready(function() {
           this.context = canvas.getContext('2d');
       },
 
-      // Call once before every frame where the icon will be used.
+      // DEFINE O INTERVALO DE TEMPO EM QUE O PONTO IRÁ FICAR PISCANDO ALÉM DA COR.
+
       render: function () {
           var duration = 1000;
           var t = (performance.now() % duration) / duration;
@@ -813,7 +893,6 @@ $(document).ready(function() {
           var outerRadius = (size / 2) * 0.7 * t + radius;
           var context = this.context;
 
-          // Draw the outer circle.
           context.clearRect(0, 0, this.width, this.height);
           context.beginPath();
           context.arc(
@@ -826,7 +905,6 @@ $(document).ready(function() {
           context.fillStyle = 'rgba(255, 200, 200,' + (1 - t) + ')';
           context.fill();
 
-          // Draw the inner circle.
           context.beginPath();
           context.arc(
               this.width / 2,
@@ -857,6 +935,8 @@ $(document).ready(function() {
           return true;
       }
   };
+
+// DA AS COORDENDAS EM QUE O PONTO SERÁ POSICIONADO
 
   map.on('load', function () {
       map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });

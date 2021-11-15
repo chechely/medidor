@@ -70,29 +70,49 @@
               width: 100px;
             }
 
+/* CENTRALIZA A DIV */
+
             #cad{
                 margin:auto;
                 text-align: center;
             }
+
+/* CENTRALIZA O BOTÃO DE ENVIAR */            
+
             #sub{
                 margin:auto;
                 text-align: center;
             }
+
+/* DEFINE O TAMANHO DOS BOTÕES */
+
             #bt,#bt1,#bt2{
                width: 200px;
             }
+
+/* CENTRALIZA O TEXTO E MUDA A COR */
+
             #text{
                 text-align: center;
                 color:white;
             }
+
+/* DEFINE A COR DA LABEL */            
+
             .form-label,#log_se{
                 color:white;
             }
+
+/* CENTRALIZA A DIV */
+
             .container-fluid{
                 margin:auto;
             }
         </style>
         <script> 
+
+// MUDA O TAMANHO E A OPACIDADE DA LOGO QUANDO O MOUSE PASSA POR ELA
+
           $(document).ready(function(){
             $("#img").mouseenter(function(){
               $("#logo").animate({
@@ -147,7 +167,10 @@
                   <button id="bt"  type="submit" class="btn btn-outline-primary mb-3">Entrar</button>
                   <a id="cad" class="nav-link active" aria-current="page" href="Cadastro"><button id="bt1"  type="button" class="btn btn-outline-primary mb-3">Cadastre-se</button></a>
                   <a id="cad" class="nav-link active" aria-current="page" href="Nova-senha"><button id="bt2"  type="button" class="btn btn-outline-primary mb-3">Esqueci a senha</button></a> 
-                <% if (no_login != ''){ %>
+                
+                  <!-- MOSTRA UMA MENSSAGEM DE ERRO -->
+
+                  <% if (no_login != ''){ %>
                   <div style="background-color: #11101D; color:red; border: 1px solid #282a36;" class="alert alert-danger" role="alert">
                     <%= no_login %>
                    </div>  

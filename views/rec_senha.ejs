@@ -71,6 +71,8 @@
               width: 100px;
             }
 
+            /* CENTRALIZA A DIV E OS BOTÕES  */
+
             #cad{
                 margin:auto;
                 text-align: center;
@@ -79,24 +81,39 @@
                 margin:auto;
                 text-align: center;
             }
+
+            /* DEFINE O TAMANHO DOS BOTÕES */
+
             #bt{
                width: 300px;
             }
             #bt1{
                width: 200px;
             }
+
+            /* CENTRALIZA A IMAGEM E DEFINE A COR DO TEXTO */
+
             #text{
                 text-align: center;
                 color:white;
             }
+
+            /* MUDA A COR DAS LABELS */
+
             .form-label,#log_se{
                 color:white;
             }
+
+            /* CENTRALIZA A DIV */
+
             .container-fluid{
                 margin:auto;
             }
         </style>
         <script> 
+
+// MUDA O TAMANHO E A OPACIDADE DA LOGO QUANDO O MOUSE PASSA POR ELA
+
           $(document).ready(function(){
             $("#img").mouseenter(function(){
               $("#logo").animate({
@@ -135,7 +152,7 @@
 
                 <div class="mb-3">
                     <label for="req_email" class="form-label">Email:</label>
-                    <input type="text" name="req_email" class="form-control"  placeholder="Nome de usuário">
+                    <input type="text" name="req_email" class="form-control"  placeholder="name@example.com">
                   </div>
 
                   <!--RECEBE A SENHA-->

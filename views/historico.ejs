@@ -380,6 +380,7 @@ img{
     }
 }
 
+/* EM TELAS MAIORES QUE 450PX O MENU IRÁ SUMIR E MUDARÁ A MARGEN ESQUERDA DO TEXTO NO RODAPÉ */
 
 @media only screen and (min-width: 450px) {
     .menu-mobile{
@@ -473,10 +474,18 @@ img{
 </head>
 <body>  
 
+<!-- MENU -->    
+
 <div class="tudo">
+
+<!-- MENU QUE SÓ APARECE QUANDO A TELA É MENOR QUE 450PX -->
+
     <nav class="menu-mobile" style="color: white; background: #11101D; width: 100%; height: 50px;"><svg style="height: 50px;"  id="btn2" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
       </svg></nav>
+
+<!-- BOTÃO QUE ABRE O MENU -->
+
       <div class="sidebar">
         <div class="logo-details">
             <div class="logo_name">Menu</div>
@@ -484,6 +493,9 @@ img{
         </div>
         <div class="menu-close">
         <ul class="nav-list">
+
+<!-- DIRECIONA PARA O INICIO -->
+
           <li>
             <a href="/Inicio">
               <i class='bx bx-home-circle'></i>
@@ -491,6 +503,9 @@ img{
             </a>
              <span class="tooltip">Inicio</span>
           </li>
+
+<!-- DIRECIONA PARA O HISTORICO -->
+
           <li>
            <a href="/Historico">
              <i class='bx bx-history' ></i>
@@ -498,6 +513,9 @@ img{
            </a>
            <span class="tooltip">Histórico</span>
          </li>
+
+<!-- DIRECIONA PARA O LOCALIZAÇÃO -->
+
          <li>
            <a href="/Localizacao">
              <i class='bx bx-location-plus' ></i>
@@ -505,6 +523,9 @@ img{
            </a>
            <span class="tooltip">Localização</span>
          </li>
+
+<!-- DIRECIONA PARA O CADASTRO DE MEDIDORES -->
+
          <li>
            <a href="/Medidor">
              <i class='bx bx-message-alt-add' ></i>
@@ -512,6 +533,9 @@ img{
            </a>
            <span class="tooltip">Medidor</span>
          </li>
+
+<!-- DIRECIONA PARA OS MEDIDORES CADASTRADOS -->
+
          <li>
            <a href="/medidores-cadastrados">
              <i class='bx bx-tachometer' ></i>
@@ -519,6 +543,9 @@ img{
            </a>
            <span class="tooltip">Medidores cadastrados</span>
          </li>
+
+<!-- DIRECIONA PARA O CADASTRO DE MEDIÇÕES -->
+
          <li>
            <a href="/Cadastrar-medicoes">
              <i class='bx bx-bar-chart-alt-2' ></i>
@@ -526,6 +553,9 @@ img{
            </a>
            <span class="tooltip">Cadastrar vazões</span>
          </li>
+
+<!-- DIRECIONA PARA O SEU PERFIL -->
+
          <li>
            <a href="/Seus-dados">
              <i class='bx bx-user' ></i>
@@ -533,6 +563,9 @@ img{
            </a>
            <span class="tooltip">Perfil</span>
          </li>
+
+<!-- BOTÃO QUE ENCERRA A SESSÃO -->
+
          <li class="profile">
              <div class="profile-details">
                 <img id="logo" src="img/Logo.png">
@@ -549,13 +582,18 @@ img{
     </div>
       </div>
       <script>
-     $("#btn2").click(function(){
+
+// ABRE O MENU QUANDO O DISPOSITIVO TEM MENOS DE 45O PX
+
+$("#btn2").click(function(){
      $(".sidebar.open").show(250);
     });
 
       let sidebar = document.querySelector(".sidebar");
       let closeBtn = document.querySelector("#btn");
       let closeBtn2 = document.querySelector("#btn2");
+
+// ABRE OU FECHA O MENU QUANDO O MOUSE PASSA PELO ICONE DE MENU
     
       closeBtn.addEventListener("mouseenter", ()=>{
         sidebar.classList.toggle("open");
@@ -575,22 +613,26 @@ img{
        }
       }
 
+// FECHA O MENU QUANDO O DISPOSITIVO TEM MENOS DE 45O PX
+
       function menuBtnChange2() {
         $("#btn").click(function(){
         $(".sidebar").hide(250);
         });
       }
+
       </script>
 
     <!-- CONTAINER -->
 
 <div class="container-fluid">
 
+
     <!-- RECEBE O NOME DO MEDIDOR -->
              <div id="pesq" class="row g-1">
                 <div class="col-md">
                   <div class="form-floating">
-                    <input id="longitude" type="text" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
+                    <input name="nome_medidor" id="longitude" type="text" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
                     <label id="longi" for="floatingInputGrid">Nome do medidor</label>
                   </div>
                 </div>
@@ -600,7 +642,7 @@ img{
                 <div class="col-md">
                   <div class="form-floating">
                     <div class="form-floating">
-                        <input id="latitude" type="date" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="">
+                        <input name="data" id="latitude" type="date" class="form-control" id="floatingInputGrid" placeholder="name@example.com">
                         <label id="lati" for="floatingInputGrid">Data</label>
                       </div>
                   </div>
@@ -614,6 +656,8 @@ img{
                     </div>
                   </div>
               </div>
+
+
     <!-- TABELA -->
 
         <div id="tabela_h" class="table-responsive">
@@ -674,7 +718,6 @@ img{
                 </tbody>
             </table>  
         </div>
-              </table>
 
               <div id="tabela_edit_h" class="table-responsive">
 

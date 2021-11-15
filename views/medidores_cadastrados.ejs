@@ -426,6 +426,9 @@ footer{
 
 </head>
 <script>
+
+// MOSTRA OU ESCONDE A TABELA 
+
 $(document).ready(function(){
     $(".editar").click(function(){
         $("#tabela_edit").show();
@@ -441,88 +444,126 @@ $(document).ready(function(){
   });  
 </script>
 <body>  
+<!-- MENU -->    
 
-    <div class="tudo">
+<div class="tudo">
+
+    <!-- MENU QUE SÓ APARECE QUANDO A TELA É MENOR QUE 450PX -->
+    
         <nav class="menu-mobile" style="color: white; background: #11101D; width: 100%; height: 50px;"><svg style="height: 50px;"  id="btn2" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
           </svg></nav>
+    
+    <!-- BOTÃO QUE ABRE O MENU -->
+    
           <div class="sidebar">
-        <div class="logo-details">
-            <div class="logo_name">Menu</div>
-            <i class='bx bx-menu' id="btn" ></i>
+            <div class="logo-details">
+                <div class="logo_name">Menu</div>
+                <i class='bx bx-menu' id="btn" ></i>
+            </div>
+            <div class="menu-close">
+            <ul class="nav-list">
+    
+    <!-- DIRECIONA PARA O INICIO -->
+    
+              <li>
+                <a href="/Inicio">
+                  <i class='bx bx-home-circle'></i>
+                  <span class="links_name">inicio</span>
+                </a>
+                 <span class="tooltip">Inicio</span>
+              </li>
+    
+    <!-- DIRECIONA PARA O HISTORICO -->
+    
+              <li>
+               <a href="/Historico">
+                 <i class='bx bx-history' ></i>
+                 <span class="links_name">Histórico</span>
+               </a>
+               <span class="tooltip">Histórico</span>
+             </li>
+    
+    <!-- DIRECIONA PARA O LOCALIZAÇÃO -->
+    
+             <li>
+               <a href="/Localizacao">
+                 <i class='bx bx-location-plus' ></i>
+                 <span class="links_name">Localização</span>
+               </a>
+               <span class="tooltip">Localização</span>
+             </li>
+    
+    <!-- DIRECIONA PARA O CADASTRO DE MEDIDORES -->
+    
+             <li>
+               <a href="/Medidor">
+                 <i class='bx bx-message-alt-add' ></i>
+                 <span class="links_name">Cadastrar medidor</span>
+               </a>
+               <span class="tooltip">Medidor</span>
+             </li>
+    
+    <!-- DIRECIONA PARA OS MEDIDORES CADASTRADOS -->
+    
+             <li>
+               <a href="/medidores-cadastrados">
+                 <i class='bx bx-tachometer' ></i>
+                 <span class="links_name">Medidores cadastrados</span>
+               </a>
+               <span class="tooltip">Medidores cadastrados</span>
+             </li>
+    
+    <!-- DIRECIONA PARA O CADASTRO DE MEDIÇÕES -->
+    
+             <li>
+               <a href="/Cadastrar-medicoes">
+                 <i class='bx bx-bar-chart-alt-2' ></i>
+                 <span class="links_name">Cadastrar vazões</span>
+               </a>
+               <span class="tooltip">Cadastrar vazões</span>
+             </li>
+    
+    <!-- DIRECIONA PARA O SEU PERFIL -->
+    
+             <li>
+               <a href="/Seus-dados">
+                 <i class='bx bx-user' ></i>
+                 <span class="links_name">Perfil</span>
+               </a>
+               <span class="tooltip">Perfil</span>
+             </li>
+    
+    <!-- BOTÃO QUE ENCERRA A SESSÃO -->
+    
+             <li class="profile">
+                 <div class="profile-details">
+                    <img id="logo" src="img/Logo.png">
+                   <div class="name_job">
+                     <div class="name">Projeto 1</div>
+                     <div class="job">Medidor inteligente</div>
+                   </div>
+                 </div>
+                 <a href="/Sair">
+                 <i class='bx bx-log-out' id="log_out" ></i>
+                </a>
+             </li>
+            </ul>
         </div>
-        <ul class="nav-list">
-          <li>
-            <a href="/Inicio">
-              <i class='bx bx-home-circle'></i>
-              <span class="links_name">inicio</span>
-            </a>
-             <span class="tooltip">Inicio</span>
-          </li>
-          <li>
-           <a href="/Historico">
-             <i class='bx bx-history' ></i>
-             <span class="links_name">Histórico</span>
-           </a>
-           <span class="tooltip">Histórico</span>
-         </li>
-         <li>
-           <a href="/Localizacao">
-             <i class='bx bx-location-plus' ></i>
-             <span class="links_name">Localização</span>
-           </a>
-           <span class="tooltip">Localização</span>
-         </li>
-         <li>
-           <a href="/Medidor">
-             <i class='bx bx-message-alt-add' ></i>
-             <span class="links_name">Cadastrar medidor</span>
-           </a>
-           <span class="tooltip">Medidor</span>
-         </li>
-         <li>
-           <a href="/medidores-cadastrados">
-             <i class='bx bx-tachometer' ></i>
-             <span class="links_name">Medidores cadastrados</span>
-           </a>
-           <span class="tooltip">Medidores cadastrados</span>
-         </li>
-         <li>
-           <a href="/Cadastrar-medicoes">
-             <i class='bx bx-bar-chart-alt-2' ></i>
-             <span class="links_name">Cadastrar vazões</span>
-           </a>
-           <span class="tooltip">Cadastrar vazões</span>
-         </li>
-         <li>
-           <a href="/Seus-dados">
-             <i class='bx bx-user' ></i>
-             <span class="links_name">Perfil</span>
-           </a>
-           <span class="tooltip">Perfil</span>
-         </li>
-         <li class="profile">
-             <div class="profile-details">
-                <img id="logo" src="img/Logo.png">
-               <div class="name_job">
-                 <div class="name">Projeto 1</div>
-                 <div class="job">Medidor inteligente</div>
-               </div>
-             </div>
-             <a href="/Sair">
-             <i class='bx bx-log-out' id="log_out" ></i>
-            </a>
-         </li>
-        </ul>
-      </div>
+          </div>
       <script>
-     $("#btn2").click(function(){
+
+// ABRE O MENU QUANDO O DISPOSITIVO TEM MENOS DE 45O PX
+
+$("#btn2").click(function(){
      $(".sidebar.open").show(250);
     });
 
       let sidebar = document.querySelector(".sidebar");
       let closeBtn = document.querySelector("#btn");
       let closeBtn2 = document.querySelector("#btn2");
+
+// ABRE OU FECHA O MENU QUANDO O MOUSE PASSA PELO ICONE DE MENU
     
       closeBtn.addEventListener("mouseenter", ()=>{
         sidebar.classList.toggle("open");
@@ -542,11 +583,14 @@ $(document).ready(function(){
        }
       }
 
+// FECHA O MENU QUANDO O DISPOSITIVO TEM MENOS DE 45O PX
+
       function menuBtnChange2() {
         $("#btn").click(function(){
         $(".sidebar").hide(250);
         });
       }
+
       </script>
 
     <!-- TABELA  -->
