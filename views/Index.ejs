@@ -856,13 +856,12 @@ $(document).ready(function() {
   
 // FUNÇÃO QUE GERA O GRAFICO
 
-  var map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v9',
-      center : dados_grafico[4],
-      zoom:3
-  });
-
+const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: dados_grafico[4], // starting position [lng, lat]
+    zoom: 3 // starting zoom
+    });
 
   // TAMANHO DO PONTO VERMELHO
 
