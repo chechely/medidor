@@ -120,15 +120,7 @@ app.get("/Inicio", function(req,res){
 
         let aviso = req.flash('aviso');
 
-        let dados = req.flash('dados');
-
-    connection.query("select medidor.id_medidor, medidor.nome_medidor, medidor_v.vazao, medidor_v.datat from ((medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario) INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor)  where vazao=null or datat = '2021-10-21' and usuario.nome_usuario = ?;",[req.session.usuario], function(err,result){
-
-            if(result.length > 0){
-            }else{
-                req.flash('aviso',"O medidor(es)",result.nome_medidor,"não tem registro de vazão");
-            }
-         });
+        var dados = req.flash('dados');
 
 // ENVIA TODOS OS MEDIDORES CADASTRADOS PARA A TELA INICIAL
          
@@ -145,14 +137,14 @@ app.get("/Inicio", function(req,res){
 
 // ENVIA OS DADOS DO GRAFICO PARA A PAGINA DADOS_GRAFICO
 
-app.post('/Inicio', function(req,res){
+app.post('/Inicio', async function(req,res){
     if (req.session.loggedin) {
 
 // CRIA UMA VARIAVEL COM O MEDIDOR ESCOLHIDO PELO USUARIO
 
-        var medidor;
+        let medidor;
         medidor = req.body.medidor_grafico;
-        if (medidor) {
+        if (medidor != 0) {
             var dia_v = [];
             var vazao_v = [];
             var vazao_l = [];
@@ -197,7 +189,7 @@ app.post('/Inicio', function(req,res){
 
 // FUNÇÃO QUE IRÁ REDIRECIONAR POR UM JQUERY OS DADOS DE UM UNICO ARRAY E MANDAR PARA O GRAFICO 
 
-  function dados_medidor(){
+function dados_medidor(){
     var dia;
     dia = dia_v;
 
@@ -217,19 +209,26 @@ app.post('/Inicio', function(req,res){
 
     return tds_dados_medidor
 }   
-
+req.flash('dados',dia_v);
 res.redirect('/Inicio');
 
 // PEGA OS DADOS DA FUNÇÃO E ENVIA PARA /DADOS_MEDIDOR
 
     app.get('/dados_medidor', function(req,res){
-    req.flash('dados',vazao_v);
+    req.flash('dados',dia_v);
+
     res.send(dados_medidor())
     });
-});
 
+    if(err){
+        req.flash('aviso',"Erro ao buscar dados, tente novamente!");
+        res.redirect('/Inicio'); 
+    }
+
+});
 }else{
-    res.send('Medidor não tem nenhum dado');
+    req.flash('aviso',"Medidor não tem nenhum dado");
+    res.redirect('/Inicio');
 } 
 }else{
     res.redirect('/Entrar');

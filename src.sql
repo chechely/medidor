@@ -81,4 +81,8 @@ select count(medidor.id_medidor) from ((medidor INNER JOIN usuario ON medidor.us
 
 select count(idmedidor_v) as total, avg(vazao) as media,count(vazao) as total_v from ((medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario) INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor)  where  usuario.nome_usuario = 'chechely';
 
+select nome_medidor,longitude, latitude from medidor where estado="Alagoas (AL)";
+
 select * from medidor;
+
+select usuario.nome_usuario,medidor.cidade, medidor.estado,medidor.id_medidor,medidor.nome_medidor, medidor_v.vazao,medidor_v.datah, medidor_v.datat, medidor_v.idmedidor_v  from ((medidor INNER JOIN usuario ON medidor.usuario_nome_usuario = usuario.nome_usuario) INNER JOIN medidor_v ON medidor_v.id_medidor = medidor.id_medidor) where usuario.nome_usuario= ? and medidor.nome_medidor = ? or medidor_v.datat = ? order by medidor_v.idmedidor_v desc;

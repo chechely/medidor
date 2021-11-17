@@ -860,7 +860,7 @@ $(document).ready(function() {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v9',
       center : dados_grafico[4],
-      zoom:2
+      zoom:3
   });
 
 
@@ -986,9 +986,9 @@ Chart.defaults.color='#000000';
 
 // Gera o grafico em 2d componentes canva no html
 
-const ctx = document.getElementById('grafico').getContext('2d');
+var ctx = document.getElementById('grafico').getContext('2d');
 
-const grafico = new Chart(ctx, {
+var grafico = new Chart(ctx, {
 type: 'line',
 data: {
 labels: dados_grafico[1],
